@@ -230,7 +230,7 @@ section {
   font-size: clamp(3.4rem, 5vw, 5.2rem);
   line-height: 1.05;
   letter-spacing: -0.03em;
-  max-width: 12ch;
+  max-width: 17ch;
 }
 
 .hero p {
