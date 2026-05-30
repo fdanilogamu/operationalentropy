@@ -223,7 +223,7 @@ section {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 620px;
+  max-width: 750px;
 }
 
 .hero h1 {
@@ -549,7 +549,7 @@ footer {
   }
 
   .hero {
-    padding: 4rem 4% 3rem;
+    padding: 3.5rem 4% 3rem;
     min-height: 400px;
   }
 
