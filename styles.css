@@ -310,8 +310,13 @@ section {
 }
 
 .feature-icon {
-    max-width: 64px;
-    max-height: 64px;
+    width: 64px;
+    height: 64px;
+}
+
+.feature-icon img {
+    width: 64px;
+    height: 64px;
 }
 
 .feature h3 {
