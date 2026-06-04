@@ -42,7 +42,7 @@
       
       <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 8px; margin-bottom: 3rem; margin-top: 2rem;">
         <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: var(--text-secondary);"><strong>Select your company revenue to see adjusted pricing:</strong></p>
-        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem;">
           <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
             <input type="radio" name="revenue-tier" value="0" checked style="cursor: pointer;">
             <span style="font-size: 0.95rem;">Under $5M</span>
@@ -247,7 +247,6 @@
             <li style="margin-bottom: 0.75rem;">You get 15% of the engagement fee</li>
           </ol>
           <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 4px; margin-top: 1.5rem;">
-            <p style="margin: 0; font-size: 0.9rem; color: var(--text-light);">Example: A referral that completes a 90-Day Reset ($45,000) earns you <strong style="color: var(--primary); font-size: 1rem;">$6,750</strong></p>
           </div>
         </div>
 
