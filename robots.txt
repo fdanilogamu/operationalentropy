@@ -1,0 +1,22 @@
+# Open the door to standard search engines and AI tools
+User-agent: *
+Allow: /
+
+# Explicitly grant access to primary AI assistant crawlers
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Point to your 5-page sitemap
+Sitemap: https://operationalentropy.com/sitemap.xml
