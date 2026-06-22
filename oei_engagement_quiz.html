@@ -36,6 +36,17 @@
       color: var(--text-secondary);
       font-size: 16px;
       line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .quiz-privacy-note {
+      font-size: 13px;
+      color: var(--text-secondary);
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
 
     .quiz-step {
@@ -335,6 +346,9 @@
         <div class="quiz-header">
             <h2>Find Your Engagement Path</h2>
             <p>Answer a few quick questions to discover which OEI service package is right for your organization.</p>
+            <div class="quiz-privacy-note">
+                <span>🔒 No contact details or email address required to view your path.</span>
+            </div>
         </div>
 
         <div class="progress-bar">
@@ -380,7 +394,7 @@
 
             <div class="button-group">
                 <div></div>
-                <button class="btn-primary" onclick="nextStep()" disabled id="btn-step1">Continue</button>
+                <button class="quiz-button primary" onclick="nextStep()" disabled id="btn-step1">Continue</button>
             </div>
         </div>
 
@@ -432,8 +446,8 @@
             </div>
 
             <div class="button-group">
-                <button class="btn-secondary" onclick="prevStep()">Back</button>
-                <button class="btn-primary" onclick="nextStep()" disabled id="btn-step2">Continue</button>
+                <button class="quiz-button secondary" onclick="prevStep()">Back</button>
+                <button class="quiz-button primary" onclick="nextStep()" disabled id="btn-step2">Continue</button>
             </div>
         </div>
 
@@ -475,8 +489,8 @@
             </div>
 
             <div class="button-group">
-                <button class="btn-secondary" onclick="prevStep()">Back</button>
-                <button class="btn-primary" onclick="showResults()" disabled id="btn-step3">See Your Path</button>
+                <button class="quiz-button secondary" onclick="prevStep()">Back</button>
+                <button class="quiz-button primary" onclick="showResults()" disabled id="btn-step3">See Your Path</button>
             </div>
         </div>
 
@@ -498,7 +512,7 @@
 
             <div class="action-buttons">
                 <a href="/contact.html" class="btn-cta">Get Started</a>
-                <button class="btn-secondary btn-reset" onclick="resetQuiz()">Take Quiz Again</button>
+                <button class="quiz-button secondary btn-reset" onclick="resetQuiz()">Take Quiz Again</button>
             </div>
         </div>
     </div>
@@ -800,7 +814,12 @@
             const pain = document.querySelector('input[name="pain"]:checked').value;
             const followup = document.querySelector('input[name="followup"]:checked').value;
 
-            const pathKey = `${friction}-${pain}-${followup}`;
+            // Normalize routing for low-friction scenarios to match object architecture
+            let pathKey = `${friction}-${pain}-${followup}`;
+            if (friction === 'low') {
+                pathKey = `low-any-${followup}`;
+            }
+            
             const fallbackKey = `${friction}-any-${followup}`;
             const path = paths[pathKey] || paths[fallbackKey] || paths['low-any-none'];
 
