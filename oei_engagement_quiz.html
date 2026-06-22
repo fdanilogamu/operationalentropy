@@ -762,7 +762,8 @@
             const followup = document.querySelector('input[name="followup"]:checked').value;
 
             const pathKey = `${friction}-${pain}-${followup}`;
-            const path = paths[pathKey] || paths['low-any-none'];
+            const fallbackKey = `${friction}-any-${followup}`;
+            const path = paths[pathKey] || paths[fallbackKey] || paths['low-any-none'];
 
             // Set primary recommendation
             document.getElementById('primary-title').textContent = path.primary.title;
