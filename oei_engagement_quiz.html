@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Find Your Engagement Path | Operational Entropy</title>
+  <meta name="description" content="Answer a few quick questions to discover which OEI service package is right for your organization.">
+  <meta property="og:title" content="Find Your Engagement Path | Operational Entropy">
+  <meta property="og:description" content="Answer a few quick questions to discover which OEI service package is right for your organization.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  
+  <style>
+    .quiz-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 40px;
+    }
+
+    .quiz-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .quiz-header h2 {
+      font-size: 28px;
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .quiz-header p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .quiz-step {
+      display: none;
+    }
+
+    .quiz-step.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-title {
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .step-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option {
+      padding: 16px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--bg-light);
+    }
+
+    .option:hover {
+      border-color: var(--text-secondary);
+      background: var(--bg-secondary);
+    }
+
+    .option input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+
+    .option label {
+      display: flex;
+      align-items: flex-start;
+      cursor: pointer;
+      gap: 12px;
+    }
+
+    .option-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .option-title {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .option-description {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      justify-content: space-between;
+    }
+
+    .quiz-button {
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-button.primary {
+      background: var(--primary);
+      color: var(--bg-light);
+    }
+
+    .quiz-button.primary:hover:not(:disabled) {
+      background: var(--secondary);
+    }
+
+    .quiz-button.primary:disabled {
+      background: var(--border);
+      cursor: not-allowed;
+    }
+
+    .quiz-button.secondary {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .quiz-button.secondary:hover {
+      border-color: var(--text-secondary);
+      background: var(--bg-secondary);
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .result-container {
+      display: none;
+    }
+
+    .result-container.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    .result-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .result-label {
+      color: var(--text-secondary);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .result-title {
+      color: var(--primary);
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .result-description {
+      color: var(--text-primary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .engagement-items {
+      list-style: none;
+      margin: 16px 0;
+      padding: 0;
+    }
+
+    .engagement-items li {
+      padding: 8px 0;
+      color: var(--text-primary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .engagement-items li:before {
+      content: "→";
+      color: var(--text-secondary);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .upsell-box {
+      background: var(--bg-light);
+      border: 2px solid var(--text-secondary);
+      border-radius: 6px;
+      padding: 24px;
+    }
+
+    .upsell-label {
+      color: var(--text-secondary);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .upsell-title {
+      color: var(--primary);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .upsell-description {
+      color: var(--text-primary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .upsell-items {
+      list-style: none;
+      margin: 12px 0;
+      padding: 0;
+    }
+
+    .upsell-items li {
+      padding: 6px 0;
+      color: var(--text-primary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .upsell-items li:before {
+      content: "→";
+      color: var(--text-secondary);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .action-buttons a {
+      flex: 1;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="logo_OEI.png" alt="Operational Entropy Index">
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn-secondary">Get Started</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero" style="padding-top: 4rem; padding-bottom: 4rem; min-height: 400px;">
+    <div class="hero-content">
+      <h1>Find Your Engagement Path</h1>
+      <p style="font-size: 1.1rem;">Answer a few quick questions to discover which OEI service package is right for your organization.</p>
+    </div>
+  </div>
+
+  <!-- Quiz Section -->
+  <section>
+    <div class="container">
+      <div class="quiz-wrapper">
+        <div class="quiz-header">
+            <h2>Find Your Engagement Path</h2>
+            <p>Answer a few quick questions to discover which OEI service package is right for your organization.</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <!-- Step 1: Friction Level -->
+        <div class="quiz-step active">
+            <div class="step-title">How much operational friction are you experiencing?</div>
+            <div class="step-subtitle">Select the option that best describes your current state</div>
+            
+            <div class="option-group">
+                <div class="option">
+                    <label>
+                        <input type="radio" name="friction" value="low">
+                        <div class="option-text">
+                            <div class="option-title">Early-stage or stable</div>
+                            <div class="option-description">Operations are mostly smooth, but you want to prevent entropy as you scale</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="friction" value="moderate">
+                        <div class="option-text">
+                            <div class="option-title">Growing friction</div>
+                            <div class="option-description">You're noticing coordination overhead and some workflows are slowing down</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="friction" value="high">
+                        <div class="option-text">
+                            <div class="option-title">Significant systemic issues</div>
+                            <div class="option-description">Multiple areas are breaking down and operational drag is affecting growth</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <div></div>
+                <button class="btn-primary" onclick="nextStep()" disabled id="btn-step1">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Primary Pain -->
+        <div class="quiz-step">
+            <div class="step-title">What's your primary operational pain?</div>
+            <div class="step-subtitle">Pick the one that resonates most</div>
+            
+            <div class="option-group">
+                <div class="option">
+                    <label>
+                        <input type="radio" name="pain" value="founder">
+                        <div class="option-text">
+                            <div class="option-title">Founder bottleneck</div>
+                            <div class="option-description">Leadership is involved in too many decisions, approvals, and day-to-day operations</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="pain" value="workflow">
+                        <div class="option-text">
+                            <div class="option-title">Workflow breakdown</div>
+                            <div class="option-description">Work is slow-moving, priorities are unclear, or execution reliability is degrading</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="pain" value="visibility">
+                        <div class="option-text">
+                            <div class="option-title">Lack of visibility</div>
+                            <div class="option-description">You want to understand operational patterns and trends over time</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="pain" value="multiple">
+                        <div class="option-text">
+                            <div class="option-title">Multiple systemic issues</div>
+                            <div class="option-description">It's not one thing—founder dependency, workflows, tools, and coordination are all tangled</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn-primary" onclick="nextStep()" disabled id="btn-step2">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Follow-up Appetite -->
+        <div class="quiz-step">
+            <div class="step-title">Do you want ongoing monitoring after your engagement?</div>
+            <div class="step-subtitle">This helps you track whether improvements stick and where new patterns emerge</div>
+            
+            <div class="option-group">
+                <div class="option">
+                    <label>
+                        <input type="radio" name="followup" value="none">
+                        <div class="option-text">
+                            <div class="option-title">Not right now</div>
+                            <div class="option-description">Let's solve the immediate problem first</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="followup" value="one">
+                        <div class="option-text">
+                            <div class="option-title">Yes, one specific thing</div>
+                            <div class="option-description">I want to track hiring effectiveness or operational trends after we finish</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="followup" value="full">
+                        <div class="option-text">
+                            <div class="option-title">Yes, full monitoring</div>
+                            <div class="option-description">I want hiring + trend tracking to understand how we evolve over time</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn-primary" onclick="showResults()" disabled id="btn-step3">See Your Path</button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="result-container" id="results">
+            <div class="result-box">
+                <div class="result-label">Your Recommended Engagement Path</div>
+                <div class="result-title" id="primary-title"></div>
+                <div class="result-description" id="primary-description"></div>
+                <ul class="engagement-items" id="primary-items"></ul>
+            </div>
+
+            <div class="upsell-box">
+                <div class="upsell-label">Next Step When Ready</div>
+                <div class="upsell-title" id="upsell-title"></div>
+                <div class="upsell-description" id="upsell-description"></div>
+                <ul class="upsell-items" id="upsell-items"></ul>
+            </div>
+
+            <div class="action-buttons">
+                <a href="/contact.html" class="btn-cta">Get Started</a>
+                <button class="btn-secondary btn-reset" onclick="resetQuiz()">Take Quiz Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const paths = {
+            // Low friction + any combo
+            'low-any-none': {
+                primary: {
+                    title: '4-Day Operational Entropy Diagnosis',
+                    description: 'A foundational assessment of your operational structure. Perfect for early-stage companies or those wanting to prevent entropy before it becomes a problem.',
+                    items: ['4-day diagnostic engagement', 'OEI assessment across 5 pillars', 'Comprehensive findings report', 'Operational pattern analysis']
+                },
+                upsell: {
+                    title: '30-Day Audit + Focused Sprint',
+                    description: 'When you\'re ready to move from diagnosis to action, add a deeper audit and single pain-point intervention.',
+                    items: ['Workflow dependency mapping', 'Decision-routing analysis', 'One targeted structural fix', 'Implementation support']
+                }
+            },
+
+            // Low friction + one followup
+            'low-any-one': {
+                primary: {
+                    title: '4-Day Diagnosis + Hiring Constraint Analysis',
+                    description: 'Get your operational baseline plus a deep dive into hiring effectiveness for founder-dependent roles.',
+                    items: ['4-day diagnostic engagement', 'OEI assessment across 5 pillars', 'Hiring constraint mapping', 'Recommendations report']
+                },
+                upsell: {
+                    title: '30-Day Audit + Focused Sprint',
+                    description: 'Layer in workflow optimization and targeted operational fixes.',
+                    items: ['Workflow dependency mapping', 'One focused structural intervention', 'Implementation support']
+                }
+            },
+
+            // Low friction + full followup
+            'low-any-full': {
+                primary: {
+                    title: '4-Day Diagnosis + Hiring + Trend Analysis',
+                    description: 'Establish your baseline, understand hiring constraints, and begin tracking operational patterns over time.',
+                    items: ['4-day diagnostic engagement', 'OEI assessment across 5 pillars', 'Hiring constraint mapping', 'Trend tracking setup', 'Ongoing pattern monitoring']
+                },
+                upsell: {
+                    title: '30-Day Audit + Multi-Pain Sprint',
+                    description: 'When you\'re ready to go deeper, add comprehensive audit and address multiple structural issues.',
+                    items: ['Full workflow dependency mapping', 'Three targeted structural fixes', 'Implementation support']
+                }
+            },
+
+            // Moderate friction (founder/workflow specific) + no followup
+            'moderate-founder-none': {
+                primary: {
+                    title: '30-Day Audit + Focused Sprint',
+                    description: 'Diagnose the full scope of your operational entropy, then fix your most pressing constraint—founder bottleneck or workflow velocity.',
+                    items: ['4-day initial diagnostic', '30-day audit & dependency mapping', 'One targeted structural intervention', 'Implementation support', 'Findings report']
+                },
+                upsell: {
+                    title: '90-Day Multi-Pain Sprint',
+                    description: 'Expand to address multiple interconnected issues across your organization.',
+                    items: ['Three targeted structural fixes', 'Broader coordination redesign', 'Extended implementation support']
+                }
+            },
+
+            // Moderate friction (founder/workflow) + one followup
+            'moderate-founder-one': {
+                primary: {
+                    title: '30-Day Audit + Focused Sprint + Hiring Analysis',
+                    description: 'Fix your founder bottleneck, then map hiring constraints to prevent future dependency concentration.',
+                    items: ['4-day diagnostic', '30-day audit', 'One structural fix', 'Hiring constraint mapping', 'Implementation support']
+                },
+                upsell: {
+                    title: '90-Day Multi-Pain Sprint + Trend Tracking',
+                    description: 'Scale your structural improvements and monitor how patterns evolve.',
+                    items: ['Multiple structural fixes', 'Trend tracking & monitoring', 'Extended implementation']
+                }
+            },
+
+            // Moderate friction (founder/workflow) + full followup
+            'moderate-founder-full': {
+                primary: {
+                    title: '30-Day Audit + Focused Sprint + Hiring + Trend Tracking',
+                    description: 'Comprehensive engagement: fix immediate bottlenecks, map hiring constraints, and track patterns over time.',
+                    items: ['4-day diagnostic', '30-day audit', 'One structural fix', 'Hiring constraint mapping', 'Trend tracking setup', 'Ongoing monitoring']
+                },
+                upsell: {
+                    title: '90-Day Multi-Pain Sprint',
+                    description: 'When ready, expand to address multiple systemic issues simultaneously.',
+                    items: ['Three structural fixes', 'Broader coordination redesign', 'Extended implementation support']
+                }
+            },
+
+            // Moderate friction (visibility/multiple) + no followup
+            'moderate-visibility-none': {
+                primary: {
+                    title: '30-Day Audit + Trend Analysis',
+                    description: 'Understand your operational patterns and how entropy propagates across workflows, then track changes over time.',
+                    items: ['4-day diagnostic', '30-day audit & mapping', 'Trend tracking setup', 'Pattern monitoring', 'Findings report']
+                },
+                upsell: {
+                    title: '30-Day Focused Sprint',
+                    description: 'Pick a high-impact constraint and fix it while continuing to monitor overall patterns.',
+                    items: ['One targeted structural intervention', 'Implementation support', 'Continued trend tracking']
+                }
+            },
+
+            'moderate-visibility-one': {
+                primary: {
+                    title: '30-Day Audit + Trend Analysis + Hiring',
+                    description: 'Map your operational patterns, understand hiring constraints, and track both over time.',
+                    items: ['4-day diagnostic', '30-day audit', 'Trend tracking setup', 'Hiring constraint mapping', 'Ongoing monitoring']
+                },
+                upsell: {
+                    title: '30-Day Focused Sprint',
+                    description: 'Add a structural intervention while maintaining trend visibility.',
+                    items: ['One targeted fix', 'Implementation support', 'Continued monitoring']
+                }
+            },
+
+            'moderate-visibility-full': {
+                primary: {
+                    title: '30-Day Audit + Trend Analysis + Hiring',
+                    description: 'Full diagnostic visibility: operational patterns, hiring constraints, and ongoing trend tracking.',
+                    items: ['4-day diagnostic', '30-day audit', 'Trend tracking setup', 'Hiring constraint mapping', 'Continuous monitoring']
+                },
+                upsell: {
+                    title: '30-Day or 90-Day Sprint',
+                    description: 'Add structural interventions while maintaining full operational visibility.',
+                    items: ['One or three targeted fixes', 'Implementation support', 'Continuous trend monitoring']
+                }
+            },
+
+            'moderate-multiple-none': {
+                primary: {
+                    title: '30-Day Audit + Focused Sprint',
+                    description: 'Comprehensive audit followed by a focused intervention on your highest-leverage constraint.',
+                    items: ['4-day diagnostic', '30-day audit & mapping', 'One structural fix', 'Implementation support', 'Findings report']
+                },
+                upsell: {
+                    title: '90-Day Multi-Pain Sprint',
+                    description: 'Expand to address multiple interconnected issues simultaneously.',
+                    items: ['Three targeted structural fixes', 'Broader coordination redesign', 'Extended implementation support']
+                }
+            },
+
+            'moderate-multiple-one': {
+                primary: {
+                    title: '30-Day Audit + Focused Sprint + Hiring',
+                    description: 'Fix your most pressing constraint, map hiring effectiveness, and prevent future bottlenecks.',
+                    items: ['4-day diagnostic', '30-day audit', 'One structural fix', 'Hiring constraint mapping', 'Implementation support']
+                },
+                upsell: {
+                    title: '90-Day Multi-Pain Sprint + Trend Tracking',
+                    description: 'Scale to multiple fixes and add ongoing pattern monitoring.',
+                    items: ['Three structural fixes', 'Trend tracking setup', 'Extended implementation']
+                }
+            },
+
+            'moderate-multiple-full': {
+                primary: {
+                    title: '30-Day Audit + Focused Sprint + Hiring + Trend',
+                    description: 'Comprehensive engagement: diagnose everything, fix your priority constraint, map hiring, and track patterns.',
+                    items: ['4-day diagnostic', '30-day audit', 'One structural fix', 'Hiring constraint mapping', 'Trend tracking', 'Ongoing monitoring']
+                },
+                upsell: {
+                    title: '90-Day Multi-Pain Sprint',
+                    description: 'Expand to multiple systemic fixes while maintaining trend visibility.',
+                    items: ['Two additional structural fixes', 'Broader coordination redesign', 'Extended implementation']
+                }
+            },
+
+            // High friction (any) + no followup
+            'high-any-none': {
+                primary: {
+                    title: '90-Day Operational Entropy Reset',
+                    description: 'Full structural reset: comprehensive diagnosis, deep audit, and intervention across multiple systemic pain points.',
+                    items: ['4-day diagnostic', '30-day audit & dependency mapping', 'Three targeted structural interventions', 'Extended implementation support', 'Comprehensive findings report']
+                },
+                upsell: {
+                    title: '+ Hiring Constraint Analysis + Trend Tracking',
+                    description: 'Add ongoing visibility to prevent regression and new patterns from emerging.',
+                    items: ['Hiring constraint mapping', 'Trend tracking & monitoring', 'Continuous pattern analysis']
+                }
+            },
+
+            'high-any-one': {
+                primary: {
+                    title: '90-Day Operational Entropy Reset + Hiring',
+                    description: 'Full reset plus hiring constraint analysis to break founder-dependency cycles and build scalable structure.',
+                    items: ['4-day diagnostic', '30-day audit', 'Three structural interventions', 'Hiring constraint mapping', 'Implementation support', 'Findings report']
+                },
+                upsell: {
+                    title: '+ Trend Tracking',
+                    description: 'Add ongoing monitoring to ensure improvements persist and track new patterns.',
+                    items: ['Trend tracking setup', 'Continuous pattern monitoring']
+                }
+            },
+
+            'high-any-full': {
+                primary: {
+                    title: '90-Day Operational Entropy Reset + Hiring + Trend',
+                    description: 'Complete structural transformation: fix multiple systemic issues, break hiring bottlenecks, and monitor patterns over time.',
+                    items: ['4-day diagnostic', '30-day audit', 'Three structural interventions', 'Hiring constraint mapping', 'Trend tracking setup', 'Extended implementation support', 'Continuous monitoring']
+                },
+                upsell: {
+                    title: 'Periodic Reassessment',
+                    description: 'After 6-12 months, refresh the OEI diagnosis to validate improvements and identify emerging patterns.',
+                    items: ['Longitudinal OEI tracking', 'Pattern evolution analysis', 'Adaptive follow-up interventions']
+                }
+            }
+        };
+
+        let currentStep = 0;
+        const totalSteps = 3;
+
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', updateButtonStates);
+        });
+
+        function updateButtonStates() {
+            const friction = document.querySelector('input[name="friction"]:checked');
+            const pain = document.querySelector('input[name="pain"]:checked');
+            const followup = document.querySelector('input[name="followup"]:checked');
+
+            if (currentStep === 0) {
+                document.getElementById('btn-step1').disabled = !friction;
+            } else if (currentStep === 1) {
+                document.getElementById('btn-step2').disabled = !pain;
+            } else if (currentStep === 2) {
+                document.getElementById('btn-step3').disabled = !followup;
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps - 1) {
+                currentStep++;
+                updateView();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateView();
+            }
+        }
+
+        function updateView() {
+            document.querySelectorAll('.quiz-step').forEach((step, index) => {
+                step.classList.toggle('active', index === currentStep);
+            });
+
+            const progress = ((currentStep + 1) / totalSteps) * 100;
+            document.querySelector('.progress-fill').style.width = progress + '%';
+
+            updateButtonStates();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showResults() {
+            const friction = document.querySelector('input[name="friction"]:checked').value;
+            const pain = document.querySelector('input[name="pain"]:checked').value;
+            const followup = document.querySelector('input[name="followup"]:checked').value;
+
+            const pathKey = `${friction}-${pain}-${followup}`;
+            const path = paths[pathKey] || paths['low-any-none'];
+
+            // Set primary recommendation
+            document.getElementById('primary-title').textContent = path.primary.title;
+            document.getElementById('primary-description').textContent = path.primary.description;
+            const primaryList = document.getElementById('primary-items');
+            primaryList.innerHTML = path.primary.items.map(item => `<li>${item}</li>`).join('');
+
+            // Set upsell
+            document.getElementById('upsell-title').textContent = path.upsell.title;
+            document.getElementById('upsell-description').textContent = path.upsell.description;
+            const upsellList = document.getElementById('upsell-items');
+            upsellList.innerHTML = path.upsell.items.map(item => `<li>${item}</li>`).join('');
+
+            // Hide quiz, show results
+            document.querySelectorAll('.quiz-step').forEach(step => step.classList.remove('active'));
+            document.getElementById('results').classList.add('active');
+            document.querySelector('.progress-bar').style.display = 'none';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            // Reset all inputs
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+
+            // Reset step
+            currentStep = 0;
+
+            // Show quiz, hide results
+            document.getElementById('results').classList.remove('active');
+            document.querySelector('.progress-bar').style.display = 'block';
+            updateView();
+        }
+    </script>
+</body>
+</html>
