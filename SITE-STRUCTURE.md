@@ -4,7 +4,8 @@ The public home page remains at `/`. Content pages use folder URLs so each page
 has a clean, durable path:
 
 - `/about/`, `/contact/`, and `/pricing/` — company and commercial pages
-- `/services/` — the service overview and individual service pages
+- `/services/` — the service overview; focused-investigation offerings live under
+  `/services/focused-operational-investigations/`
 - `/insights/` — explanatory articles and OEI pillar deep dives
 - `/resources/` — downloadable and reference material
 - `/assessments/` — interactive assessments
