@@ -10,10 +10,9 @@ has a clean, durable path:
 - `/resources/` — downloadable and reference material
 - `/assessments/` — interactive assessments
 
-Every moved page includes `<base href="/">`, so shared CSS, images, PDFs, and
-the existing relative internal links resolve from the site root. The original
-root-level `.html` files are small compatibility redirects. Keep them in place
-while old bookmarks and search results are still in circulation.
+Every moved page includes `<base href="/">`, so shared CSS, images, and PDFs
+resolve from the site root. Navigation uses the clean folder URLs directly;
+the repository root contains only the home page.
 
 When adding a new page, create `section/page-name/index.html`, add it to
 `sitemap.xml`, and use root-relative links (for example, `/contact/`) for new
