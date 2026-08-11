@@ -23,14 +23,14 @@
 
     .quiz-header {
       margin-bottom: 40px;
-      text-align: center;
-      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      column-gap: 20px;
+      text-align: left;
     }
 
     .investigation-path-trigger {
-      position: absolute;
-      top: 0;
-      right: 0;
       padding: 8px 12px;
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -38,6 +38,8 @@
       color: var(--text-secondary);
       cursor: pointer;
       font-size: 0.8rem;
+      white-space: nowrap;
+      justify-self: end;
     }
 
     .investigation-path-trigger:hover {
@@ -53,10 +55,12 @@
     }
 
     .quiz-header p {
+      grid-column: 1 / -1;
       color: var(--text-secondary);
       font-size: 16px;
       line-height: 1.5;
       margin-bottom: 8px;
+      text-align: center;
     }
 
     .quiz-privacy-note {
@@ -129,10 +133,16 @@
       display: block;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 760px) {
+      .quiz-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
       .investigation-path-trigger {
-        position: static;
-        margin-top: 12px;
+        margin-top: 4px;
       }
     }
 
@@ -359,8 +369,8 @@
       <div class="quiz-wrapper">
         <div class="quiz-header">
             <h2>Find Your Engagement Path</h2>
-            <p>Answer a few quick questions to discover which OEI service package is right for your organization.</p>
             <button type="button" class="investigation-path-trigger" onclick="startInvestigationPath()">Do you already know exactly what's wrong?</button>
+            <p>Answer a few quick questions to discover which OEI service package is right for your organization.</p>
         </div>
 
         <div class="progress-bar">
