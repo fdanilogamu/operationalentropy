@@ -24,6 +24,25 @@
     .quiz-header {
       margin-bottom: 40px;
       text-align: center;
+      position: relative;
+    }
+
+    .investigation-path-trigger {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .investigation-path-trigger:hover {
+      border-color: var(--text-secondary);
+      color: var(--primary);
     }
 
     .quiz-header h2 {
@@ -100,6 +119,21 @@
 
     .investigation-options.active {
       display: block;
+    }
+
+    .investigation-path {
+      display: none;
+    }
+
+    .investigation-path.active {
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .investigation-path-trigger {
+        position: static;
+        margin-top: 12px;
+      }
     }
 
     .investigation-option {
@@ -326,6 +360,7 @@
         <div class="quiz-header">
             <h2>Find Your Engagement Path</h2>
             <p>Answer a few quick questions to discover which OEI service package is right for your organization.</p>
+            <button type="button" class="investigation-path-trigger" onclick="startInvestigationPath()">Do you already know exactly what's wrong?</button>
         </div>
 
         <div class="progress-bar">
@@ -424,39 +459,16 @@
 
             <div class="button-group">
                 <button class="quiz-button secondary" onclick="prevStep()">Back</button>
-                <button class="quiz-button primary" onclick="nextStep()" disabled id="btn-step2">Continue</button>
+                <button class="quiz-button primary" onclick="showResults()" disabled id="btn-step2">See Your Path</button>
             </div>
         </div>
 
-        <!-- Step 3: Known Issues -->
-        <div class="quiz-step">
-            <div class="step-title">Do you already know what's wrong?</div>
-            <div class="step-subtitle">If you can identify the problem, we can recommend a focused investigation. Otherwise, we'll recommend the right engagement path.</div>
+        <!-- Focused Investigations Path -->
+        <div class="investigation-path" id="investigation-path">
+            <div class="step-title">Select the issues you already know are present</div>
+            <div class="step-subtitle">Choose every investigation that matches what you're seeing.</div>
 
-            <div class="option-group">
-                <div class="option">
-                    <label>
-                        <input type="radio" name="known-issues" value="no">
-                        <div class="option-text">
-                            <div class="option-title">Not yet</div>
-                            <div class="option-description">Help me determine the right engagement path.</div>
-                        </div>
-                    </label>
-                </div>
-
-                <div class="option">
-                    <label>
-                        <input type="radio" name="known-issues" value="yes">
-                        <div class="option-text">
-                            <div class="option-title">Yes, I can identify the issue</div>
-                            <div class="option-description">Select every investigation that matches what you're seeing.</div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-
-            <div class="investigation-options" id="investigation-options">
-                <p class="step-subtitle">Select all that apply.</p>
+            <div class="investigation-options active">
                 <label class="investigation-option"><input type="checkbox" name="investigations" value="founder"> Founder dependency or decision bottlenecks</label>
                 <label class="investigation-option"><input type="checkbox" name="investigations" value="memory"> Critical knowledge is trapped with individuals</label>
                 <label class="investigation-option"><input type="checkbox" name="investigations" value="workflow"> Work is slow-moving or execution is unreliable</label>
@@ -465,8 +477,8 @@
             </div>
 
             <div class="button-group">
-                <button class="quiz-button secondary" onclick="prevStep()">Back</button>
-                <button class="quiz-button primary" onclick="showResults()" disabled id="btn-step3">See Your Path</button>
+                <button class="quiz-button secondary" onclick="returnToMainPath()">Back to engagement path</button>
+                <button class="quiz-button primary" onclick="showInvestigationResults()" disabled id="btn-investigations">See recommended investigations</button>
             </div>
         </div>
 
@@ -549,7 +561,7 @@
         };
 
         let currentStep = 0;
-        const totalSteps = 3;
+        const totalSteps = 2;
 
         document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
             input.addEventListener('change', updateButtonStates);
@@ -564,18 +576,14 @@
         function updateButtonStates() {
             const friction = document.querySelector('input[name="friction"]:checked');
             const pain = document.querySelector('input[name="pain"]:checked');
-            const knownIssues = document.querySelector('input[name="known-issues"]:checked');
             const selectedInvestigations = getSelectedInvestigations();
-            const investigationOptions = document.getElementById('investigation-options');
 
-            investigationOptions.classList.toggle('active', knownIssues?.value === 'yes');
+            document.getElementById('btn-investigations').disabled = selectedInvestigations.length === 0;
 
             if (currentStep === 0) {
                 document.getElementById('btn-step1').disabled = !friction;
-            } else if (currentStep === 1) {
-                document.getElementById('btn-step2').disabled = !pain;
             } else {
-                document.getElementById('btn-step3').disabled = !knownIssues || (knownIssues.value === 'yes' && selectedInvestigations.length === 0);
+                document.getElementById('btn-step2').disabled = !pain;
             }
         }
 
@@ -604,20 +612,41 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function startInvestigationPath() {
+            document.querySelectorAll('.quiz-step').forEach(step => step.classList.remove('active'));
+            document.getElementById('investigation-path').classList.add('active');
+            document.querySelector('.progress-bar').style.display = 'none';
+            updateButtonStates();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function returnToMainPath() {
+            document.getElementById('investigation-path').classList.remove('active');
+            document.querySelector('.progress-bar').style.display = 'block';
+            updateView();
+        }
+
         function showResults() {
             const friction = document.querySelector('input[name="friction"]:checked').value;
             const pain = document.querySelector('input[name="pain"]:checked').value;
-            const knownIssues = document.querySelector('input[name="known-issues"]:checked').value;
-            const selectedInvestigations = getSelectedInvestigations();
-            const path = knownIssues === 'yes' && selectedInvestigations.length < 3
-                ? getInvestigationPath(selectedInvestigations)
-                : paths[getPathKey(friction, pain)];
+            displayResults(paths[getPathKey(friction, pain)]);
+        }
 
+        function showInvestigationResults() {
+            const selectedInvestigations = getSelectedInvestigations();
+            const path = selectedInvestigations.length >= 3
+                ? paths['moderate-full']
+                : getInvestigationPath(selectedInvestigations);
+            displayResults(path);
+        }
+
+        function displayResults(path) {
             document.getElementById('primary-title').textContent = path.title;
             document.getElementById('primary-description').textContent = path.description;
             document.getElementById('primary-items').innerHTML = path.items.map(item => `<li>${item}</li>`).join('');
 
             document.querySelectorAll('.quiz-step').forEach(step => step.classList.remove('active'));
+            document.getElementById('investigation-path').classList.remove('active');
             document.getElementById('results').classList.add('active');
             document.querySelector('.progress-bar').style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -625,11 +654,16 @@
 
         function getInvestigationPath(selectedInvestigations) {
             const selected = selectedInvestigations.map(key => investigations[key]);
-            const title = selected.length === 1 ? selected[0].title : 'Focused Operational Investigations';
+            const title = selected.length === 1
+                ? `4-Day Diagnosis + ${selected[0].title}`
+                : '4-Day Diagnosis + Focused Operational Investigations';
             const description = selected.length === 1
-                ? 'You identified a clear operational constraint. Start with this focused investigation.'
-                : 'You identified two clear operational constraints. Start with these focused investigations.';
-            const items = selected.map(investigation => `<a href="${investigation.url}">${investigation.title}</a> — ${investigation.description}`);
+                ? 'Start with a 4-Day Diagnosis, then investigate the clearly identified operational constraint.'
+                : 'Start with a 4-Day Diagnosis, then investigate each clearly identified operational constraint.';
+            const items = [
+                '4-Day Operational Entropy Diagnosis',
+                ...selected.map(investigation => `<a href="${investigation.url}">${investigation.title}</a> — ${investigation.description}`)
+            ];
 
             return { title, description, items };
         }
@@ -653,6 +687,7 @@
 
             currentStep = 0;
             document.getElementById('results').classList.remove('active');
+            document.getElementById('investigation-path').classList.remove('active');
             document.querySelector('.progress-bar').style.display = 'block';
             updateView();
         }
