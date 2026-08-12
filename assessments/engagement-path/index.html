@@ -514,7 +514,7 @@
             </div>
 
             <div class="action-buttons">
-                <a href="/contact/" class="btn-cta">Get Started</a>
+                <a href="/contact/" class="btn-cta" id="results-contact-cta">Get Started</a>
                 <button class="quiz-button secondary btn-reset" onclick="resetQuiz()">Take Quiz Again</button>
             </div>
         </div>
@@ -666,6 +666,7 @@
             document.getElementById('primary-title').textContent = path.title;
             document.getElementById('primary-description').textContent = path.description;
             document.getElementById('primary-items').innerHTML = path.items.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('results-contact-cta').href = `/contact/?recommendation=${encodeURIComponent(path.title)}`;
 
             document.querySelectorAll('.quiz-step').forEach(step => step.classList.remove('active'));
             document.getElementById('investigation-path').classList.remove('active');

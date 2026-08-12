@@ -89,6 +89,16 @@
               </li>
             </ul>
           </div>
+
+          <div style="margin-bottom: 3rem; padding: 2rem; background: var(--bg-secondary); border-radius: 4px;">
+            <h3 style="margin-top: 0;">After you decide to proceed</h3>
+            <p style="color: var(--text-secondary);">The diagnosis begins once the agreement is signed and payment is complete. From there, the work follows a clear 5–7 day delivery window.</p>
+            <ol style="margin: 0; padding-left: 1.25rem; color: var(--text-secondary);">
+              <li style="margin-bottom: 0.75rem;"><strong>Confirm access and schedule conversations.</strong> We arrange read-only access to the relevant operational systems and schedule the founder intake and team interviews. I am happy to sign any required NDA; all information is handled as strictly confidential.</li>
+              <li style="margin-bottom: 0.75rem;"><strong>Complete the diagnostic work.</strong> This includes a 60–90 minute founder intake, 30–45 minute interviews with 3–5 team members, and review of the operational materials needed to assess the business.</li>
+              <li><strong>Receive the diagnosis in 5–7 days.</strong> You receive the OEI diagnostic report, scores and radar chart, the key drivers of operational drag, practical recommendations, and a debrief conversation about the appropriate next step.</li>
+            </ol>
+          </div>
         </div>
 
         <!-- Right: Email Template -->
@@ -97,6 +107,10 @@
           <p style="color: var(--text-secondary); margin-bottom: 2rem;">If you'd rather give me context first, send an email to <strong>fletcher@operationalentropy.com</strong> with the following information:</p>
           
           <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 4px; margin-bottom: 2rem;">
+            <div id="assessment-recommendation" style="display: none; margin: 0 0 1.5rem 0; padding: 1rem; border-left: 3px solid var(--primary); background: var(--bg-light);">
+              <strong>Your assessment recommendation</strong>
+              <p id="assessment-recommendation-text" style="margin: 0.5rem 0 0; color: var(--text-secondary);"></p>
+            </div>
             <p style="margin: 0 0 1.5rem 0; color: var(--text-secondary);"><strong>Subject line:</strong> "OEI Inquiry - [Your Name]"</p>
             
             <p style="margin: 0 0 1rem 0; color: var(--text-secondary); font-weight: 500;">In your email, include:</p>
@@ -166,7 +180,7 @@
             </ul>
           </div>
 
-          <a href="mailto:fletcher@operationalentropy.com?subject=OEI%20Inquiry" class="btn-primary" style="width: 100%;">Open your email</a>
+          <a href="mailto:fletcher@operationalentropy.com?subject=OEI%20Inquiry" class="btn-primary" style="width: 100%;" id="email-inquiry-link">Open your email</a>
 
           <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1.5rem; text-align: center;">I'll follow up within 24 hours</p>
         </div>
@@ -291,6 +305,15 @@
   </footer>
 
   <script>
+    const assessmentRecommendation = new URLSearchParams(window.location.search).get('recommendation');
+    if (assessmentRecommendation) {
+      document.getElementById('assessment-recommendation').style.display = 'block';
+      document.getElementById('assessment-recommendation-text').textContent = assessmentRecommendation;
+      const subject = 'OEI Inquiry — Assessment Recommendation';
+      const body = `I completed the OEI Engagement Path Assessment.\n\nRecommended path: ${assessmentRecommendation}\n\nCompany:\nRole:\nWhat I am seeing:\n`;
+      document.getElementById('email-inquiry-link').href = `mailto:fletcher@operationalentropy.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
     function handleSubmit(event) {
       event.preventDefault();
       
