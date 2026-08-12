@@ -361,11 +361,11 @@ ${data.message}`;
     }
 
     function getEmailTemplate() {
-      const recommendation = copiedAssessmentRecommendation
-        ? `\nAssessment recommendation: ${copiedAssessmentRecommendation}\n`
-        : '';
+      const interestSection = copiedAssessmentRecommendation
+        ? `Assessment recommendation: ${copiedAssessmentRecommendation}\n\nAdditional services I'm interested in (optional):\n- \n`
+        : `What I'm interested in:\n- [Choose any that apply]\n\nCore engagements\n- 4-Day Operational Entropy Diagnosis\n- 15-Day Audit\n- 30-Day Audit\n- 30-Day Sprint\n- 90-Day Reset\n- One-Year Trend\n\nFocused operational investigations\n- Founder Absence Simulation\n- Institutional Memory Recovery Sprint\n- Workflow Momentum Analysis\n- Operational Stack Review\n- Handoff Failure Analysis\n\nAdd-on\n- Hiring Archetype Map\n`;
 
-      return `Subject: OEI Inquiry — [Your Name]\n\nHello Fletcher,\n\nName:\nEmail address:\nCompany name:\nYour title:\nCompany size:${recommendation}\nWhat I'm interested in:\n- [Choose any that apply]\n\nCore engagements\n- 4-Day Operational Entropy Diagnosis\n- 15-Day Audit\n- 30-Day Audit\n- 30-Day Sprint\n- 90-Day Reset\n- One-Year Trend\n\nFocused operational investigations\n- Founder Absence Simulation\n- Institutional Memory Recovery Sprint\n- Workflow Momentum Analysis\n- Operational Stack Review\n- Handoff Failure Analysis\n\nAdd-on\n- Hiring Archetype Map\n\nYour specific situation:\n[Where is execution slowing down, or what brought you to the OEI?]\n`;
+      return `Subject: OEI Inquiry — [Your Name]\n\nHello Fletcher,\n\nName:\nEmail address:\nCompany name:\nYour title:\nCompany size:\n${interestSection}\nYour specific situation:\n[Where is execution slowing down, or what brought you to the OEI?]\n`;
     }
 
     async function copyEmailTemplate() {
