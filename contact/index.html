@@ -180,9 +180,12 @@
             </ul>
           </div>
 
-          <a href="mailto:fletcher@operationalentropy.com?subject=OEI%20Inquiry" class="btn-primary" style="width: 100%;" id="email-inquiry-link">Open your email</a>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <button type="button" class="btn-primary" style="flex: 1 1 200px;" id="copy-email-template">1. Copy template</button>
+            <a href="mailto:fletcher@operationalentropy.com?subject=OEI%20Inquiry" class="btn-secondary" style="flex: 1 1 200px; text-align: center;" id="email-inquiry-link">2. Open your email</a>
+          </div>
 
-          <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1.5rem; text-align: center;">I'll follow up within 24 hours</p>
+          <p id="copy-email-note" style="font-size: 0.85rem; color: var(--text-light); margin-top: 1.5rem; text-align: center;">First copy the template, then open your email app and paste it in. I'll follow up within 24 hours.</p>
         </div>
       </div>
     </div>
@@ -311,7 +314,6 @@
       document.getElementById('assessment-recommendation-text').textContent = assessmentRecommendation;
       const subject = 'OEI Inquiry — Assessment Recommendation';
       const body = `I completed the OEI Engagement Path Assessment.\n\nRecommended path: ${assessmentRecommendation}\n\nCompany:\nRole:\nWhat I am seeing:\n`;
-      document.getElementById('email-inquiry-link').href = `mailto:fletcher@operationalentropy.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
     function handleSubmit(event) {
@@ -343,6 +345,45 @@ ${data.message}`;
 
       window.location.href = `mailto:fletcher@operationalentropy.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
+  </script>
+  <script>
+    const copyEmailTemplateButton = document.getElementById('copy-email-template');
+    const copyEmailNote = document.getElementById('copy-email-note');
+    const copiedAssessmentRecommendation = new URLSearchParams(window.location.search).get('recommendation');
+
+    function getEmailTemplate() {
+      const recommendation = copiedAssessmentRecommendation
+        ? `\nAssessment recommendation: ${copiedAssessmentRecommendation}\n`
+        : '';
+
+      return `Subject: OEI Inquiry — [Your Name]\n\nHello Fletcher,\n\nName:\nEmail address:\nCompany name:\nYour title:\nCompany size:${recommendation}\nWhat I'm interested in:\n- [Choose any that apply]\n\nCore engagements\n- 4-Day Operational Entropy Diagnosis\n- 15-Day Audit\n- 30-Day Audit\n- 30-Day Sprint\n- 90-Day Reset\n- One-Year Trend\n\nFocused operational investigations\n- Founder Absence Simulation\n- Institutional Memory Recovery Sprint\n- Workflow Momentum Analysis\n- Operational Stack Review\n- Handoff Failure Analysis\n\nAdd-on\n- Hiring Archetype Map\n\nYour specific situation:\n[Where is execution slowing down, or what brought you to the OEI?]\n`;
+    }
+
+    async function copyEmailTemplate() {
+      const template = getEmailTemplate();
+
+      try {
+        await navigator.clipboard.writeText(template);
+      } catch (error) {
+        const temporaryField = document.createElement('textarea');
+        temporaryField.value = template;
+        temporaryField.setAttribute('readonly', '');
+        temporaryField.style.position = 'fixed';
+        temporaryField.style.opacity = '0';
+        document.body.appendChild(temporaryField);
+        temporaryField.select();
+        document.execCommand('copy');
+        temporaryField.remove();
+      }
+
+      copyEmailTemplateButton.textContent = 'Template copied';
+      copyEmailNote.textContent = 'Paste it into your preferred email app, complete the details, and send it to fletcher@operationalentropy.com.';
+      window.setTimeout(() => {
+        copyEmailTemplateButton.textContent = 'Copy email template';
+      }, 3000);
+    }
+
+    copyEmailTemplateButton.addEventListener('click', copyEmailTemplate);
   </script>
 </body>
 </html>
