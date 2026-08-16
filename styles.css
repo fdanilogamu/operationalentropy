@@ -507,8 +507,12 @@ footer {
   margin-right: 0.5rem;
 }
 
-.investigation-copy {
+.investigation-content {
   max-width: 800px;
+  margin: 0 auto;
+}
+
+.investigation-copy {
   margin-bottom: 2.75rem;
   font-size: 1.05rem;
 }
