@@ -10,15 +10,15 @@ server.
 
 ## Site structure
 
-- `index.html` — homepage
-- `about/`, `contact/`, `pricing/` — primary pages
-- `services/` — service overview and focused-investigation offerings
-- `insights/` — OEI articles and pillar deep dives
-- `resources/` — information packet and downloadable material
-- `assessments/` — engagement-path assessment
-- `images/` — shared image assets
-- `styles.css` — shared site styling
-- `sitemap.xml` — public URL list for search engines
+- `index.html`: homepage
+- `about/`, `contact/`, `pricing/`: primary pages
+- `services/`: service overview and focused-investigation offerings
+- `insights/`: OEI articles and pillar deep dives
+- `resources/`: information packet and downloadable material
+- `assessments/`: engagement-path assessment
+- `images/`: shared image assets
+- `styles.css`: shared site styling
+- `sitemap.xml`: public URL list for search engines
 
 See [SITE-STRUCTURE.md](SITE-STRUCTURE.md) for URL conventions and the detailed
 content hierarchy.

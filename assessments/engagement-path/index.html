@@ -9,7 +9,7 @@
   <title>Find Your Engagement Path | Operational Entropy</title>
   <meta name="description" content="Answer a few quick questions to discover which OEI service package is right for your organization.">
   <meta property="og:title" content="Find Your Engagement Path | Operational Entropy">
-  <meta property="og:description" content="Answer a few quick questions to discover which OEI service package is right for your organization.">
+  <meta property="og:description" content="Answer a few quick questions to discover which OEI service package is right for your company.">
   <link rel="icon" type="image/png" href="images/favicon.png">
   
   <style>
@@ -372,7 +372,7 @@
   <div class="hero" style="padding-top: 4rem; padding-bottom: 4rem; min-height: 400px;">
     <div class="hero-content">
       <h1>Find Your Engagement Path</h1>
-      <p style="font-size: 1.1rem;">Answer a few quick questions to discover which OEI service package is right for your organization. No contact details required.</p>
+      <p style="font-size: 1.1rem;">Answer a few quick questions to discover which OEI service package is right for your company. No contact details required.</p>
     </div>
   </div>
 
@@ -474,7 +474,7 @@
                         <input type="radio" name="pain" value="multiple">
                         <div class="option-text">
                             <div class="option-title">Multiple systemic issues</div>
-                            <div class="option-description">It's not one thing—founder dependency, workflows, tools, and coordination are all tangled</div>
+                            <div class="option-description">It's not one thing. Founder dependency, workflows, tools, and coordination are all tangled.</div>
                         </div>
                     </label>
                 </div>
@@ -687,7 +687,7 @@
                 : 'Start with a 4-Day Diagnosis, then investigate each clearly identified operational constraint.';
             const items = [
                 '4-Day Operational Entropy Diagnosis',
-                ...selected.map(investigation => `<a href="${investigation.url}">${investigation.title}</a> — ${investigation.description}`)
+                ...selected.map(investigation => `<a href="${investigation.url}">${investigation.title}</a>: ${investigation.description}`)
             ];
 
             const emailRecommendation = selected.length === 1

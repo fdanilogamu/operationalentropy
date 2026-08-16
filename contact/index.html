@@ -35,7 +35,7 @@
   <!-- Hero -->
   <div class="hero" style="padding-top: 4rem; padding-bottom: 4rem; min-height: 400px;">
     <div class="hero-content">
-      <h1>Let's talk about your organization</h1>
+      <h1>Let's talk about your company</h1>
       <p style="font-size: 1.1rem;">Every engagement starts with a no-commitment discovery call. Tell me about your situation and let's explore whether the OEI is the right fit.</p>
     </div>
   </div>
@@ -270,7 +270,7 @@
   <section style="background: var(--secondary); color: white; padding: 6rem 4%; text-align: center;">
     <div class="container">
       <h2 style="color: white; font-size: 2rem;">Let's talk</h2>
-      <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">30 minutes. No commitment. Just exploring whether the OEI is right for your organization.</p>
+      <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">30 minutes. No commitment. Just exploring whether the OEI is right for your company.</p>
       <a href="https://calendar.app.google/bQnqLecoRTD26T139" target="_blank" rel="noopener noreferrer" class="btn-primary">Schedule a discovery call</a>
     </div>
   </section>
@@ -313,7 +313,7 @@
     if (assessmentRecommendation) {
       document.getElementById('assessment-recommendation').style.display = 'block';
       document.getElementById('assessment-recommendation-text').textContent = assessmentRecommendation;
-      const subject = 'OEI Inquiry — Assessment Recommendation';
+      const subject = 'OEI Inquiry: Assessment Recommendation';
       const body = `I completed the OEI Engagement Path Assessment.\n\nRecommended path: ${assessmentRecommendation}\n\nCompany:\nRole:\nWhat I am seeing:\n`;
     }
 
@@ -365,7 +365,7 @@ ${data.message}`;
         ? `Assessment recommendation: ${copiedAssessmentRecommendation}\n\nAdditional services I'm interested in (optional):\n- \n`
         : `What I'm interested in:\n- [Choose any that apply]\n\nCore engagements\n- 4-Day Operational Entropy Diagnosis\n- 15-Day Audit\n- 30-Day Audit\n- 30-Day Sprint\n- 90-Day Reset\n- One-Year Trend\n\nFocused operational investigations\n- Founder Absence Simulation\n- Institutional Memory Recovery Sprint\n- Workflow Momentum Analysis\n- Operational Stack Review\n- Handoff Failure Analysis\n\nAdd-on\n- Hiring Archetype Map\n`;
 
-      return `Subject: OEI Inquiry — [Your Name]\n\nHello Fletcher,\n\nName:\nEmail address:\nCompany name:\nYour title:\nCompany size:\n${interestSection}\nYour specific situation:\n[Where is execution slowing down, or what brought you to the OEI?]\n`;
+      return `Subject: OEI Inquiry: [Your Name]\n\nHello Fletcher,\n\nName:\nEmail address:\nCompany name:\nYour title:\nCompany size:\n${interestSection}\nYour specific situation:\n[Where is execution slowing down, or what brought you to the OEI?]\n`;
     }
 
     async function copyEmailTemplate() {
