@@ -507,11 +507,17 @@ footer {
   margin-right: 0.5rem;
 }
 
+.investigation-copy {
+  max-width: 800px;
+  margin-bottom: 2.75rem;
+  font-size: 1.05rem;
+}
+
 .investigation-names {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1rem 1.5rem;
-  margin: 2rem 0;
+  margin: 0 0 2.75rem;
 }
 
 .investigation-names > div {
@@ -525,6 +531,12 @@ footer {
 
 .investigation-names > div:nth-child(5) {
   grid-column: 4 / span 2;
+}
+
+.investigation-cta {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 /* Utilities */
