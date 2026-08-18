@@ -1,0 +1,11 @@
+@media(max-width:850px){
+  .topbar{padding:.7rem}
+  .brand{flex:1}
+  .brand img{width:34px;height:34px}
+  .header-actions{width:100%;display:grid;grid-template-columns:1fr 1fr;margin-left:0}
+  .header-actions .btn{padding:.55rem .35rem;font-size:.8rem}
+  .main{min-width:0}
+  .report-preview{max-width:100%;overflow-x:auto;padding:.75rem}
+  .report-preview table{min-width:560px;display:table}
+  .record-head{align-items:flex-start;flex-wrap:wrap}
+}
