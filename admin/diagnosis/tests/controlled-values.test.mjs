@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {ENUMS, enumLabel, enumValues} from '../enums.mjs';
+import {deriveMetrics, validateToolRecord} from '../derivations.mjs';
+import {blankDiagnosis, migrateCheckpoint, validateCheckpoint, validateRequirement} from '../model.mjs';
+import {calculateOEI, METRICS} from '../scoring.mjs';
+import {assembleReport} from '../report.mjs';
+
+const state=blankDiagnosis();
+assert.deepEqual(enumValues('toolClassification'),['necessary_distinct','necessary_overlapping','useful_underutilized','specialized_low_frequency','candidate_consolidation','operational_deadweight','insufficient_evidence']);
+state.samples.tools=[{classification:'operational_deadweight'},{classification:'necessary_distinct'},{classification:'insufficient_evidence'},{classification:'Operational deadweight'}];
+let derived=deriveMetrics(state);assert.equal(derived.samples.tools.numerator,1);assert.equal(derived.samples.tools.denominator,2);assert.equal(derived.values.tool_utility,50);
+for(const classification of ['candidate_consolidation','operational_deadweight','insufficient_evidence'])assert.equal(validateToolRecord({classification,classificationReason:''}).length,1);assert.equal(validateToolRecord({classification:'operational_deadweight',classificationReason:'Duplicates another tool.'}).length,0);
+state.samples.documents=[{obsolescenceStatus:'materially_obsolete'},{obsolescenceStatus:'current_usable'},{obsolescenceStatus:'not_assessed'},{obsolescenceStatus:'insufficient_evidence'}];
+state.samples.criticalOperations=[{founderMemoryDependent:'yes'},{founderMemoryDependent:'no'},{founderMemoryDependent:'not_assessed'},{founderMemoryDependent:'insufficient_evidence'}];
+state.samples.integrations=[{outcome:'successful'},{outcome:'failed'},{outcome:'not_tested'},{outcome:'insufficient_evidence'}];
+derived=deriveMetrics(state);assert.deepEqual(derived.samples.documents,{value:50,numerator:1,denominator:2});assert.deepEqual(derived.samples.founder,{value:50,numerator:1,denominator:2});assert.deepEqual(derived.samples.integrations,{value:50,numerator:1,denominator:2});
+state.samples.handoffs=[{contextLossRating:1},{contextLossRating:5},{contextLossRating:7},{contextLossRating:''}];assert.equal(deriveMetrics(state).values.context_loss,3);assert.deepEqual(enumValues('contextLoss'),[1,2,3,4,5]);
+const metric=METRICS[0];state.metricRecords[metric.id]={...state.metricRecords[metric.id],state:'confirmed',confidence:'high',calculatedValue:metric.healthy,evidenceBasis:'Direct',sampleSize:'5'};assert.equal(calculateOEI(state.metricRecords).metricResults.find(r=>r.id===metric.id).final,true);state.metricRecords[metric.id].confidence='unavailable';assert.equal(calculateOEI(state.metricRecords).metricResults.find(r=>r.id===metric.id).final,false);
+assert.equal(validateRequirement({status:'not_received',notes:''}).length,1);assert.equal(validateRequirement({status:'not_received',notes:'Access unavailable.'}).length,0);
+state.recommendations=[{title:'Stabilize intake',level:'structural_correction',priority:'high',driverIds:['decision_drag'],structuralChange:'Create rules.',evidenceBasis:'Evidence 1',expectedEffect:'Fewer blocks.',successSignal:'Cycle time declines.'}];const report=assembleReport(state,{draft:true}).html;assert.match(report,/Structural correction/);assert.doesNotMatch(report,/structural_correction/);assert.equal(enumLabel('priority','high'),'High');
+const checkpoint=JSON.parse(JSON.stringify(state));assert.equal(checkpoint.samples.tools[0].classification,'operational_deadweight');assert.equal(validateCheckpoint(checkpoint).valid,true);
+const legacy=JSON.parse(JSON.stringify(state));legacy.schemaVersion='0.1';legacy.engagement.status='Readiness review';legacy.samples.tools=[{classification:'Operational deadweight'}];legacy.samples.documents=[{obsolete:'Yes'}];legacy.samples.criticalOperations=[{founderMemoryDependent:'Yes'}];legacy.metricRecords[metric.id].confidence='High';const migrated=migrateCheckpoint(legacy);assert.equal(migrated.data.engagement.status,'readiness_review');assert.equal(migrated.data.samples.tools[0].classification,'operational_deadweight');assert.equal(migrated.data.samples.documents[0].obsolescenceStatus,'materially_obsolete');assert.equal(migrated.data.samples.criticalOperations[0].founderMemoryDependent,'yes');assert.equal(migrated.data.metricRecords[metric.id].confidence,'high');
+const ambiguous=JSON.parse(JSON.stringify(state));ambiguous.samples.tools=[{classification:'Probably redundant'}];const ambiguousMigration=migrateCheckpoint(ambiguous);assert.equal(ambiguousMigration.data.samples.tools[0].classification,'Probably redundant');assert.equal(ambiguousMigration.warnings.length,1);assert.ok(validateCheckpoint(ambiguous).warnings.some(w=>w.includes('Unrecognized')));
+assert.equal(ENUMS.evidenceType.length,5);assert.ok(!ENUMS.evidenceType.some(([,label])=>label.includes('Typical work')),'Open-ended interview prompts remain narrative fields.');
+console.log('OEI controlled-value, migration, derivation, and report tests passed.');

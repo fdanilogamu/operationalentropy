@@ -9,3 +9,5 @@
   .report-preview table{min-width:560px;display:table}
   .record-head{align-items:flex-start;flex-wrap:wrap}
 }
+
+.validation-error{display:block;color:var(--red);font-size:.78rem;font-weight:600;margin-top:.2rem}

@@ -18,7 +18,11 @@ Serve the repository root with any static server, configure `access-config.js`, 
 
 ## Tests
 
-Run `node --test admin/diagnosis/tests/scoring.test.mjs` from the repository root.
+Run `node --test admin/diagnosis/tests/*.test.mjs` from the repository root.
+
+## Checkpoint schema 0.2
+
+Workspace 0.2 stores methodology-defined finite values as stable enum codes while displaying readable labels. Schema 0.1 checkpoints are accepted and exact legacy labels are normalized during import. Unrecognized free-text values are preserved, recorded in `migrationWarnings`, and shown to the practitioner for repair; historical scores are never silently recalculated. Controlled values include diagnosis, workflow, requirement, interview, evidence, confidence, metric, tool, documentation, founder-memory, integration, handoff, and recommendation states.
 
 ## Current static-host limitations
 
