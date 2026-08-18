@@ -4,7 +4,9 @@ Unlisted, browser-only practitioner workspace at `/admin/diagnosis/`.
 
 ## Access configuration
 
-GitHub Pages cannot provide secure server authentication. Copy `access-config.example.js` to `access-config.js` in the deployed environment and replace the placeholder with a SHA-256 passphrase digest. The real file is gitignored. This local gate only deters casual entry; use protected hosting or an identity-aware proxy for strong authentication.
+GitHub Pages cannot provide secure server authentication. `access-config.js` contains only the SHA-256 digest of the deployment passphrase; the plaintext must be kept in a password manager and never committed. The local gate deters casual entry only. Use protected hosting or an identity-aware proxy if strong authentication becomes necessary.
+
+To rotate access, generate a new long random passphrase locally, replace only the 64-character lowercase hexadecimal digest in `access-config.js`, and deploy. Existing unlocked tabs remain open until refreshed or closed.
 
 ## Privacy model
 
