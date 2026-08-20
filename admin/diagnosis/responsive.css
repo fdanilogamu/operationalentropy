@@ -23,4 +23,5 @@
 .interview-prompt{border-top:1px solid var(--line);padding:1rem 0}.interview-prompt h4{font-family:Georgia,serif;font-size:1.05rem;font-weight:400;margin:.1rem 0}.interview-prompt>.prompt-topic{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:700}
 .card>details:has(>.btn.danger){position:relative}
 .card>details:has(>.btn.danger)>summary{padding-right:7.25rem}
+.card>details:has(>.btn.danger)[open]>summary{padding-bottom:1.5rem}
 .card>details:has(>.btn.danger)[open]>.btn.danger{position:absolute;right:.8rem;top:.65rem;margin:0;z-index:1}
