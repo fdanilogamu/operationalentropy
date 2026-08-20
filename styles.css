@@ -496,6 +496,108 @@ footer {
   text-align: left;
 }
 
+/* Site navigation */
+.site-navigation-intro {
+  max-width: 760px;
+}
+
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.journey-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2rem;
+  background: white;
+}
+
+.journey-card h2 {
+  margin-top: 0;
+}
+
+.journey-steps {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  counter-reset: journey;
+}
+
+.journey-steps li {
+  position: relative;
+  padding: 0 0 1.5rem 2.75rem;
+  counter-increment: journey;
+}
+
+.journey-steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  top: 1.85rem;
+  bottom: 0.35rem;
+  border-left: 1px solid var(--border);
+}
+
+.journey-steps li::before {
+  content: counter(journey);
+  position: absolute;
+  left: 0;
+  top: -0.2rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--primary);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.journey-steps a {
+  font-weight: 600;
+}
+
+.journey-steps span {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.navigation-directory {
+  columns: 2 280px;
+  column-gap: 3rem;
+  margin-top: 2rem;
+}
+
+.navigation-directory > div {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+}
+
+.navigation-directory h3 {
+  margin-bottom: 0.75rem;
+}
+
+.navigation-directory ul {
+  margin-top: 0;
+}
+
+.page-return {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem 4% 0;
+}
+
+.page-return a {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
 /* Entropy Compatible Hiring product page */
 .ech-page { background: #f4f2ed; }
 .ech-page .ech-hero { padding: 7rem 4%; background: linear-gradient(135deg, #f7f6f2 0%, #e8edf0 100%); border-bottom: 1px solid var(--border); }
