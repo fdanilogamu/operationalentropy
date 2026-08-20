@@ -4,6 +4,7 @@
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   const niceDate = value => new Intl.DateTimeFormat('en', { year:'numeric', month:'short', day:'2-digit', timeZone:'UTC' }).format(new Date(`${value}T00:00:00Z`));
   const slug = value => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const fetchCurrent = url => fetch(url, { cache: 'no-store' });
   let records = [], map = null, activeProject = 'All projects';
 
   function parseRecord(markdown, file) {
@@ -88,22 +89,22 @@
 
   async function discoverRecordFiles() {
     try {
-      const response = await fetch('data/identity-changes/');
+      const response = await fetchCurrent('data/identity-changes/');
       if (response.ok && (response.headers.get('content-type') || '').includes('text/html')) {
         const document = new DOMParser().parseFromString(await response.text(), 'text/html');
         const discovered = [...document.querySelectorAll('a[href]')].map(link => decodeURIComponent(link.getAttribute('href').split('/').pop())).filter(file => file.endsWith('.md') && !file.startsWith('_'));
         if (discovered.length) return [...new Set(discovered)];
       }
     } catch (_) { /* Static hosts do not normally expose directory listings. */ }
-    const response = await fetch('data/identity-changes/manifest.json');
+    const response = await fetchCurrent('data/identity-changes/manifest.json');
     if (!response.ok) throw new Error('Could not read the identity-change manifest.');
     return (await response.json()).filter(file => !file.startsWith('_'));
   }
 
-  Promise.all([discoverRecordFiles(), fetch('data/propagation-map.json').then(r => { if(!r.ok) throw new Error('Could not read the propagation map.'); return r.json(); })])
+  Promise.all([discoverRecordFiles(), fetchCurrent('data/propagation-map.json').then(r => { if(!r.ok) throw new Error('Could not read the propagation map.'); return r.json(); })])
     .then(async ([files, propagationMap]) => {
       map = propagationMap;
-      records = await Promise.all(files.map(file => fetch(`data/identity-changes/${file}`).then(r => { if(!r.ok) throw new Error(`Could not read ${file}.`); return r.text(); }).then(text => parseRecord(text,file))));
+      records = await Promise.all(files.map(file => fetchCurrent(`data/identity-changes/${file}`).then(r => { if(!r.ok) throw new Error(`Could not read ${file}.`); return r.text(); }).then(text => parseRecord(text,file))));
       records.sort((a,b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
       renderOverview(); renderTimeline(); renderOutstanding(); renderMatrix(); $('#loading').hidden = true;
     }).catch(error => { $('#loading').hidden = true; $('#error').hidden = false; $('#error').textContent = `${error.message} Serve the repository through a local web server rather than opening this file directly.`; });
