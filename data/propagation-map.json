@@ -1,0 +1,38 @@
+{
+  "categories": [
+    "positioning",
+    "terminology",
+    "pricing",
+    "service scope",
+    "methodology",
+    "product architecture",
+    "workflow",
+    "prerequisites",
+    "deliverables",
+    "distribution",
+    "technical",
+    "privacy/security"
+  ],
+  "surfaces": [
+    {"name":"Homepage","path":"/","project":"Operational Entropy Index","categories":["positioning","terminology","service scope","methodology","workflow","deliverables"]},
+    {"name":"About OEI","path":"/about/","project":"Operational Entropy Index","categories":["positioning","terminology","methodology","service scope"]},
+    {"name":"Services overview","path":"/services/","project":"Operational Entropy Index","categories":["positioning","terminology","pricing","service scope","methodology","workflow","prerequisites","deliverables","distribution"]},
+    {"name":"Pricing and engagement comparison","path":"/pricing/","project":"Operational Entropy Index","categories":["positioning","terminology","pricing","service scope","workflow","prerequisites","deliverables","distribution"]},
+    {"name":"Engagement Path Assessment","path":"/assessments/engagement-path/","project":"Operational Entropy Index","categories":["positioning","terminology","pricing","service scope","workflow","prerequisites","deliverables"]},
+    {"name":"Focused Investigations overview","path":"/services/focused-operational-investigations/","project":"Operational Entropy Index","categories":["positioning","terminology","pricing","service scope","methodology","workflow","prerequisites","deliverables"]},
+    {"name":"Investigation service pages","path":"/services/focused-operational-investigations/*/","project":"Operational Entropy Index","categories":["positioning","terminology","pricing","service scope","methodology","workflow","prerequisites","deliverables"]},
+    {"name":"OEI definition and pillar articles","path":"/insights/","project":"Operational Entropy Index","categories":["positioning","terminology","methodology","product architecture"]},
+    {"name":"Information Packet landing page","path":"/resources/information-packet/","project":"Operational Entropy Index","categories":["positioning","terminology","pricing","service scope","methodology","deliverables","distribution"]},
+    {"name":"OEI TLDR PDF","path":"/info/OEI TLDR.pdf","project":"Operational Entropy Index","categories":["positioning","terminology","pricing","service scope","methodology","workflow","deliverables"]},
+    {"name":"About OEI PDF","path":"/info/About the Operational Entropy Index.pdf","project":"Operational Entropy Index","categories":["positioning","terminology","service scope","methodology","workflow","deliverables"]},
+    {"name":"OEI Services and Pricing PDF","path":"/info/OEI Services and Pricing.pdf","project":"Operational Entropy Index","categories":["positioning","terminology","pricing","service scope","methodology","workflow","prerequisites","deliverables","distribution"]},
+    {"name":"Contact and inquiry form","path":"/contact/","project":"Operational Entropy Index","categories":["positioning","terminology","service scope","workflow","privacy/security"]},
+    {"name":"Public site map","path":"/site-navigation/","project":"Operational Entropy Index","categories":["terminology","service scope","product architecture","distribution"]},
+    {"name":"Website README and structure docs","path":"/README.md","project":"Operational Entropy Index","categories":["terminology","product architecture","workflow","distribution","technical"]},
+    {"name":"Practitioner diagnosis workspace","path":"/admin/diagnosis/","project":"Operational Entropy Index","categories":["terminology","methodology","product architecture","workflow","prerequisites","deliverables","technical","privacy/security"]},
+    {"name":"ECH product page and FAQ","path":"/entropy-compatible-hiring/","project":"Entropy Compatible Hiring","categories":["positioning","terminology","pricing","service scope","methodology","product architecture","workflow","prerequisites","deliverables","distribution","technical","privacy/security"]},
+    {"name":"ECH checkout","path":"/entropy-compatible-hiring/#purchase","project":"Entropy Compatible Hiring","categories":["pricing","service scope","deliverables","distribution","privacy/security"]},
+    {"name":"ECH workflow demonstration","path":"/entropy-compatible-hiring/#sample-workflow","project":"Entropy Compatible Hiring","categories":["positioning","terminology","methodology","product architecture","workflow","deliverables","technical","privacy/security"]},
+    {"name":"ECH release notes","path":"/entropy-compatible-hiring/#release-notes-heading","project":"Entropy Compatible Hiring","categories":["terminology","methodology","product architecture","workflow","deliverables","distribution","technical","privacy/security"]}
+  ]
+}

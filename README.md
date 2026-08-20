@@ -30,6 +30,25 @@ content hierarchy.
 3. Add the public URL to `sitemap.xml`.
 4. Put shared image assets in `images/`.
 
+## Recording an identity change
+
+The unlisted dashboard at `/ops/propagation/` renders durable Markdown records
+from `data/identity-changes/` and uses `data/propagation-map.json` to show where
+project truths are represented.
+
+1. Duplicate `data/identity-changes/_TEMPLATE.md`.
+2. Rename it using `YYYY-MM-DD-short-description.md`.
+3. Fill in the change and relevant categories.
+4. Add or confirm propagation targets.
+5. Save the file.
+6. The dashboard picks it up automatically when the repository is served
+   locally; add the filename to `data/identity-changes/manifest.json` before
+   publishing to GitHub Pages, whose static hosting does not expose directory
+   listings.
+
+Files beginning with `_` are templates or helpers and are never rendered as
+identity changes.
+
 ## Publishing
 
 GitHub Pages publishes this repository as a static site. The `.nojekyll` file
