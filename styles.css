@@ -286,6 +286,16 @@ section {
   padding: 1.125rem 2.5rem;
 }
 
+.hero-navigation-cta {
+  margin-top: 1.25rem;
+}
+
+.hero-navigation-cta a {
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
 /* Cards & Components */
 .card {
   background: var(--bg-secondary);
