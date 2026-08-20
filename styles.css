@@ -624,6 +624,8 @@ footer {
 .ech-slide { display: block; padding: 0; overflow: hidden; background: var(--ech-page-bg); }
 .ech-slide[hidden] { display: none; }
 .ech-product-screen { height: 620px; min-height: 620px; overflow: hidden; background: var(--ech-page-bg); color: var(--ech-primary-text); font-size: 12px; line-height: 1.55; }
+.ech-product-screen section { max-width: none; margin: 0; padding: 0; }
+.ech-product-screen header { position: static; top: auto; z-index: auto; backdrop-filter: none; }
 .ech-product-topbar { display: flex; align-items: center; gap: 13px; min-height: 62px; padding: 8px 18px; background: var(--ech-topbar); border-bottom: 1px solid var(--ech-divider); }
 .ech-mock-mark { display: grid; place-items: center; width: 62px; height: 38px; border-right: 1px solid var(--ech-divider); color: var(--ech-primary-text); font: 500 23px "Arial Narrow", "Aptos Narrow", Arial, sans-serif; letter-spacing: -.06em; }
 .ech-product-topbar > div { display: grid; gap: 1px; }
