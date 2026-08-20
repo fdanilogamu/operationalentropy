@@ -38,7 +38,7 @@
     const latest = records[0];
     const metrics = [
       [records.length,'Total identity changes',''], [projects.length,'Projects represented',''], [debt.length,'Unresolved propagation items',''],
-      [latest ? latest.title : '—','Most recent identity change','is-text'], [debtProjects.size,'Projects carrying propagation debt','']
+      [latest ? latest.title : 'None','Most recent identity change','is-text'], [debtProjects.size,'Projects carrying propagation debt','']
     ];
     $('#metrics').innerHTML = metrics.map(([value,label,klass]) => `<article class="prop-metric ${klass}"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></article>`).join('');
     $('#recent-changes').innerHTML = records.slice(0,4).map(record => `<div class="prop-recent-item"><time>${escapeHtml(niceDate(record.date))}</time><div><strong>${escapeHtml(record.title)}</strong><small>${escapeHtml(record.project)}</small></div><span class="prop-status ${debtFor(record).length ? 'has-debt':''}">${debtFor(record).length ? `${debtFor(record).length} open` : 'reconciled'}</span></div>`).join('');
