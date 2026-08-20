@@ -164,12 +164,15 @@ nav {
   display: flex;
   align-items: center;
   height: 150px;
+  width: 360px;
+  overflow: hidden;
 }
 
 .logo img {
-  max-height: 180px;
-  width: auto;
+  max-height: none;
+  width: 100%;
   object-fit: contain;
+  flex: 0 0 auto;
   transition: opacity 0.3s ease;
 }
 
@@ -495,8 +498,6 @@ footer {
 
 /* Entropy Compatible Hiring product page */
 .ech-page { background: #f4f2ed; }
-.ech-page .logo { width: 360px; overflow: hidden; }
-.ech-page .logo img { width: 100%; max-height: none; flex: 0 0 auto; }
 .ech-page .ech-hero { padding: 7rem 4%; background: linear-gradient(135deg, #f7f6f2 0%, #e8edf0 100%); border-bottom: 1px solid var(--border); }
 .ech-hero-grid, .ech-purchase-grid, .ech-intro-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr); gap: clamp(3rem, 7vw, 7rem); align-items: center; }
 .ech-purchase-grid { align-items: start; }
@@ -543,10 +544,6 @@ footer {
   .ech-page nav { flex-wrap: wrap; }
   .ech-page .nav-cta { display: none; }
 }
-@media (max-width: 768px) {
-  .ech-page .logo { width: 145px; }
-}
-
 .features-list li {
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--border);
@@ -639,9 +636,10 @@ footer {
 @media (max-width: 768px) {
   .logo {
   height: 60px;
+  width: 145px;
 }
 .logo img {
-  max-height: 60px;
+  max-height: none;
 }
 .hero {
   grid-template-columns: 1fr;
