@@ -493,6 +493,48 @@ footer {
   text-align: left;
 }
 
+/* Entropy Compatible Hiring product page */
+.ech-page { background: #f4f2ed; }
+.ech-page .ech-hero { padding: 7rem 4%; background: linear-gradient(135deg, #f7f6f2 0%, #e8edf0 100%); border-bottom: 1px solid var(--border); }
+.ech-hero-grid, .ech-purchase-grid, .ech-intro-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr); gap: clamp(3rem, 7vw, 7rem); align-items: center; }
+.ech-page .ech-hero h1 { max-width: 11ch; font-size: clamp(3.2rem, 7vw, 6.8rem); letter-spacing: -.055em; line-height: .94; margin-top: 1rem; }
+.ech-kicker, .ech-card-label, .ech-section-number { color: var(--primary-dark); font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.ech-kicker span { display: inline-block; margin-left: .45rem; padding: .3rem .55rem; color: white; background: var(--accent); border-radius: 999px; }
+.ech-lede { font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.55; color: var(--text-primary); max-width: 35ch; }
+.ech-page .cta-group { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+.ech-product-card, .ech-checkout { background: rgba(255,255,255,.88); border: 1px solid rgba(91,122,146,.3); border-radius: 16px; padding: clamp(2rem, 5vw, 3.5rem); box-shadow: 0 24px 70px rgba(44,62,80,.1); }
+.ech-product-card ol { list-style: none; padding: 0; margin-top: 2rem; counter-reset: steps; }
+.ech-product-card li { counter-increment: steps; display: grid; grid-template-columns: 2rem 1fr; gap: .25rem 1rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border); }
+.ech-product-card li::before { content: "0" counter(steps); grid-row: 1 / 3; color: var(--primary); font-size: .8rem; }
+.ech-product-card li span { color: var(--text-secondary); }
+.ech-intro { background: white; }
+.ech-intro-grid { align-items: start; }
+.ech-page .ech-intro h2, .ech-page .ech-purchase h2, .ech-page .ech-faq h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); letter-spacing: -.04em; margin-top: 1rem; }
+.ech-purchase { background: var(--secondary); color: white; max-width: none; }
+.ech-purchase .container { max-width: 1400px; }
+.ech-purchase h2, .ech-purchase .ech-section-number { color: white; }
+.ech-purchase p { color: rgba(255,255,255,.76); }
+.ech-checklist { list-style: none; padding: 0 !important; margin-top: 2rem; }
+.ech-checklist li { padding: .7rem 0 .7rem 1.8rem; position: relative; }
+.ech-checklist li::before { content: "✓"; color: #a9cda0; position: absolute; left: 0; }
+.ech-checkout { color: var(--text-primary); background: white; }
+.ech-checkout h3 { font-size: 1.5rem; margin-top: 1rem; }
+.ech-checkout .ech-version, .ech-checkout-note { color: var(--text-light); font-size: .86rem; }
+.ech-checkout-note { margin: 1.25rem 0 0; text-align: center; }
+.ech-faq { background: #f4f2ed; }
+.ech-faq-wrap { max-width: 950px; }
+.ech-faq article { padding: 3rem 0; border-top: 1px solid var(--border); }
+.ech-faq article:first-of-type { margin-top: 3rem; }
+.ech-faq article h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); margin: 0 0 1.5rem; }
+.ech-faq article li { color: var(--text-secondary); margin-bottom: 1rem; padding-left: .4rem; }
+@media (max-width: 900px) {
+  .ech-hero-grid, .ech-purchase-grid, .ech-intro-grid { grid-template-columns: 1fr; }
+  .ech-page .ech-hero { padding-top: 4rem; }
+  .ech-page .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .ech-page nav { flex-wrap: wrap; }
+  .ech-page .nav-cta { display: none; }
+}
+
 .features-list li {
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--border);

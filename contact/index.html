@@ -25,6 +25,7 @@
         <li><a href="/about/">About</a></li>
         <li><a href="/services/">Services</a></li>
         <li><a href="/pricing/">Pricing</a></li>
+        <li><a href="/entropy-compatible-hiring/">Entropy Compatible Hiring</a></li>
       </ul>
       <div class="nav-cta">
         <a href="/contact/" class="btn-secondary">Get Started</a>
@@ -169,7 +170,7 @@
                 <br><br>
                 <strong>Add-on</strong>
                 <br>
-                Hiring Archetype Map
+                <a href="/entropy-compatible-hiring/">Entropy Compatible Hiring</a>
                 <br><br>
                 <strong>Not sure yet</strong>
                 <br>
@@ -294,6 +295,7 @@
       <div class="footer-section">
         <h4>Resources</h4>
         <ul>
+          <li><a href="/entropy-compatible-hiring/">Entropy Compatible Hiring</a></li>
            <li><a href="/resources/information-packet/">Information Packet</a></li> 
   <li><a href="/contact/">Get support</a></li>
         </ul>
@@ -363,7 +365,7 @@ ${data.message}`;
     function getEmailTemplate() {
       const interestSection = copiedAssessmentRecommendation
         ? `Assessment recommendation: ${copiedAssessmentRecommendation}\n\nAdditional services I'm interested in (optional):\n- \n`
-        : `What I'm interested in:\n- [Choose any that apply]\n\nCore engagements\n- 4-Day Operational Entropy Diagnosis\n- 15-Day Audit\n- 30-Day Audit\n- 30-Day Sprint\n- 90-Day Reset\n- One-Year Trend\n\nFocused operational investigations\n- Founder Absence Simulation\n- Institutional Memory Recovery Sprint\n- Workflow Momentum Analysis\n- Operational Stack Review\n- Handoff Failure Analysis\n\nAdd-on\n- Hiring Archetype Map\n`;
+        : `What I'm interested in:\n- [Choose any that apply]\n\nCore engagements\n- 4-Day Operational Entropy Diagnosis\n- 15-Day Audit\n- 30-Day Audit\n- 30-Day Sprint\n- 90-Day Reset\n- One-Year Trend\n\nFocused operational investigations\n- Founder Absence Simulation\n- Institutional Memory Recovery Sprint\n- Workflow Momentum Analysis\n- Operational Stack Review\n- Handoff Failure Analysis\n\nAdd-on\n- Entropy Compatible Hiring\n`;
 
       return `Subject: OEI Inquiry: [Your Name]\n\nHello Fletcher,\n\nName:\nEmail address:\nCompany name:\nYour title:\nCompany size:\n${interestSection}\nYour specific situation:\n[Where is execution slowing down, or what brought you to the OEI?]\n`;
     }
