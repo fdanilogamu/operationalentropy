@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {ENUMS, enumLabel, enumValues} from '../enums.mjs';
 import {deriveMetrics, validateToolRecord} from '../derivations.mjs';
-import {blankDiagnosis, migrateCheckpoint, validateCheckpoint, validateRequirement} from '../model.mjs';
+import {blankDiagnosis, migrateCheckpoint, validateCheckpoint, validateRequirement, FOUNDER_SECTIONS, STAFF_PROMPTS} from '../model.mjs';
 import {calculateOEI, METRICS} from '../scoring.mjs';
 import {assembleReport} from '../report.mjs';
 
@@ -22,4 +22,6 @@ const checkpoint=JSON.parse(JSON.stringify(state));assert.equal(checkpoint.sampl
 const legacy=JSON.parse(JSON.stringify(state));legacy.schemaVersion='0.1';legacy.engagement.status='Readiness review';legacy.samples.tools=[{classification:'Operational deadweight'}];legacy.samples.documents=[{obsolete:'Yes'}];legacy.samples.criticalOperations=[{founderMemoryDependent:'Yes'}];legacy.metricRecords[metric.id].confidence='High';const migrated=migrateCheckpoint(legacy);assert.equal(migrated.data.engagement.status,'readiness_review');assert.equal(migrated.data.samples.tools[0].classification,'operational_deadweight');assert.equal(migrated.data.samples.documents[0].obsolescenceStatus,'materially_obsolete');assert.equal(migrated.data.samples.criticalOperations[0].founderMemoryDependent,'yes');assert.equal(migrated.data.metricRecords[metric.id].confidence,'high');
 const ambiguous=JSON.parse(JSON.stringify(state));ambiguous.samples.tools=[{classification:'Probably redundant'}];const ambiguousMigration=migrateCheckpoint(ambiguous);assert.equal(ambiguousMigration.data.samples.tools[0].classification,'Probably redundant');assert.equal(ambiguousMigration.warnings.length,1);assert.ok(validateCheckpoint(ambiguous).warnings.some(w=>w.includes('Unrecognized')));
 assert.equal(ENUMS.evidenceType.length,5);assert.ok(!ENUMS.evidenceType.some(([,label])=>label.includes('Typical work')),'Open-ended interview prompts remain narrative fields.');
+assert.equal(FOUNDER_SECTIONS.length,30);assert.equal(STAFF_PROMPTS.length,27);assert.match(FOUNDER_SECTIONS[0].question,/Tell me about the company/);assert.match(STAFF_PROMPTS[3].question,/most recent time your work was blocked/);assert.equal(FOUNDER_SECTIONS[5].quantitative.unit,'interruptions / founder workday');assert.equal(STAFF_PROMPTS[22].quantitative.unit,'confidence %');assert.ok(FOUNDER_SECTIONS.every(prompt=>prompt.question.endsWith('?')||prompt.question.endsWith('.')));assert.ok(STAFF_PROMPTS.every(prompt=>prompt.question),'Every staff section has a core question.');
+const guidedMigration=migrateCheckpoint({...blankDiagnosis(),founderIntake:{sections:{}},staffInterviews:[{responses:{}}]});assert.equal(guidedMigration.data.founderIntake.sections.f30.question,FOUNDER_SECTIONS[29].question);assert.deepEqual(guidedMigration.data.staffInterviews[0].responseQuantitative,{});
 console.log('OEI controlled-value, migration, derivation, and report tests passed.');

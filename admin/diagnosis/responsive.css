@@ -11,3 +11,13 @@
 }
 
 .validation-error{display:block;color:var(--red);font-size:.78rem;font-weight:600;margin-top:.2rem}
+.pulled-field{background:#eef7fc;border:1px solid #c6dfed;border-radius:8px;padding:.55rem}
+.pulled-field input,.pulled-field textarea{background:#f8fcff;border-color:#a9cede}
+.source-clue{display:block;color:#477a94;font-size:.7rem;font-style:normal;font-weight:600;margin-top:.1rem}
+.quantitative-box{background:#f6f8f9;border:1px solid var(--line);border-radius:9px;padding:.8rem;margin:.75rem 0}
+.fixed-unit{background:#fff;border:1px solid #cfd3d6;border-radius:7px;padding:.65rem .72rem;align-content:center}
+.fixed-unit strong{font-size:.9rem;color:var(--blue-dark)}
+.threshold-note{font-size:.76rem;color:var(--muted);margin:.35rem 0 .65rem}
+.prompt-topic{margin:.6rem 0 .25rem}.probe-list,.probe-details{font-size:.82rem;color:var(--muted)}
+.probe-list ul,.probe-details ul{margin:.35rem 0 .65rem;padding-left:1.2rem}
+.interview-prompt{border-top:1px solid var(--line);padding:1rem 0}.interview-prompt h4{font-family:Georgia,serif;font-size:1.05rem;font-weight:400;margin:.1rem 0}.interview-prompt>.prompt-topic{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:700}
