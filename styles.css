@@ -749,6 +749,46 @@ footer {
 .ech-carousel-progress button.is-active { background: var(--ech-primary-accent); }
 .ech-carousel-count, .ech-carousel-count b { color: var(--ech-muted-text); font: 650 8px ui-monospace, SFMono-Regular, Consolas, monospace; }
 .ech-carousel-count b { color: var(--ech-focus-active); }
+
+/* Legibility adjustments for the public demo; product titles retain their scale. */
+.ech-product-screen { font-size: 13px; }
+.ech-product-topbar small, .ech-topbar-meta { font-size: 10px; }
+.ech-product-topbar strong i { font-size: 9px; }
+.ech-workflow-rail > p, .ech-product-eyebrow, .ech-product-heading > p { font-size: 11px; }
+.ech-workflow-rail > span, .ech-workflow-rail li { font-size: 10px; }
+.ech-workflow-rail li b { font-size: 10px; }
+.ech-workflow-rail > div strong { font-size: 9px; }
+.ech-workflow-rail > div p { font-size: 10px; }
+.ech-product-heading > span { font-size: 12px; }
+.ech-ui-button { font-size: 10px; }
+.ech-actionbar p strong { font-size: 10px; }
+.ech-actionbar p span { font-size: 10px; }
+.ech-archetype-card footer > span { font-size: 10px; }
+.ech-intake-card label { font-size: 10px; }
+.ech-intake-card input, .ech-intake-card textarea { font-size: 12px; }
+.ech-approval-banner strong { font-size: 10px; }
+.ech-approval-banner span { font-size: 10px; }
+.ech-paper-preview > div p { font-size: 11px; }
+.ech-embedding-map summary b, .ech-embedding-map summary em { font-size: 9px; }
+.ech-embedding-map summary span { font-size: 11px; }
+.ech-candidate-instructions strong, .ech-candidate-prompts strong, .ech-document-sheet small { font-size: 10px; }
+.ech-candidate-instructions p, .ech-candidate-prompts ol { font-size: 11px; }
+.ech-evidence-group header span, .ech-evidence-group header em { font-size: 9px; }
+.ech-evidence-signal strong { font-size: 11px; }
+.ech-evidence-signal small { font-size: 9px; }
+.ech-evidence-signal > div span { font-size: 8px; }
+.ech-section-note label { font-size: 9px; }
+.ech-section-note p { font-size: 11px; }
+.ech-report-hero p { font-size: 9px; }
+.ech-report-hero span { font-size: 10px; }
+.ech-report-hero > b small { font-size: 7px; }
+.ech-report-section header b { font-size: 9px; }
+.ech-report-section article p { font-size: 11px; }
+.ech-report-section article small { font-size: 9px; }
+.ech-unresolved strong, .ech-interpretation-boundary strong { font-size: 9px; }
+.ech-unresolved p, .ech-interpretation-boundary p { font-size: 10px; }
+.ech-carousel-button, .ech-carousel-count, .ech-carousel-count b { font-size: 9px; }
+.ech-carousel-next { font-size: 11px; }
 .ech-purchase { background: var(--secondary); color: white; max-width: none; }
 .ech-purchase .container { max-width: 1400px; }
 .ech-purchase h2, .ech-purchase .ech-section-number { color: white; }
