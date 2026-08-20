@@ -537,6 +537,18 @@ footer {
 .ech-faq article:first-of-type { margin-top: 3rem; }
 .ech-faq article h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); margin: 0 0 1.5rem; }
 .ech-faq article li { color: var(--text-secondary); margin-bottom: 1rem; padding-left: .4rem; }
+.ech-release-notes { max-width: none; background: white; }
+.ech-release-notes-wrap { max-width: 950px; }
+.ech-release-notes details { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.ech-release-notes summary { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 2rem 0; color: var(--text-primary); cursor: pointer; list-style: none; }
+.ech-release-notes summary::-webkit-details-marker { display: none; }
+.ech-release-notes summary span { font-size: clamp(1.4rem, 3vw, 2rem); }
+.ech-release-notes summary strong { color: var(--primary-dark); font-size: .78rem; letter-spacing: .12em; white-space: nowrap; }
+.ech-release-notes summary::after { content: "+"; color: var(--primary); font-size: 1.8rem; font-weight: 300; }
+.ech-release-notes details[open] summary::after { content: "−"; }
+.ech-release-notes-content { padding: 1rem 0 3rem; }
+.ech-release-notes-content h3 { margin-top: 2.5rem; }
+.ech-release-notes-content li { color: var(--text-secondary); margin-bottom: .6rem; }
 @media (max-width: 900px) {
   .ech-hero-grid, .ech-purchase-grid, .ech-intro-grid { grid-template-columns: 1fr; }
   .ech-page .ech-hero { padding-top: 4rem; }

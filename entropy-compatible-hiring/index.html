@@ -121,6 +121,76 @@
         <article><h3>Why customize the exercises to each company?</h3><p>Because operational behavior only makes sense in context. A generic exercise can tell you something about how a candidate approaches a hypothetical problem.</p><p>ECH can instead use the company's actual conditions to construct an exercise that resembles the environment the candidate would actually be entering.</p><p>The surface scenario changes, but the methodology doesn't.</p><p>Each archetype defines what the exercise must test, which conditions must be present, what behaviors should be observed, and how the evidence should be interpreted. The software combines those fixed methodological requirements with company-specific context to create the exercise.</p></article>
       </div>
     </section>
+
+    <section class="ech-release-notes" aria-labelledby="release-notes-heading">
+      <div class="container ech-release-notes-wrap">
+        <details>
+          <summary id="release-notes-heading">
+            <span>Release notes</span>
+            <strong>Version 0.1.0 BETA</strong>
+          </summary>
+          <div class="ech-release-notes-content">
+            <p>Initial Windows desktop release of the OEI Entropy-Compatible Hiring interview instrument.</p>
+
+            <h3>Included</h3>
+            <ul>
+              <li>Ten OEI archetype-specific interview instruments.</li>
+              <li>Optional routing from two known OEI entropy drivers to one recommended instrument.</li>
+              <li>Packet-specific company-context intake.</li>
+              <li>Progressive optional fields for more detailed customization.</li>
+              <li>AI-assisted exercise generation using the customer’s own OpenAI API key.</li>
+              <li>Clearly labeled deterministic fallback when AI isn’t available.</li>
+              <li>Mandatory interviewer review and approval before candidate release.</li>
+              <li>Separate candidate-safe and private interviewer views.</li>
+              <li>Evidence states:
+                <ul>
+                  <li>Evidence observed</li>
+                  <li>Contrary evidence observed</li>
+                  <li>Insufficient evidence</li>
+                </ul>
+              </li>
+              <li>Section-level note capture with consolidated notes.</li>
+              <li>Evidence provenance carried into the final report.</li>
+              <li>Structured OEI evidence reports with explicit assessment boundaries.</li>
+              <li>Candidate-link resending, case restart, and case conclusion controls.</li>
+              <li>OEI-branded desktop interface.</li>
+              <li>Four-slide desktop landing presentation with keyboard navigation.</li>
+            </ul>
+
+            <h3>Desktop delivery</h3>
+            <ul>
+              <li>Distributed as a single Windows installer EXE.</li>
+              <li>Runs a private, loopback-only application service.</li>
+              <li>Customers don’t need Node.js, repository files, or supporting folders.</li>
+              <li>Candidate material opens in a separate candidate-safe window.</li>
+              <li>The recommended Beta workflow is to screen-share only the candidate-safe window during a video call.</li>
+            </ul>
+
+            <h3>AI and API keys</h3>
+            <ul>
+              <li>No shared API key is embedded in the application.</li>
+              <li>Customers can provide their own OpenAI API key.</li>
+              <li>Keys remain session-only and aren’t intentionally written to disk.</li>
+              <li>Company context is sent to OpenAI only when AI-assisted generation is used.</li>
+              <li>The methodology, evidence categories, and interpretation rules remain deterministic and packet-defined.</li>
+            </ul>
+
+            <h3>Beta limitations</h3>
+            <ul>
+              <li>Candidate links aren’t remotely hosted or independently shareable yet.</li>
+              <li>Candidate delivery currently relies on screen-sharing the candidate-safe window.</li>
+              <li>Interview cases and candidate sessions aren’t persistently stored after the application closes.</li>
+              <li>The installer isn’t commercially code-signed, so Windows may display a SmartScreen warning.</li>
+              <li>Deterministic fallback exercises are below the intended AI-assisted quality and are clearly labeled.</li>
+              <li>Windows is the only packaged platform in this release.</li>
+            </ul>
+
+            <h3>Assessment boundary</h3>
+            <p>This software records operational-behavior evidence relevant to specific OEI archetypes and pillars. It doesn’t determine overall employee quality or replace evaluation of skills, experience, technical competence, references, or broader hiring fit.</p>
+          </div>
+        </details>
+      </div>
+    </section>
   </main>
 
   <footer>
