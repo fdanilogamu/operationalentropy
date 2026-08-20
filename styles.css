@@ -802,6 +802,9 @@ footer {
 .ech-checkout h3 { font-size: 1.5rem; margin-top: 1rem; }
 .ech-checkout .ech-version, .ech-checkout-note { color: var(--text-light); font-size: .86rem; }
 .ech-checkout-note { margin: 1.25rem 0 0; text-align: center; }
+.ech-license-notice { margin: 1.5rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-left: 3px solid var(--primary); background: var(--bg-secondary); }
+.ech-license-notice strong { color: var(--text-primary); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.ech-license-notice p { margin: .45rem 0 0; color: var(--text-secondary); font-size: .85rem; line-height: 1.6; }
 .ech-faq { background: #f4f2ed; }
 .ech-faq-wrap { max-width: 950px; }
 .ech-faq article { padding: 3rem 0; border-top: 1px solid var(--border); }
