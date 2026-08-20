@@ -19,8 +19,8 @@ Entropy Compatible Hiring can be purchased and used independently. A formal OEI 
 - [x] ECH product page and FAQ
 - [x] OEI pricing page
 - [x] OEI services page
-- [ ] OEI Services and Pricing PDF
-- [ ] OEI TLDR PDF
+- [x] OEI Services and Pricing PDF
+- [x] OEI TLDR PDF
 
 ## Notes
 
