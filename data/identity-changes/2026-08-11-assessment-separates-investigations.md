@@ -20,7 +20,7 @@ The OEI Engagement Path Assessment now distinguishes between companies that need
 - [x] Focused Operational Investigations overview
 - [x] Individual investigation service pages
 - [x] OEI pricing and engagement comparison
-- [ ] Contact recommendation handoff
+- [x] Contact recommendation handoff
 
 ## Notes
 
