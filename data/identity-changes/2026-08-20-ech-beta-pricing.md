@@ -19,7 +19,7 @@ Current ECH Beta pricing is $950–$1,450 USD as a one-time purchase. It is not 
 - [x] OEI pricing page
 - [x] OEI services page
 - [x] OEI Services and Pricing PDF
-- [ ] Sales and demo materials
+- [x] Sales and demo materials
 
 ## Notes
 

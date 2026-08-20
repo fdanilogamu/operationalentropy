@@ -21,7 +21,7 @@ Entropy Compatible Hiring is presented as Version 0.1.0 Beta: a structured, role
 - [x] OEI pricing page
 - [x] OEI services page
 - [x] OEI Services and Pricing PDF
-- [ ] Demo and sales materials
+- [x] Demo and sales materials
 
 ## Notes
 

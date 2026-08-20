@@ -21,7 +21,7 @@ ECH is distributed as a single installable Windows desktop application. It runs 
 - [x] OEI pricing page
 - [x] OEI services page
 - [x] OEI Services and Pricing PDF
-- [ ] Installation and customer handoff documentation
+- [x] Installation and customer handoff documentation
 
 ## Notes
 
