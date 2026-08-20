@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {ENUMS, enumLabel, enumValues} from '../enums.mjs';
 import {deriveMetrics, validateToolRecord} from '../derivations.mjs';
-import {blankDiagnosis, migrateCheckpoint, validateCheckpoint, validateRequirement, FOUNDER_SECTIONS, STAFF_PROMPTS} from '../model.mjs';
+import {blankDiagnosis, migrateCheckpoint, validateCheckpoint, validateRequirement, FOUNDER_SECTIONS, STAFF_PROMPTS, interviewStatusAfterScheduling} from '../model.mjs';
 import {calculateOEI, METRICS} from '../scoring.mjs';
 import {assembleReport} from '../report.mjs';
 
@@ -24,4 +24,5 @@ const ambiguous=JSON.parse(JSON.stringify(state));ambiguous.samples.tools=[{clas
 assert.equal(ENUMS.evidenceType.length,5);assert.ok(!ENUMS.evidenceType.some(([,label])=>label.includes('Typical work')),'Open-ended interview prompts remain narrative fields.');
 assert.equal(FOUNDER_SECTIONS.length,30);assert.equal(STAFF_PROMPTS.length,27);assert.match(FOUNDER_SECTIONS[0].question,/Tell me about the company/);assert.match(STAFF_PROMPTS[3].question,/most recent time your work was blocked/);assert.equal(FOUNDER_SECTIONS[5].quantitative.unit,'interruptions / founder workday');assert.equal(STAFF_PROMPTS[22].quantitative.unit,'confidence %');assert.ok(FOUNDER_SECTIONS.every(prompt=>prompt.question.endsWith('?')||prompt.question.endsWith('.')));assert.ok(STAFF_PROMPTS.every(prompt=>prompt.question),'Every staff section has a core question.');
 const guidedMigration=migrateCheckpoint({...blankDiagnosis(),founderIntake:{sections:{}},staffInterviews:[{responses:{}}]});assert.equal(guidedMigration.data.founderIntake.sections.f30.question,FOUNDER_SECTIONS[29].question);assert.deepEqual(guidedMigration.data.staffInterviews[0].responseQuantitative,{});
+assert.equal(interviewStatusAfterScheduling('not_scheduled','2026-08-29T09:20'),'scheduled');assert.equal(interviewStatusAfterScheduling('','2026-08-29T09:20'),'scheduled');assert.equal(interviewStatusAfterScheduling('complete','2026-08-29T09:20'),'complete');assert.equal(interviewStatusAfterScheduling('not_scheduled',''),'not_scheduled');
 console.log('OEI controlled-value, migration, derivation, and report tests passed.');

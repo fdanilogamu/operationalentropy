@@ -77,6 +77,10 @@ export function blankDiagnosis() {
 }
 export function baseRecord(sourceDay,extra={}){const t=now();return{id:uid('rec'),createdAt:t,updatedAt:t,sourceDay,status:'in_progress',practitionerNotes:'',...extra};}
 
+export function interviewStatusAfterScheduling(currentStatus,scheduledTime){
+  return scheduledTime&&(!currentStatus||currentStatus==='not_scheduled')?'scheduled':currentStatus;
+}
+
 const enumPaths=[['engagement.status','diagnosisStatus'],['readiness.requirements.*.status','requirementStatus'],['staffInterviews.*.status','interviewStatus'],['evidence.*.evidenceType','evidenceType'],['evidence.*.confidence','confidence'],['metricRecords.*.state','metricState'],['metricRecords.*.confidence','confidence'],['samples.criticalOperations.*.founderMemoryDependent','founderMemory'],['samples.documents.*.obsolescenceStatus','documentStatus'],['samples.documents.*.obsolete','documentStatus'],['samples.tools.*.classification','toolClassification'],['samples.integrations.*.outcome','integrationOutcome'],['samples.integrations.*.success','integrationOutcome'],['recommendations.*.level','recommendationLevel'],['recommendations.*.priority','priority']];
 function visit(root,parts,callback,path=[]){if(!parts.length)return callback(root,path);const[head,...tail]=parts;if(head==='*')Object.keys(root||{}).forEach(key=>visit(root[key],tail,callback,[...path,key]));else if(root&&Object.hasOwn(root,head))visit(root[head],tail,callback,[...path,head]);}
 function setAt(root,path,value){let cursor=root;for(let i=0;i<path.length-1;i++)cursor=cursor[path[i]];cursor[path.at(-1)]=value;}
