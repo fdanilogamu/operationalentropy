@@ -47,3 +47,4 @@ label.field:has(>select[data-bind^="metricRecords."][data-bind$=".state"])>span:
 .evidence-actions .choice-line:first-child::after{content:" *";color:var(--red);font-weight:700}
 .skippable-fields{border:0;padding:0;margin:0;min-width:0}
 .skippable-fields:disabled{opacity:.5}
+.validation-leads{margin-bottom:1rem}.validation-lead>summary{display:flex;justify-content:space-between;align-items:center;gap:.75rem}.validation-lead-inactive{opacity:.78}.validation-lead-inactive>summary{text-decoration:none;color:var(--muted)}.validation-lead-choice{color:var(--blue-dark)}

@@ -28,6 +28,8 @@ Workspace/schema 0.3 adds explicit Day 1 skip state, interview-prompt evidence l
 
 Workspace/schema 0.4 consolidates the 27 staff-interview topics into 10 core conversational sections. The original topics remain available as optional probes and individual quantitative captures. Import migration groups legacy responses, artifacts, evidence flags, and quantitative estimates into their corresponding consolidated sections without recalculating scores.
 
+Workspace/schema 0.5 adds Day 1 validation leads. Leads are founder hypotheses queued for Day 3 validation and never affect scoring or reports directly. Validated or contradicted leads can explicitly prepare an Evidence record. If the source question is skipped or the lead is deselected, untouched leads are removed; worked leads are retained as inactive and excluded from active validation. Earlier checkpoints receive an empty `validationLeads` collection during import and historical scores are not recalculated.
+
 ## Current static-host limitations
 
 - Access control is not secure authentication.

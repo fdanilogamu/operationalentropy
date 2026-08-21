@@ -1,4 +1,4 @@
-export const VERSIONS={schemaVersion:'0.4',workspaceVersion:'0.4',metricDictionaryVersion:'0.1',scoringSpecVersion:'0.1',reportTemplateVersion:'0.1'};
+export const VERSIONS={schemaVersion:'0.5',workspaceVersion:'0.5',metricDictionaryVersion:'0.1',scoringSpecVersion:'0.1',reportTemplateVersion:'0.1'};
 export const DIMENSIONS=[
  {id:'founder',label:'Founder Dependency',weight:.30,metrics:[['decision_drag','Decision Blockage Time','blocked person-hours / contributor / week','higher_worse',2,6,0],['context_switching','Founder Context-Switching Frequency','interruptions / founder workday','higher_worse',3,9,0],['implicit_logic','Reliance on Institutional Memory','% of critical operations','higher_worse',20,60,0,100]]},
  {id:'knowledge',label:'Knowledge Logistics',weight:.20,metrics:[['discoverability_gap','Time to Find Source of Truth','minutes / retrieval attempt','higher_worse',5,15,0],['obsolescence_rate','Documentation Obsolescence','% materially obsolete','higher_worse',10,30,0,100],['onboarding_velocity','New-Hire Time to Impact','calendar days','higher_worse',14,42,0]]},

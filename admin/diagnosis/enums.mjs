@@ -23,6 +23,10 @@ export const ENUMS = {
     ['observed_fact', 'Observed fact'], ['recorded_fact', 'Recorded fact'], ['estimate', 'Estimate'],
     ['perception', 'Perception'], ['practitioner_inference', 'Practitioner inference']
   ],
+  validationLeadStatus: [
+    ['not_started', 'Not started'], ['validated', 'Validated'], ['contradicted', 'Contradicted'],
+    ['inconclusive', 'Inconclusive'], ['unavailable', 'Unavailable']
+  ],
   confidence: [['high', 'High'], ['medium', 'Medium'], ['low', 'Low'], ['unavailable', 'Unavailable']],
   metricState: [
     ['not_started', 'Not started'], ['evidence_incomplete', 'Evidence incomplete'],
@@ -75,6 +79,7 @@ const legacy = {
   requirementStatus: {'Received':'received','Partially received':'partially_received','Confirmed but pending':'confirmed_pending','Not received':'not_received','Not available':'not_available','Not applicable':'not_applicable'},
   interviewStatus: {'Not scheduled':'not_scheduled','Scheduled':'scheduled','In progress':'in_progress','Complete':'complete','Follow-up required':'follow_up_required','Skipped':'skipped','Cancelled':'cancelled'},
   evidenceType: {'Observed fact':'observed_fact','Recorded fact':'recorded_fact','Estimate':'estimate','Perception':'perception','Practitioner inference':'practitioner_inference'},
+  validationLeadStatus: {'Not started':'not_started','Validated':'validated','Contradicted':'contradicted','Inconclusive':'inconclusive','Unavailable':'unavailable'},
   confidence: {'High':'high','Medium':'medium','Low':'low','Unavailable':'unavailable'},
   toolClassification: {'Necessary and distinct':'necessary_distinct','Necessary but overlapping':'necessary_overlapping','Useful but underutilized':'useful_underutilized','Specialized low-frequency utility':'specialized_low_frequency','Candidate for consolidation':'candidate_consolidation','Operational deadweight':'operational_deadweight','Insufficient evidence':'insufficient_evidence'},
   founderMemory: {'Yes':'yes','No':'no','Founder-memory-dependent':'yes','Not founder-memory-dependent':'no','Insufficient evidence':'insufficient_evidence','Not assessed':'not_assessed'},

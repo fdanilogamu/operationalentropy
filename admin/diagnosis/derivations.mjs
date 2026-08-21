@@ -40,7 +40,7 @@ export function deriveMetrics(state) {
       tool_utility: tools.value,
       context_loss: mean(s.handoffs.filter(record => numeric(record.contextLossRating) && Number(record.contextLossRating) >= 1 && Number(record.contextLossRating) <= 5), 'contextLossRating'),
       clarification_cycle_time: mean(s.handoffs, 'clarificationHours'),
-      trust_in_handoff: mean(state.evidence.filter(record => String(record.metricIds || '').includes('trust_in_handoff')), 'quantitativeEstimate')
+      trust_in_handoff: mean(state.evidence.filter(record => !record.sourceInactive && String(record.metricIds || '').includes('trust_in_handoff')), 'quantitativeEstimate')
     },
     samples: {founder, documents, integrations, tools}
   };
