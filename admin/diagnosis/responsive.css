@@ -45,3 +45,5 @@ label.field:has(>select[data-bind^="metricRecords."][data-bind$=".state"])>span:
 .metric-captures{background:#fafbfc;border:1px solid var(--line);border-radius:8px;padding:.65rem .75rem;margin:.75rem 0}
 .metric-captures>summary{font-size:.82rem;color:var(--blue-dark)}
 .evidence-actions .choice-line:first-child::after{content:" *";color:var(--red);font-weight:700}
+.skippable-fields{border:0;padding:0;margin:0;min-width:0}
+.skippable-fields:disabled{opacity:.5}
