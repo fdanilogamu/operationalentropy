@@ -31,3 +31,10 @@
 .evidence-select{color:var(--blue-dark)}
 label.field:has(>textarea[data-bind^="founderIntake.sections."][data-bind$=".response"])>span::after{content:" *";color:var(--red);font-weight:700}
 details:has(input[data-checkbox$=".notApplicable"]:checked) label.field:has(>textarea[data-bind$=".response"])>span::after{display:none}
+label.field:has(>input[data-bind^="selectedDrivers."][data-bind$=".title"]){background:#eef7fc;border:1px solid #c6dfed;border-radius:8px;padding:.55rem}
+label.field:has(>input[data-bind^="selectedDrivers."][data-bind$=".title"]) input{background:#f8fcff;border-color:#a9cede}
+label.field:has(>input[data-bind^="selectedDrivers."][data-bind$=".title"])>span::after{content:"From selected metric · editable";display:block;color:#477a94;font-size:.7rem;font-style:normal;font-weight:600;margin-top:.1rem}
+label.field:has(>select[data-bind^="staffInterviews."][data-bind$=".status"]),label.field:has(>select[data-bind^="metricRecords."][data-bind$=".state"]){background:#eef7fc;border:1px solid #c6dfed;border-radius:8px;padding:.55rem}
+label.field:has(>select[data-bind^="staffInterviews."][data-bind$=".status"]) select,label.field:has(>select[data-bind^="metricRecords."][data-bind$=".state"]) select{background:#f8fcff;border-color:#a9cede}
+label.field:has(>select[data-bind^="staffInterviews."][data-bind$=".status"])>span::after{content:"May update from scheduled time · editable";display:block;color:#477a94;font-size:.7rem;font-weight:600;margin-top:.1rem}
+label.field:has(>select[data-bind^="metricRecords."][data-bind$=".state"])>span::after{content:"May update from calculated value · editable";display:block;color:#477a94;font-size:.7rem;font-weight:600;margin-top:.1rem}
