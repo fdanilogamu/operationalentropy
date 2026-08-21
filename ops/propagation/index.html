@@ -69,12 +69,40 @@
       </section>
 
       <section id="matrix" class="prop-view" aria-labelledby="matrix-title">
-        <div class="prop-section-heading"><div><span>04 · PROPAGATION MAP</span><h2 id="matrix-title">Surface dependency matrix</h2></div><p>Where each category of project truth is represented today.</p></div>
+        <div class="prop-section-heading prop-matrix-heading"><div><span>04 · PROPAGATION MAP</span><h2 id="matrix-title">Surface dependency matrix</h2></div><div><p>Where each category of project truth is represented today.</p><button type="button" class="prop-builder-trigger" id="open-log-builder">Build new log entry</button></div></div>
         <div class="prop-matrix-tools"><label>Project <select id="matrix-project"></select></label><span id="matrix-count"></span></div>
         <div class="prop-table-wrap"><table id="matrix-table"><thead></thead><tbody></tbody></table></div>
       </section>
     </div>
   </main>
+
+  <dialog class="prop-builder" id="log-builder" aria-labelledby="builder-title">
+    <form method="dialog" class="prop-builder-card">
+      <header class="prop-builder-header">
+        <div><span>NEW IDENTITY CHANGE</span><h2 id="builder-title">Build a log entry</h2><p>Choose what changed. The propagation map will identify every surface that may now need attention.</p></div>
+        <button type="submit" class="prop-builder-close" aria-label="Close log entry builder">×</button>
+      </header>
+      <div class="prop-builder-body">
+        <section class="prop-builder-controls">
+          <label class="prop-builder-project">Project<select id="builder-project"></select></label>
+          <fieldset>
+            <legend>Which identity factors changed?</legend>
+            <p>Select one or more. Each factor is matched against the current propagation matrix.</p>
+            <div id="builder-categories" class="prop-category-checklist"></div>
+          </fieldset>
+        </section>
+        <section class="prop-builder-result" aria-live="polite">
+          <div class="prop-builder-result-heading"><div><span>CALCULATED CHECKLIST</span><h3>Affected surfaces</h3></div><strong id="builder-surface-count">0</strong></div>
+          <p id="builder-guidance">Select at least one identity factor to calculate propagation targets.</p>
+          <ol id="builder-surfaces"></ol>
+        </section>
+      </div>
+      <footer class="prop-builder-footer">
+        <p>The downloaded file remains a draft until you complete its title and change description.</p>
+        <button type="button" id="download-log-entry" disabled>Download Markdown</button>
+      </footer>
+    </form>
+  </dialog>
   <footer class="prop-footer"><div class="container"><span>OEI · IDENTITY PROPAGATION</span><p>Canonical records live in <code>data/identity-changes/</code>. Edit the Markdown; the instrument follows.</p></div></footer>
   <script src="ops/propagation/propagation.js"></script>
 </body>

@@ -84,6 +84,87 @@
     select.addEventListener('change', draw); draw();
   }
 
+  function selectedBuilderCategories() {
+    return $$('#builder-categories input:checked').map(input => input.value);
+  }
+
+  function affectedBuilderSurfaces() {
+    const project = $('#builder-project').value;
+    const categories = selectedBuilderCategories();
+    return map.surfaces.filter(surface => surface.project === project && surface.categories.some(category => categories.includes(category)));
+  }
+
+  function updateLogBuilder() {
+    const categories = selectedBuilderCategories();
+    const surfaces = affectedBuilderSurfaces();
+    $('#builder-surface-count').textContent = surfaces.length;
+    $('#builder-guidance').textContent = categories.length
+      ? `${categories.length} ${categories.length === 1 ? 'factor' : 'factors'} selected. These surfaces depend on at least one of them.`
+      : 'Select at least one identity factor to calculate propagation targets.';
+    $('#builder-surfaces').innerHTML = surfaces.map(surface => `<li>${escapeHtml(surface.name)}<small>${escapeHtml(surface.path)}</small></li>`).join('');
+    $('#download-log-entry').disabled = !categories.length || !surfaces.length;
+  }
+
+  function markdownForBuilder() {
+    const project = $('#builder-project').value;
+    const categories = selectedBuilderCategories();
+    const surfaces = affectedBuilderSurfaces();
+    const date = new Date().toISOString().slice(0,10);
+    return `---
+project: ${project}
+date: ${date}
+title:
+categories:
+${categories.map(category => `  - ${category}`).join('\n')}
+source: manual
+---
+
+## Change
+
+<!-- State what is now true. -->
+
+## Propagation
+
+${surfaces.map(surface => `- [ ] ${surface.name}`).join('\n')}
+
+## Notes
+
+<!-- Optional context, boundaries, or consequences. -->
+`;
+  }
+
+  function downloadLogEntry() {
+    const markdown = markdownForBuilder();
+    const date = new Date().toISOString().slice(0,10);
+    const project = slug($('#builder-project').value).replace('operational-entropy-index','oei').replace('entropy-compatible-hiring','ech');
+    const blob = new Blob([markdown], { type:'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${date}-${project}-identity-change.md`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function initializeLogBuilder() {
+    const dialog = $('#log-builder');
+    const projects = [...new Set(map.surfaces.map(surface => surface.project))];
+    $('#builder-project').innerHTML = projects.map(project => `<option>${escapeHtml(project)}</option>`).join('');
+    $('#builder-categories').innerHTML = map.categories.map(category => `<label class="prop-category-option"><input type="checkbox" value="${escapeHtml(category)}"><span>${escapeHtml(category)}</span></label>`).join('');
+    $('#open-log-builder').addEventListener('click', () => {
+      const matrixProject = $('#matrix-project').value;
+      if (matrixProject !== 'All projects') $('#builder-project').value = matrixProject;
+      updateLogBuilder();
+      dialog.showModal();
+    });
+    $('#builder-project').addEventListener('change', updateLogBuilder);
+    $('#builder-categories').addEventListener('change', updateLogBuilder);
+    $('#download-log-entry').addEventListener('click', downloadLogEntry);
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  }
+
   $$('.prop-tabs [data-view]').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
   $$('[data-jump]').forEach(button => button.addEventListener('click', () => switchView(button.dataset.jump)));
 
@@ -106,6 +187,6 @@
       map = propagationMap;
       records = await Promise.all(files.map(file => fetchCurrent(`data/identity-changes/${file}`).then(r => { if(!r.ok) throw new Error(`Could not read ${file}.`); return r.text(); }).then(text => parseRecord(text,file))));
       records.sort((a,b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
-      renderOverview(); renderTimeline(); renderOutstanding(); renderMatrix(); $('#loading').hidden = true;
+      renderOverview(); renderTimeline(); renderOutstanding(); renderMatrix(); initializeLogBuilder(); $('#loading').hidden = true;
     }).catch(error => { $('#loading').hidden = true; $('#error').hidden = false; $('#error').textContent = `${error.message} Serve the repository through a local web server rather than opening this file directly.`; });
 })();

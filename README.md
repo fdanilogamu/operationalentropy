@@ -49,6 +49,14 @@ project truths are represented.
 Files beginning with `_` are templates or helpers and are never rendered as
 identity changes.
 
+The propagation matrix also includes a **Build new log entry** tool. Select the
+project and every identity category affected by a decision. The dashboard uses
+`data/propagation-map.json` to calculate the union of dependent surfaces and
+downloads a dated Markdown draft with those surfaces ready as unchecked
+propagation targets. Complete the remaining fields, rename the draft if needed,
+place it in `data/identity-changes/`, and add its filename to `manifest.json`
+when publishing through GitHub Pages.
+
 ## Publishing
 
 GitHub Pages publishes this repository as a static site. The `.nojekyll` file
