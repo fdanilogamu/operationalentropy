@@ -25,3 +25,9 @@
 .card>details:has(>.btn.danger)>summary{padding-right:7.25rem}
 .card>details:has(>.btn.danger)[open]>summary{padding-bottom:1.5rem}
 .card>details:has(>.btn.danger)[open]>.btn.danger{position:absolute;right:.8rem;top:.65rem;margin:0;z-index:1}
+.required-mark{color:var(--red);font-weight:700}
+.choice-line{display:flex;align-items:center;gap:.5rem;font-size:.84rem;font-weight:600;margin:.55rem 0}
+.choice-line input{width:auto;margin:0}
+.evidence-select{color:var(--blue-dark)}
+label.field:has(>textarea[data-bind^="founderIntake.sections."][data-bind$=".response"])>span::after{content:" *";color:var(--red);font-weight:700}
+details:has(input[data-checkbox$=".notApplicable"]:checked) label.field:has(>textarea[data-bind$=".response"])>span::after{display:none}

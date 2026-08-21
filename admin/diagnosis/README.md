@@ -22,7 +22,9 @@ Run `node --test admin/diagnosis/tests/*.test.mjs` from the repository root.
 
 ## Checkpoint schema 0.2
 
-Workspace 0.2 stores methodology-defined finite values as stable enum codes while displaying readable labels. Schema 0.1 checkpoints are accepted and exact legacy labels are normalized during import. Unrecognized free-text values are preserved, recorded in `migrationWarnings`, and shown to the practitioner for repair; historical scores are never silently recalculated. Controlled values include diagnosis, workflow, requirement, interview, evidence, confidence, metric, tool, documentation, founder-memory, integration, handoff, and recommendation states.
+Workspace 0.2 introduced methodology-defined finite values as stable enum codes while displaying readable labels. Earlier checkpoints are accepted and exact legacy labels are normalized during import. Unrecognized free-text values are preserved, recorded in `migrationWarnings`, and shown to the practitioner for repair; historical scores are never silently recalculated. Controlled values include diagnosis, workflow, requirement, interview, evidence, confidence, metric, tool, documentation, founder-memory, integration, handoff, and recommendation states.
+
+Workspace/schema 0.3 adds explicit Day 1 skip state, interview-prompt evidence links, and temporary two-record contradiction selection. On import, legacy founder `recentExample` text is appended to the corresponding response, interview evidence maps are initialized, and historical scores are not recalculated.
 
 ## Current static-host limitations
 
