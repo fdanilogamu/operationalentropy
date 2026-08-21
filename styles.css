@@ -159,7 +159,8 @@ header {
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  isolation: isolate;
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.95);
 }
@@ -1317,7 +1318,7 @@ footer {
 .ech-checklist { list-style: none; padding: 0 !important; margin-top: 2rem; }
 .ech-checklist li { padding: .7rem 0 .7rem 1.8rem; position: relative; }
 .ech-checklist li::before { content: "✓"; color: #a9cda0; position: absolute; left: 0; }
-.ech-checkout { color: var(--text-primary); background: white; }
+.ech-checkout { position: relative; z-index: 1; isolation: isolate; color: var(--text-primary); background: white; }
 .ech-checkout h3 { font-size: 1.5rem; margin-top: 1rem; }
 .ech-checkout .ech-version, .ech-checkout-note { color: var(--text-light); font-size: .86rem; }
 .ech-checkout-note { margin: 1.25rem 0 0; text-align: center; }
