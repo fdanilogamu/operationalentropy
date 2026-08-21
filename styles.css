@@ -315,7 +315,10 @@ section {
 
 .insight-link {
   margin-top: 1.75rem;
-  font-weight: 600;
+}
+
+.insight-link .btn-secondary {
+  font-weight: 500;
 }
 
 /* Client journey diagnostic lens */
