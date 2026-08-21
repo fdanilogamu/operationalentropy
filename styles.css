@@ -346,15 +346,6 @@ section {
   max-width: 880px;
 }
 
-.client-journey-hero .hero-kicker,
-.section-kicker {
-  color: var(--primary-dark);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
 .client-journey-hero h1 {
   max-width: 14ch;
 }
