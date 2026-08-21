@@ -296,6 +296,300 @@ section {
   text-align: center;
 }
 
+.context-link {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+
+.context-link span {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.context-link .btn-secondary {
+  padding: 0.8rem 1.35rem;
+}
+
+.insight-link {
+  margin-top: 1.75rem;
+  font-weight: 600;
+}
+
+/* Client journey diagnostic lens */
+.client-journey-page {
+  background: var(--bg-primary);
+}
+
+.client-journey-page .logo {
+  width: 310px;
+}
+
+.client-journey-page .nav-links {
+  gap: 1.8rem;
+}
+
+.client-journey-hero {
+  min-height: 620px;
+  background: linear-gradient(120deg, var(--bg-primary) 0%, var(--bg-primary) 64%, var(--bg-tertiary) 64%);
+}
+
+.client-journey-hero .hero-content {
+  max-width: 880px;
+}
+
+.client-journey-hero .hero-kicker,
+.section-kicker {
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.client-journey-hero h1 {
+  max-width: 14ch;
+}
+
+.client-journey-hero .hero-subtitle {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 500;
+  max-width: 48ch;
+}
+
+.boundary-note {
+  max-width: 440px;
+  padding: 2.25rem;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.boundary-note strong {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.boundary-note p {
+  margin: 0.75rem 0 0;
+  font-size: 0.92rem;
+}
+
+.client-intro {
+  max-width: 900px;
+  margin-bottom: 3rem;
+}
+
+.client-intro h2 {
+  max-width: 25ch;
+  margin-top: 0.65rem;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+}
+
+.client-question-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.client-question-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem;
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+}
+
+.client-question-card h3 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.pillar-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.6rem;
+}
+
+.pillar-tags a {
+  padding: 0.38rem 0.62rem;
+  border: 1px solid var(--primary-light);
+  border-radius: 999px;
+  color: var(--primary-dark);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.035em;
+}
+
+.pillar-tags a:hover {
+  background: var(--bg-secondary);
+}
+
+.mechanism {
+  margin-bottom: 1.5rem;
+  padding: 1.15rem 1.25rem;
+  border-left: 3px solid var(--primary);
+  background: var(--bg-secondary);
+}
+
+.mechanism strong,
+.experience-list strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--text-primary);
+  font-size: 0.73rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.mechanism p {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+
+.experience-list {
+  margin-top: auto;
+}
+
+.experience-list ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+}
+
+.experience-list li {
+  margin-bottom: 0.42rem;
+}
+
+.expectation-section {
+  background: var(--secondary);
+  color: white;
+  max-width: none;
+}
+
+.expectation-section .container {
+  max-width: 1400px;
+}
+
+.expectation-section h2,
+.expectation-section h3 {
+  color: white;
+}
+
+.expectation-section p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.expectation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 3rem;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.expectation-grid article {
+  padding: 2rem;
+  background: var(--secondary);
+}
+
+.expectation-grid h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.expectation-grid blockquote {
+  color: white;
+  font-size: 1.35rem;
+  line-height: 1.45;
+}
+
+.masking-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 5rem;
+  align-items: start;
+}
+
+.masking-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  padding: 1px;
+  list-style: none;
+  background: var(--border);
+}
+
+.masking-list li {
+  padding: 1.2rem;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+}
+
+.mitigation-callout {
+  margin-top: 2rem;
+  padding: 1.6rem;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.mitigation-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.client-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .client-journey-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    background: var(--bg-primary);
+  }
+
+  .client-question-grid,
+  .expectation-grid,
+  .masking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .masking-grid {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .client-question-card {
+    padding: 1.5rem;
+  }
+
+  .masking-list {
+    grid-template-columns: 1fr;
+  }
+
+  .client-links a {
+    width: 100%;
+  }
+}
+
 /* Cards & Components */
 .card {
   background: var(--bg-secondary);
