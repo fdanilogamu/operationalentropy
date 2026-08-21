@@ -42,3 +42,6 @@ label.field:has(>select[data-bind^="metricRecords."][data-bind$=".state"])>span:
 .evidence-record>summary>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .evidence-record .evidence-actions{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin:.5rem 0}
 .evidence-record.evidence-confirmed>summary{color:var(--blue-dark)}
+.metric-captures{background:#fafbfc;border:1px solid var(--line);border-radius:8px;padding:.65rem .75rem;margin:.75rem 0}
+.metric-captures>summary{font-size:.82rem;color:var(--blue-dark)}
+.evidence-actions .choice-line:first-child::after{content:" *";color:var(--red);font-weight:700}

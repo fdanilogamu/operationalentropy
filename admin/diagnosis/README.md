@@ -26,6 +26,8 @@ Workspace 0.2 introduced methodology-defined finite values as stable enum codes 
 
 Workspace/schema 0.3 adds explicit Day 1 skip state, interview-prompt evidence links, and temporary two-record contradiction selection. On import, legacy founder `recentExample` text is appended to the corresponding response, interview evidence maps are initialized, and historical scores are not recalculated.
 
+Workspace/schema 0.4 consolidates the 27 staff-interview topics into 10 core conversational sections. The original topics remain available as optional probes and individual quantitative captures. Import migration groups legacy responses, artifacts, evidence flags, and quantitative estimates into their corresponding consolidated sections without recalculating scores.
+
 ## Current static-host limitations
 
 - Access control is not secure authentication.
