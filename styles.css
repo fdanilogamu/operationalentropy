@@ -552,6 +552,94 @@ section {
   background: var(--border);
 }
 
+.concept-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.65fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+.concept-statement {
+  color: var(--primary);
+  font-size: 1.3rem;
+  line-height: 1.55;
+}
+
+.evidence-note {
+  border-left: 3px solid var(--primary);
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+}
+
+.evidence-note strong {
+  display: block;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+}
+
+.evidence-note p:last-child,
+.mechanism-list p:last-child {
+  margin-bottom: 0;
+}
+
+.mechanism-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 2rem 0;
+  background: var(--border);
+}
+
+.mechanism-grid article,
+.mechanism-list p {
+  background: white;
+  padding: 1.5rem;
+  margin: 0;
+}
+
+.mechanism-grid h3 {
+  margin-top: 0;
+}
+
+.concept-tags {
+  justify-content: flex-start;
+  margin: 1.5rem 0 2rem;
+}
+
+.mechanism-list {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+}
+
+.signal-list {
+  columns: 2;
+  column-gap: 4rem;
+  margin: 2rem 0;
+}
+
+.signal-list li {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .concept-layout,
+  .mechanism-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .concept-layout {
+    gap: 2rem;
+  }
+
+  .signal-list {
+    columns: 1;
+  }
+}
+
 .masking-list li {
   padding: 1.2rem;
   background: var(--bg-primary);
