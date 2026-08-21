@@ -11,6 +11,7 @@
 }
 
 .validation-error{display:block;color:var(--red);font-size:.78rem;font-weight:600;margin-top:.2rem}
+.field-help{display:block;color:var(--muted);font-size:.72rem;font-weight:400;line-height:1.35;margin-top:.28rem}
 .pulled-field{background:#eef7fc;border:1px solid #c6dfed;border-radius:8px;padding:.55rem}
 .pulled-field input,.pulled-field textarea{background:#f8fcff;border-color:#a9cede}
 .source-clue{display:block;color:#477a94;font-size:.7rem;font-style:normal;font-weight:600;margin-top:.1rem}
