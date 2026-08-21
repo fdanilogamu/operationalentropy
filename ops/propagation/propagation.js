@@ -165,6 +165,39 @@ ${surfaces.map(surface => `- [ ] ${surface.name}`).join('\n')}
     dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
   }
 
+  function initializeManifestUpdater() {
+    const button = $('#update-manifest');
+    const status = $('#manifest-status');
+    const localHosts = new Set(['localhost','127.0.0.1','::1']);
+    const supported = localHosts.has(window.location.hostname) && window.isSecureContext && 'showDirectoryPicker' in window;
+    button.disabled = !supported;
+    if (supported) status.textContent = 'Choose data/identity-changes/ to rebuild its manifest from the Markdown files currently present.';
+
+    button.addEventListener('click', async () => {
+      try {
+        status.textContent = 'Waiting for the identity-changes folder…';
+        const directory = await window.showDirectoryPicker({ id:'oei-identity-changes', mode:'readwrite' });
+        const names = [];
+        let containsTemplate = false;
+        for await (const entry of directory.values()) {
+          if (entry.kind !== 'file') continue;
+          if (entry.name === '_TEMPLATE.md') containsTemplate = true;
+          if (entry.name.endsWith('.md') && !entry.name.startsWith('_')) names.push(entry.name);
+        }
+        if (!containsTemplate && directory.name !== 'identity-changes') throw new Error('Choose the data/identity-changes folder.');
+        names.sort((a,b) => b.localeCompare(a));
+        const manifest = await directory.getFileHandle('manifest.json', { create:true });
+        const writable = await manifest.createWritable();
+        await writable.write(`${JSON.stringify(names,null,2)}\n`);
+        await writable.close();
+        status.textContent = `Manifest updated with ${names.length} identity-change ${names.length === 1 ? 'record' : 'records'}. Commit manifest.json with your new Markdown file.`;
+      } catch (error) {
+        if (error.name === 'AbortError') status.textContent = 'Manifest update canceled. No files were changed.';
+        else status.textContent = error.message || 'The manifest could not be updated.';
+      }
+    });
+  }
+
   $$('.prop-tabs [data-view]').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
   $$('[data-jump]').forEach(button => button.addEventListener('click', () => switchView(button.dataset.jump)));
 
@@ -187,6 +220,6 @@ ${surfaces.map(surface => `- [ ] ${surface.name}`).join('\n')}
       map = propagationMap;
       records = await Promise.all(files.map(file => fetchCurrent(`data/identity-changes/${file}`).then(r => { if(!r.ok) throw new Error(`Could not read ${file}.`); return r.text(); }).then(text => parseRecord(text,file))));
       records.sort((a,b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
-      renderOverview(); renderTimeline(); renderOutstanding(); renderMatrix(); initializeLogBuilder(); $('#loading').hidden = true;
+      renderOverview(); renderTimeline(); renderOutstanding(); renderMatrix(); initializeLogBuilder(); initializeManifestUpdater(); $('#loading').hidden = true;
     }).catch(error => { $('#loading').hidden = true; $('#error').hidden = false; $('#error').textContent = `${error.message} Serve the repository through a local web server rather than opening this file directly.`; });
 })();

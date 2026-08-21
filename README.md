@@ -57,6 +57,17 @@ propagation targets. Complete the remaining fields, rename the draft if needed,
 place it in `data/identity-changes/`, and add its filename to `manifest.json`
 when publishing through GitHub Pages.
 
+To update the manifest, use either method:
+
+- Serve the repository locally in Chrome or Edge, open `/ops/propagation/`,
+  select **Update manifest**, and choose the `data/identity-changes/` folder.
+- From any computer with Node.js and a clone of the repository, run
+  `node scripts/update_identity_change_manifest.mjs`.
+
+Both methods include `.md` files, ignore files beginning with `_`, sort records
+predictably, and replace `data/identity-changes/manifest.json`. Commit the
+updated manifest together with the new identity-change record.
+
 ## Publishing
 
 GitHub Pages publishes this repository as a static site. The `.nojekyll` file
