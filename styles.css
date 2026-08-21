@@ -528,8 +528,19 @@ section {
   align-items: start;
 }
 
-#mitigation-trap {
+:target {
   scroll-margin-top: 190px;
+}
+
+@media (max-width: 600px) {
+  .pricing-feature-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pricing-feature-action {
+    min-width: 0 !important;
+    text-align: left !important;
+  }
 }
 
 .masking-list {
