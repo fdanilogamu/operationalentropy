@@ -82,6 +82,15 @@ a:hover {
   border-bottom-color: var(--primary);
 }
 
+.heading-anchor {
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+}
+
+.heading-anchor:hover {
+  color: var(--primary-dark);
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
@@ -517,6 +526,10 @@ section {
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: 5rem;
   align-items: start;
+}
+
+#mitigation-trap {
+  scroll-margin-top: 190px;
 }
 
 .masking-list {
