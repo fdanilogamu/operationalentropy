@@ -314,10 +314,13 @@ section {
 }
 
 .insight-link {
+  display: flex;
+  justify-content: center;
   margin-top: 1.75rem;
 }
 
-.insight-link .btn-secondary {
+.insight-link .btn-primary {
+  width: fit-content;
   font-weight: 500;
 }
 
