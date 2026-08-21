@@ -30,6 +30,8 @@ Workspace/schema 0.4 consolidates the 27 staff-interview topics into 10 core con
 
 Workspace/schema 0.5 adds Day 1 validation leads. Leads are founder hypotheses queued for Day 3 validation and never affect scoring or reports directly. Validated or contradicted leads can explicitly prepare an Evidence record. If the source question is skipped or the lead is deselected, untouched leads are removed; worked leads are retained as inactive and excluded from active validation. Earlier checkpoints receive an empty `validationLeads` collection during import and historical scores are not recalculated.
 
+On Day 3, project months sampled is calculated from sampled weeks using the average Gregorian month (365.2425 days ÷ 12). It remains editable for an intentionally different project-review window. Tool workdays remains separate because it represents the workday exposure actually covered by tool-workflow observations, which may be narrower than the overall historical review window.
+
 ## Current static-host limitations
 
 - Access control is not secure authentication.

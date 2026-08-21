@@ -48,3 +48,6 @@ label.field:has(>select[data-bind^="metricRecords."][data-bind$=".state"])>span:
 .skippable-fields{border:0;padding:0;margin:0;min-width:0}
 .skippable-fields:disabled{opacity:.5}
 .validation-leads{margin-bottom:1rem}.validation-lead>summary{display:flex;justify-content:space-between;align-items:center;gap:.75rem}.validation-lead-inactive{opacity:.78}.validation-lead-inactive>summary{text-decoration:none;color:var(--muted)}.validation-lead-choice{color:var(--blue-dark)}
+label.field:has(>input[data-bind="engagement.monthsSampled"]){background:#eef7fc;border:1px solid #c6dfed;border-radius:8px;padding:.55rem}
+label.field:has(>input[data-bind="engagement.monthsSampled"]) input{background:#f8fcff;border-color:#a9cede}
+label.field:has(>input[data-bind="engagement.monthsSampled"])>span::after{content:"Calculated from sampled weeks · editable";display:block;color:#477a94;font-size:.7rem;font-weight:600;margin-top:.1rem}

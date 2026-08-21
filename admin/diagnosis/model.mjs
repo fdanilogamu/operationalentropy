@@ -93,6 +93,10 @@ export function interviewStatusAfterScheduling(currentStatus,scheduledTime){
   return scheduledTime&&(!currentStatus||currentStatus==='not_scheduled')?'scheduled':currentStatus;
 }
 
+export function projectMonthsFromWeeks(sampledWeeks){
+  return sampledWeeks!==''&&sampledWeeks!=null&&Number.isFinite(Number(sampledWeeks))?Number((Number(sampledWeeks)/(365.2425/12/7)).toFixed(4)):'';
+}
+
 export function clearSkippedFounderSection(section){
   if(!section?.notApplicable)return section;
   Object.assign(section,{response:'',quantitativeEstimate:'',confidence:'',timePeriod:'',recentExample:'',artifactCandidate:'',metricsInformed:'',practitionerNote:''});
