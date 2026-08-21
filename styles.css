@@ -91,6 +91,10 @@ a:hover {
   color: var(--primary-dark);
 }
 
+.hero .heading-anchor {
+  border-bottom: 0;
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
