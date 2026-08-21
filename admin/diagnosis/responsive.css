@@ -38,3 +38,7 @@ label.field:has(>select[data-bind^="staffInterviews."][data-bind$=".status"]),la
 label.field:has(>select[data-bind^="staffInterviews."][data-bind$=".status"]) select,label.field:has(>select[data-bind^="metricRecords."][data-bind$=".state"]) select{background:#f8fcff;border-color:#a9cede}
 label.field:has(>select[data-bind^="staffInterviews."][data-bind$=".status"])>span::after{content:"May update from scheduled time · editable";display:block;color:#477a94;font-size:.7rem;font-weight:600;margin-top:.1rem}
 label.field:has(>select[data-bind^="metricRecords."][data-bind$=".state"])>span::after{content:"May update from calculated value · editable";display:block;color:#477a94;font-size:.7rem;font-weight:600;margin-top:.1rem}
+.evidence-record>summary{display:flex;align-items:center;justify-content:space-between;gap:.75rem;list-style-position:outside}
+.evidence-record>summary>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.evidence-record .evidence-actions{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin:.5rem 0}
+.evidence-record.evidence-confirmed>summary{color:var(--blue-dark)}
