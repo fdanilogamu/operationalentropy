@@ -1355,6 +1355,16 @@ footer {
 .ech-release-notes-content { padding: 1rem 0 3rem; }
 .ech-release-notes-content h3 { margin-top: 2.5rem; }
 .ech-release-notes-content li { color: var(--text-secondary); margin-bottom: .6rem; }
+.ech-limitations { max-width: none; background: var(--secondary); color: white; scroll-margin-top: 190px; }
+.ech-limitations-wrap { max-width: 1100px; }
+.ech-limitations .ech-section-number { color: #b8cad8; }
+.ech-limitations h2 { margin-top: 1rem; color: white; font-size: clamp(2.5rem, 5vw, 4.5rem); }
+.ech-limitations-wrap > p { max-width: 760px; color: rgba(255,255,255,.72); }
+.ech-limitations-list { margin-top: 2.5rem; border: 1px solid rgba(184,202,216,.3); }
+.ech-limitations-list > div { display: grid; grid-template-columns: minmax(220px,.72fr) minmax(0,1.28fr); gap: 2rem; padding: 1.35rem 1.5rem; border-bottom: 1px solid rgba(184,202,216,.25); }
+.ech-limitations-list > div:last-child { border-bottom: 0; }
+.ech-limitations-list dt { color: #ffd27a; font-weight: 650; line-height: 1.5; }
+.ech-limitations-list dd { margin: 0; color: rgba(255,255,255,.76); line-height: 1.65; }
 @media (max-width: 900px) {
   .ech-hero-grid, .ech-purchase-grid, .ech-intro-grid { grid-template-columns: 1fr; }
   .ech-slide { grid-template-columns: 1fr; align-items: start; }
@@ -1410,6 +1420,7 @@ footer {
   .ech-evidence-signal > div { overflow-x: auto; }
   .ech-unresolved, .ech-interpretation-boundary { grid-template-columns: 1fr; }
   .ech-carousel-next { min-width: 0; min-height: 42px; padding: 9px 10px; }
+  .ech-limitations-list > div { grid-template-columns: 1fr; gap: .6rem; padding: 1.15rem; }
 }
 .features-list li {
   padding: 0.75rem 0;
