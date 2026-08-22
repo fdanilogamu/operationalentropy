@@ -914,6 +914,11 @@ footer {
   text-align: left;
 }
 
+.footer-section .footer-ech-heading {
+  margin-top: 1.75rem;
+  margin-bottom: 1rem;
+}
+
 /* Site navigation */
 .site-navigation-intro {
   max-width: 760px;
