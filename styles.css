@@ -919,6 +919,18 @@ footer {
   max-width: 760px;
 }
 
+.site-navigation-visual {
+  min-height: 290px;
+}
+
+.site-navigation-visual img {
+  width: 100%;
+  max-width: 760px;
+  opacity: 0.85;
+  transform: none;
+  border-radius: 6px;
+}
+
 .journey-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
