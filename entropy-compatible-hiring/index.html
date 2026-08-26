@@ -4,10 +4,10 @@
   <base href="/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entropy Compatible Hiring Software - Version 0.1.0 BETA | OEI</title>
+  <title>Entropy Compatible Hiring Software - Version 0.1.2 BETA | OEI</title>
   <meta name="description" content="Structured, role-agnostic hiring instruments that help companies observe behaviors that resist operational entropy.">
   <link rel="canonical" href="https://operationalentropy.com/entropy-compatible-hiring/">
-  <meta property="og:title" content="Entropy Compatible Hiring Software - Version 0.1.0 BETA">
+  <meta property="og:title" content="Entropy Compatible Hiring Software - Version 0.1.2 BETA">
   <meta property="og:description" content="Observe the operational behaviors your company needs through structured, applied hiring exercises.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -34,7 +34,7 @@
     <section class="ech-hero">
       <div class="container ech-hero-grid">
         <div>
-          <div class="ech-kicker">OEI SOFTWARE · VERSION 0.1.0 <span>BETA</span></div>
+          <div class="ech-kicker">OEI SOFTWARE · VERSION 0.1.2 <span>BETA</span></div>
           <h1>Entropy Compatible Hiring</h1>
           <p class="ech-lede">Structured interviews for observing how candidates respond to your company’s operational conditions.</p>
           <p>Select the relevant conditions, generate an instrument, and gather behavioral evidence through questions and applied exercises.</p>
@@ -46,7 +46,7 @@
         <aside class="ech-product-card" aria-label="Product details">
           <dl class="ech-product-details">
             <div><dt>PRODUCT</dt><dd>Entropy Compatible Hiring</dd></div>
-            <div><dt>VERSION</dt><dd>0.1.0 BETA</dd></div>
+            <div><dt>VERSION</dt><dd>0.1.2 BETA</dd></div>
             <div><dt>FORMAT</dt><dd>Windows desktop application</dd></div>
             <div><dt>INSTRUMENTS</dt><dd>10 OEI-derived archetypes</dd></div>
             <div><dt>METHODOLOGY</dt><dd>Role-agnostic behavioral observation</dd></div>
@@ -139,7 +139,7 @@
         <div>
           <div class="ech-section-number">03</div>
           <h2>Purchase Entropy Compatible Hiring</h2>
-          <p>Purchase Version 0.1.0 BETA as a one-time license.</p>
+          <p>Purchase Version 0.1.2 BETA as a one-time license.</p>
           <ul class="ech-checklist">
             <li>Role-agnostic behavioral framework</li>
             <li>Ten OEI-derived archetypes</li>
@@ -150,7 +150,7 @@
         <div class="ech-checkout">
           <div class="ech-card-label">Secure checkout</div>
           <h3>Entropy Compatible Hiring Software</h3>
-          <p class="ech-version">Version 0.1.0 BETA</p>
+          <p class="ech-version">Version 0.1.2 BETA</p>
           <div class="ech-license-notice">
             <strong>License terms</strong>
             <p>Purchase grants use of Entropy Compatible Hiring to the purchasing company or individual. Redistribution, resale, or sharing the software with others is not permitted.</p>
@@ -203,9 +203,90 @@
 
     <section class="ech-release-notes" aria-labelledby="release-notes-heading">
       <div class="container ech-release-notes-wrap">
+        <h2 id="release-notes-heading">Release notes</h2>
+
+        <details open>
+          <summary>
+            <span>Latest release</span>
+            <strong>Version 0.1.2 BETA</strong>
+          </summary>
+          <div class="ech-release-notes-content">
+            <p>This release improves packet configuration, strengthens the OpenAI integration, and updates the desktop loading experience.</p>
+
+            <h3>What’s new</h3>
+
+            <h4>Packet-specific context guidance</h4>
+            <ul>
+              <li>Added a <strong>“Don’t know where to start?”</strong> guide to every interview instrument.</li>
+              <li>Each of the ten packets now explains:
+                <ul>
+                  <li>What the completed candidate exercise will look like.</li>
+                  <li>What information should be entered in each context field.</li>
+                  <li>Which details are required for a credible, packet-compatible exercise.</li>
+                </ul>
+              </li>
+              <li>Guidance is unique to each OEI archetype and aligned with its generation rules.</li>
+              <li>Guidance dialogs support keyboard navigation and can be closed with the Close button, the background, or Escape.</li>
+            </ul>
+
+            <h4>AI generation reliability and safety</h4>
+            <ul>
+              <li>Strengthened the separation between OEI packet instructions and user-provided company context.</li>
+              <li>Company context is explicitly treated as input data, not as instructions to the model.</li>
+              <li>Only the packet’s declared context fields are sent to OpenAI.</li>
+              <li>AI responses now use a strict structured-output schema.</li>
+              <li>Returned exercises receive stronger validation before being accepted.</li>
+              <li>Invalid, incomplete, malformed, or failed OpenAI responses safely use the clearly labeled deterministic fallback.</li>
+              <li>OpenAI response storage is disabled for generation requests.</li>
+              <li>Added clearer interface text explaining how to connect an OpenAI API key.</li>
+              <li>Expanded automated coverage for successful AI responses, upstream failures, malformed output, and deterministic fallback behavior.</li>
+            </ul>
+
+            <h4>Desktop experience</h4>
+            <ul>
+              <li>Replaced the loading-screen image with the corrected OEI short logo.</li>
+              <li>Updated visible application and installer version information to v0.1.2.</li>
+              <li>Refined the context-guidance interface for desktop and smaller windows.</li>
+            </ul>
+
+            <h3>Desktop delivery</h3>
+            <ul>
+              <li>Distributed as a single Windows installer EXE.</li>
+              <li>Runs a private, loopback-only application service.</li>
+              <li>Customers don’t need Node.js, repository files, or supporting folders.</li>
+              <li>Candidate material opens in a separate candidate-safe window.</li>
+              <li>The recommended Beta workflow remains to screen-share only the candidate-safe window during a video call.</li>
+            </ul>
+
+            <h3>AI and API keys</h3>
+            <ul>
+              <li>No shared API key is embedded in the application.</li>
+              <li>Customers can provide their own OpenAI API key.</li>
+              <li>Keys remain session-only and aren’t intentionally written to disk.</li>
+              <li>Company context is sent to OpenAI only when AI-assisted generation is used.</li>
+              <li>The methodology, required exercise conditions, evidence categories, and interpretation rules remain deterministic and packet-defined.</li>
+              <li>AI may customize realistic scenario details but cannot redefine the assessment methodology or make hiring decisions.</li>
+            </ul>
+
+            <h3>Beta limitations</h3>
+            <ul>
+              <li>Candidate links aren’t remotely hosted or independently shareable.</li>
+              <li>Candidate delivery currently relies on screen-sharing the candidate-safe window.</li>
+              <li>Interview cases and candidate sessions aren’t persistently stored after the application closes.</li>
+              <li>Updates aren’t automatic; a new installer is required for each release.</li>
+              <li>The installer isn’t commercially code-signed, so Windows may display a SmartScreen or unknown-publisher warning.</li>
+              <li>Deterministic fallback exercises remain below the intended AI-assisted quality and are clearly labeled.</li>
+              <li>Windows is the only packaged platform in this release.</li>
+            </ul>
+
+            <h3>Assessment boundary</h3>
+            <p>This software records operational-behavior evidence relevant to specific OEI archetypes and pillars. It doesn’t determine overall employee quality or replace evaluation of skills, experience, technical competence, references, or broader hiring fit.</p>
+          </div>
+        </details>
+
         <details>
-          <summary id="release-notes-heading">
-            <span>Release notes</span>
+          <summary>
+            <span>Release history</span>
             <strong>Version 0.1.0 BETA</strong>
           </summary>
           <div class="ech-release-notes-content">
@@ -273,7 +354,7 @@
 
     <section id="known-limitations" class="ech-limitations" aria-labelledby="known-limitations-heading">
       <div class="container ech-limitations-wrap">
-        <div class="ech-section-number">BETA SOFTWARE · ECH BETA V0.1.1</div>
+        <div class="ech-section-number">BETA SOFTWARE · ECH BETA V0.1.2</div>
         <h2 id="known-limitations-heading">Known limitations</h2>
         <p>Entropy-Compatible Hiring is ready for controlled beta use, with the following current limitations:</p>
         <dl class="ech-limitations-list">

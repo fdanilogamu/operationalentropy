@@ -1350,7 +1350,9 @@ footer {
 .ech-faq article li { color: var(--text-secondary); margin-bottom: 1rem; padding-left: .4rem; }
 .ech-release-notes { max-width: none; background: white; }
 .ech-release-notes-wrap { max-width: 950px; }
+.ech-release-notes-wrap > h2 { margin: 0 0 2rem; font-size: clamp(2.5rem, 5vw, 4.5rem); }
 .ech-release-notes details { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.ech-release-notes details + details { border-top: 0; }
 .ech-release-notes summary { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 2rem 0; color: var(--text-primary); cursor: pointer; list-style: none; }
 .ech-release-notes summary::-webkit-details-marker { display: none; }
 .ech-release-notes summary span { font-size: clamp(1.4rem, 3vw, 2rem); }
@@ -1359,6 +1361,7 @@ footer {
 .ech-release-notes details[open] summary::after { content: "−"; }
 .ech-release-notes-content { padding: 1rem 0 3rem; }
 .ech-release-notes-content h3 { margin-top: 2.5rem; }
+.ech-release-notes-content h4 { margin: 2rem 0 .75rem; color: var(--text-primary); font-size: 1rem; }
 .ech-release-notes-content li { color: var(--text-secondary); margin-bottom: .6rem; }
 .ech-limitations { max-width: none; background: var(--secondary); color: white; scroll-margin-top: 190px; }
 .ech-limitations-wrap { max-width: 1100px; }
