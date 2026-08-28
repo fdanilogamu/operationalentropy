@@ -1057,6 +1057,12 @@ footer {
 .ech-intro { background: white; }
 .ech-intro-grid { align-items: start; }
 .ech-page .ech-intro h2, .ech-page .ech-purchase h2, .ech-page .ech-faq h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); letter-spacing: -.04em; margin-top: 1rem; }
+.ech-contribution { max-width: none; background: #e8edf0; }
+.ech-contribution-grid { display: grid; grid-template-columns: minmax(0,.9fr) minmax(320px,1.1fr); gap: clamp(3rem,7vw,7rem); align-items: start; }
+.ech-contribution h2 { margin-top: 1rem; font-size: clamp(2.4rem,5vw,4.4rem); letter-spacing: -.04em; }
+.ech-contribution-boundary { margin-top: 2rem; padding: 1.15rem 1.25rem; border: 1px solid var(--border); border-left: 3px solid var(--primary); background: rgba(255,255,255,.6); }
+.ech-contribution-boundary strong { color: var(--text-primary); font-size: .8rem; letter-spacing: .07em; text-transform: uppercase; }
+.ech-contribution-boundary p { margin: .45rem 0 0; font-size: .92rem; }
 .ech-workflow { max-width: none; background: #eef1f2; overflow: hidden; }
 .ech-workflow .container { max-width: 1400px; }
 .ech-workflow-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; }
@@ -1374,7 +1380,7 @@ footer {
 .ech-limitations-list dt { color: #ffd27a; font-weight: 650; line-height: 1.5; }
 .ech-limitations-list dd { margin: 0; color: rgba(255,255,255,.76); line-height: 1.65; }
 @media (max-width: 900px) {
-  .ech-hero-grid, .ech-purchase-grid, .ech-intro-grid { grid-template-columns: 1fr; }
+  .ech-hero-grid, .ech-purchase-grid, .ech-intro-grid, .ech-contribution-grid { grid-template-columns: 1fr; }
   .ech-slide { grid-template-columns: 1fr; align-items: start; }
   .ech-slide-copy h3 { max-width: none; }
   .ech-app-frame { margin: 0; max-width: none; }
