@@ -43,6 +43,7 @@
         <button data-view="timeline">Evolution Timeline</button>
         <button data-view="outstanding">Outstanding <span id="debt-tab-count">0</span></button>
         <button data-view="matrix">Propagation matrix</button>
+        <button data-view="reconciliation">Reconciliation <span id="reconciliation-tab-count">0</span></button>
       </nav>
 
       <div id="loading" class="prop-loading">Reading identity-change records…</div>
@@ -73,6 +74,13 @@
         <div class="prop-matrix-tools"><label>Project <select id="matrix-project"></select></label><span id="matrix-count"></span></div>
         <div class="prop-table-wrap"><table id="matrix-table"><thead></thead><tbody></tbody></table></div>
       </section>
+
+      <section id="reconciliation" class="prop-view" aria-labelledby="reconciliation-title">
+        <div class="prop-section-heading prop-reconciliation-heading"><div><span>05 · SEMANTIC CONSISTENCY</span><h2 id="reconciliation-title">Reconciliation</h2></div><div><p>Audit-derived semantic corrections with an established canonical truth. These records are independent of identity-change propagation.</p><button type="button" class="prop-builder-trigger" id="open-reconciliation-builder">Build reconciliation item</button></div></div>
+        <div id="reconciliation-metrics" class="prop-reconciliation-metrics"></div>
+        <div id="reconciliation-filters" class="prop-filters" aria-label="Filter reconciliation items"></div>
+        <div id="reconciliation-list"></div>
+      </section>
     </div>
   </main>
 
@@ -100,6 +108,30 @@
       <footer class="prop-builder-footer">
         <p>The downloaded file remains a draft until you complete its title and change description.</p>
         <button type="button" id="download-log-entry" disabled>Download Markdown</button>
+      </footer>
+    </form>
+  </dialog>
+  <dialog class="prop-builder" id="reconciliation-builder" aria-labelledby="reconciliation-builder-title">
+    <form method="dialog" class="prop-builder-card">
+      <header class="prop-builder-header">
+        <div><span>NEW RECONCILIATION ITEM</span><h2 id="reconciliation-builder-title">Build a consistency record</h2><p>Capture a repository mismatch only when the canonical truth is already supported by evidence. Governance and product-design questions belong elsewhere.</p></div>
+        <button type="submit" class="prop-builder-close" aria-label="Close reconciliation builder">×</button>
+      </header>
+      <div class="prop-reconciliation-form">
+        <label>Issue<input id="reconciliation-issue" type="text" placeholder="Concise description of the inconsistency"></label>
+        <div class="prop-form-grid">
+          <label>Change type<select id="reconciliation-change-type"><option>terminology</option><option>naming</option><option>service description</option><option>methodological wording</option><option>client-facing representation</option><option>legacy copy</option><option>other</option></select></label>
+          <label>Risk<select id="reconciliation-risk"><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></label>
+        </div>
+        <label>Canonical truth<textarea id="reconciliation-truth" placeholder="State the established OEI truth that should propagate"></textarea></label>
+        <label>Affected surfaces<textarea id="reconciliation-surfaces" placeholder="One file, page, report, or component per line"></textarea></label>
+        <label>Current representation<textarea id="reconciliation-current" placeholder="What the affected surface currently says or does"></textarea></label>
+        <label>Expected representation<textarea id="reconciliation-expected" placeholder="The semantic correction required; do not author unrelated changes"></textarea></label>
+        <label>Source / provenance<textarea id="reconciliation-source" placeholder="Audit and repository evidence supporting the canonical truth"></textarea></label>
+      </div>
+      <footer class="prop-builder-footer">
+        <p>Place the downloaded Markdown in <code>data/reconciliation/</code>, update its manifest, and change <code>status</code> to <code>resolved</code> after verification.</p>
+        <button type="button" id="download-reconciliation" disabled>Download Markdown</button>
       </footer>
     </form>
   </dialog>

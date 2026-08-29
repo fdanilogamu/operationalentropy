@@ -5,7 +5,7 @@
   const niceDate = value => new Intl.DateTimeFormat('en', { year:'numeric', month:'short', day:'2-digit', timeZone:'UTC' }).format(new Date(`${value}T00:00:00Z`));
   const slug = value => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const fetchCurrent = url => fetch(url, { cache: 'no-store' });
-  let records = [], map = null, activeProject = 'All projects';
+  let records = [], reconciliationRecords = [], map = null, activeProject = 'All projects', activeReconciliationStatus = 'open';
 
   function parseRecord(markdown, file) {
     const front = markdown.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n/);
@@ -23,6 +23,20 @@
     const section = name => (body.match(new RegExp(`## ${name}\\s*\\r?\\n([\\s\\S]*?)(?=\\r?\\n## |$)`, 'i')) || [,''])[1].trim();
     const propagation = section('Propagation').split(/\r?\n/).map(line => line.match(/^\s*-\s*\[([ xX])\]\s*(.+)$/)).filter(Boolean).map(match => ({ complete: match[1].toLowerCase() === 'x', target: match[2].trim() }));
     return {...meta, file, change:section('Change'), notes:section('Notes'), propagation};
+  }
+
+  function parseReconciliationRecord(markdown, file) {
+    const front = markdown.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n/);
+    if (!front) throw new Error(`Missing front matter in ${file}`);
+    const meta = {};
+    front[1].split(/\r?\n/).forEach(line => {
+      const field = line.match(/^([\w/ -]+):\s*(.*)$/);
+      if (field) meta[field[1].trim()] = field[2].trim();
+    });
+    const body = markdown.slice(front[0].length);
+    const section = name => (body.match(new RegExp(`## ${name}\\s*\\r?\\n([\\s\\S]*?)(?=\\r?\\n## |$)`, 'i')) || [,''])[1].trim();
+    const surfaces = section('Affected surfaces').split(/\r?\n/).map(line => line.match(/^\s*-\s+(.+)$/)).filter(Boolean).map(match => match[1].trim());
+    return {...meta, file, issue:section('Issue'), canonicalTruth:section('Canonical truth'), surfaces, currentRepresentation:section('Current representation'), expectedRepresentation:section('Expected representation'), evidence:section('Evidence'), resolutionNotes:section('Resolution notes')};
   }
 
   const debtFor = record => record.propagation.filter(item => !item.complete);
@@ -82,6 +96,23 @@
       $('#matrix-table tbody').innerHTML = surfaces.map(surface => `<tr><th>${escapeHtml(surface.name)}<small>${escapeHtml(surface.path)}</small></th>${map.categories.map(category => `<td>${surface.categories.includes(category) ? `<span class="prop-matrix-hit" aria-label="Depends on ${escapeHtml(category)}">✓</span>`:''}</td>`).join('')}</tr>`).join('');
     };
     select.addEventListener('change', draw); draw();
+  }
+
+  function renderReconciliation() {
+    const statuses = ['open','in_review','resolved'];
+    const open = reconciliationRecords.filter(record => record.status !== 'resolved').length;
+    const highRisk = reconciliationRecords.filter(record => record.status !== 'resolved' && record.risk === 'high').length;
+    $('#reconciliation-tab-count').textContent = open;
+    $('#reconciliation-metrics').innerHTML = [
+      [open,'Open checklist items'],
+      [reconciliationRecords.filter(record => record.status === 'in_review').length,'In review'],
+      [reconciliationRecords.filter(record => record.status === 'resolved').length,'Resolved'],
+      [highRisk,'Open high-risk items']
+    ].map(([value,label]) => `<article class="prop-metric"><strong>${value}</strong><span>${label}</span></article>`).join('');
+    $('#reconciliation-filters').innerHTML = statuses.map(status => `<button class="${status === activeReconciliationStatus ? 'is-active':''}" data-reconciliation-status="${status}">${escapeHtml(status.replace('_',' '))}</button>`).join('') + `<button class="${activeReconciliationStatus === 'all' ? 'is-active':''}" data-reconciliation-status="all">all</button>`;
+    const visible = reconciliationRecords.filter(record => activeReconciliationStatus === 'all' || record.status === activeReconciliationStatus);
+    $('#reconciliation-list').innerHTML = visible.length ? visible.map(record => `<article class="prop-reconciliation-item"><header><div><span class="prop-status reconciliation-${escapeHtml(record.status)}">${escapeHtml(record.status.replace('_',' '))}</span><span class="prop-risk risk-${escapeHtml(record.risk)}">${escapeHtml(record.risk)} risk</span></div><time>${escapeHtml(niceDate(record.date))}</time></header><h3>${escapeHtml(record.title)}</h3><div class="prop-tags"><span class="prop-tag">${escapeHtml(record.project)}</span><span class="prop-tag">${escapeHtml(record.change_type)}</span></div><details><summary>Review reconciliation record</summary><div class="prop-reconciliation-body"><section><h4>ISSUE</h4><p>${escapeHtml(record.issue)}</p><h4>CANONICAL TRUTH</h4><p>${escapeHtml(record.canonicalTruth)}</p><h4>EVIDENCE</h4><p>${escapeHtml(record.evidence)}</p></section><section><h4>AFFECTED SURFACES</h4><ul>${record.surfaces.map(surface => `<li>${escapeHtml(surface)}</li>`).join('')}</ul><h4>CURRENT REPRESENTATION</h4><p>${escapeHtml(record.currentRepresentation)}</p><h4>EXPECTED REPRESENTATION</h4><p>${escapeHtml(record.expectedRepresentation)}</p></section>${record.resolutionNotes ? `<section class="prop-resolution-notes"><h4>RESOLUTION NOTES</h4><p>${escapeHtml(record.resolutionNotes)}</p></section>`:''}<div class="prop-provenance">SOURCE AUDIT · ${escapeHtml(record.source_audit)} · <a href="/data/reconciliation/${encodeURIComponent(record.file)}">Open Markdown ↗</a><br>Resolve independently by changing <code>status</code> to <code>resolved</code> and recording verification in Resolution notes.</div></div></details></article>`).join('') : '<div class="prop-panel"><p>No reconciliation items match this status.</p></div>';
+    $$('[data-reconciliation-status]').forEach(button => button.addEventListener('click', () => { activeReconciliationStatus = button.dataset.reconciliationStatus; renderReconciliation(); }));
   }
 
   function selectedBuilderCategories() {
@@ -165,6 +196,66 @@ ${surfaces.map(surface => `- [ ] ${surface.name}`).join('\n')}
     dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
   }
 
+  function reconciliationMarkdown() {
+    const date = new Date().toISOString().slice(0,10);
+    const issue = $('#reconciliation-issue').value.trim();
+    const surfaces = $('#reconciliation-surfaces').value.split(/\r?\n/).map(value => value.trim()).filter(Boolean);
+    return `---
+project: Operational Entropy Index
+date: ${date}
+title: ${issue}
+change_type: ${$('#reconciliation-change-type').value}
+risk: ${$('#reconciliation-risk').value}
+status: open
+source_audit: ${$('#reconciliation-source').value.split(/\r?\n/)[0].trim() || 'repository audit'}
+---
+
+## Issue
+
+${issue}
+
+## Canonical truth
+
+${$('#reconciliation-truth').value.trim()}
+
+## Affected surfaces
+
+${surfaces.map(surface => `- ${surface}`).join('\n')}
+
+## Current representation
+
+${$('#reconciliation-current').value.trim()}
+
+## Expected representation
+
+${$('#reconciliation-expected').value.trim()}
+
+## Evidence
+
+${$('#reconciliation-source').value.trim()}
+
+## Resolution notes
+
+`;
+  }
+
+  function initializeReconciliationBuilder() {
+    const dialog = $('#reconciliation-builder');
+    const required = ['#reconciliation-issue','#reconciliation-truth','#reconciliation-surfaces','#reconciliation-current','#reconciliation-expected','#reconciliation-source'];
+    const validate = () => { $('#download-reconciliation').disabled = required.some(selector => !$(selector).value.trim()); };
+    $('#open-reconciliation-builder').addEventListener('click', () => { validate(); dialog.showModal(); });
+    required.forEach(selector => $(selector).addEventListener('input', validate));
+    $('#download-reconciliation').addEventListener('click', () => {
+      const blob = new Blob([reconciliationMarkdown()], { type:'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${new Date().toISOString().slice(0,10)}-${slug($('#reconciliation-issue').value).slice(0,70)}.md`;
+      document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+    });
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  }
+
   function initializeManifestUpdater() {
     const button = $('#update-manifest');
     const status = $('#manifest-status');
@@ -215,11 +306,19 @@ ${surfaces.map(surface => `- [ ] ${surface.name}`).join('\n')}
     return (await response.json()).filter(file => !file.startsWith('_'));
   }
 
-  Promise.all([discoverRecordFiles(), fetchCurrent('data/propagation-map.json').then(r => { if(!r.ok) throw new Error('Could not read the propagation map.'); return r.json(); })])
-    .then(async ([files, propagationMap]) => {
+  async function discoverReconciliationFiles() {
+    const response = await fetchCurrent('data/reconciliation/manifest.json');
+    if (!response.ok) throw new Error('Could not read the reconciliation manifest.');
+    return (await response.json()).filter(file => file.endsWith('.md') && !file.startsWith('_'));
+  }
+
+  Promise.all([discoverRecordFiles(), discoverReconciliationFiles(), fetchCurrent('data/propagation-map.json').then(r => { if(!r.ok) throw new Error('Could not read the propagation map.'); return r.json(); })])
+    .then(async ([files, reconciliationFiles, propagationMap]) => {
       map = propagationMap;
       records = await Promise.all(files.map(file => fetchCurrent(`data/identity-changes/${file}`).then(r => { if(!r.ok) throw new Error(`Could not read ${file}.`); return r.text(); }).then(text => parseRecord(text,file))));
+      reconciliationRecords = await Promise.all(reconciliationFiles.map(file => fetchCurrent(`data/reconciliation/${file}`).then(r => { if(!r.ok) throw new Error(`Could not read ${file}.`); return r.text(); }).then(text => parseReconciliationRecord(text,file))));
       records.sort((a,b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
-      renderOverview(); renderTimeline(); renderOutstanding(); renderMatrix(); initializeLogBuilder(); initializeManifestUpdater(); $('#loading').hidden = true;
+      reconciliationRecords.sort((a,b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
+      renderOverview(); renderTimeline(); renderOutstanding(); renderMatrix(); renderReconciliation(); initializeLogBuilder(); initializeReconciliationBuilder(); initializeManifestUpdater(); $('#loading').hidden = true;
     }).catch(error => { $('#loading').hidden = true; $('#error').hidden = false; $('#error').textContent = `${error.message} Serve the repository through a local web server rather than opening this file directly.`; });
 })();

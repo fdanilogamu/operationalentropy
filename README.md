@@ -68,6 +68,25 @@ Both methods include `.md` files, ignore files beginning with `_`, sort records
 predictably, and replace `data/identity-changes/manifest.json`. Commit the
 updated manifest together with the new identity-change record.
 
+## Recording a semantic reconciliation item
+
+The **Reconciliation** tab on `/ops/propagation/` is an adjacent audit queue,
+not an identity-change record. Use it only when repository evidence establishes
+the canonical truth and an existing surface can be corrected without changing
+methodology, product behavior, or business policy.
+
+1. Use **Build reconciliation item** or duplicate
+   `data/reconciliation/_TEMPLATE.md`.
+2. Record the issue, canonical truth, affected surfaces, current and expected
+   representations, provenance, risk, and status.
+3. Save the Markdown in `data/reconciliation/`.
+4. Run `node scripts/update_reconciliation_manifest.mjs`.
+5. Change `status` from `open` to `in_review` or `resolved` as work progresses;
+   resolved records should include verification in **Resolution notes**.
+
+Reconciliation records never contribute to propagation debt, never appear in
+the identity timeline, and never trigger the propagation matrix.
+
 ## Publishing
 
 GitHub Pages publishes this repository as a static site. The `.nojekyll` file
