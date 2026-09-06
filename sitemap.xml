@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://operationalentropy.com/</loc></url>
   <url><loc>https://operationalentropy.com/about/</loc></url>
+<<<<<<< Updated upstream
   <url><loc>https://operationalentropy.com/services/</loc></url>
+=======
+  <url><loc>https://operationalentropy.com/about/operational-entropy-index/</loc></url>
+  <url><loc>https://operationalentropy.com/temp-services/</loc></url>
+>>>>>>> Stashed changes
   <url><loc>https://operationalentropy.com/temp-pricing/</loc></url>
   <url><loc>https://operationalentropy.com/entropy-compatible-hiring/</loc></url>
   <url><loc>https://operationalentropy.com/contact/</loc></url>
