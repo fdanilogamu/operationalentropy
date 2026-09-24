@@ -58,7 +58,26 @@ def header_footer(canvas, doc):
     canvas.restoreState()
 
 
-def doc_for(path):
+def institute_header_footer(canvas, doc):
+    canvas.saveState()
+    width, height = LETTER
+    canvas.setStrokeColor(LINE)
+    canvas.setLineWidth(0.5)
+    canvas.line(doc.leftMargin, height - 0.48 * inch, width - doc.rightMargin, height - 0.48 * inch)
+    canvas.setFont("Helvetica-Bold", 7.5)
+    canvas.setFillColor(PRIMARY)
+    canvas.drawString(doc.leftMargin, height - 0.38 * inch, "OEI INSTITUTE")
+    canvas.setFont("Helvetica", 7.5)
+    canvas.setFillColor(MUTED)
+    canvas.drawRightString(width - doc.rightMargin, height - 0.38 * inch, "Operational Forensics for Growing Teams")
+    canvas.line(doc.leftMargin, 0.48 * inch, width - doc.rightMargin, 0.48 * inch)
+    canvas.setFont("Helvetica", 7.5)
+    canvas.drawString(doc.leftMargin, 0.33 * inch, "The Institute governs the Operational Entropy Index methodology")
+    canvas.drawRightString(width - doc.rightMargin, 0.33 * inch, f"Page {doc.page}")
+    canvas.restoreState()
+
+
+def doc_for(path, on_page=header_footer, author="Fletcher GH Consulting"):
     doc = BaseDocTemplate(
         str(path),
         pagesize=LETTER,
@@ -67,10 +86,10 @@ def doc_for(path):
         topMargin=0.66 * inch,
         bottomMargin=0.62 * inch,
         title=path.stem,
-        author="Fletcher GH Consulting",
+        author=author,
     )
     frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="body")
-    doc.addPageTemplates(PageTemplate(id="main", frames=[frame], onPage=header_footer))
+    doc.addPageTemplates(PageTemplate(id="main", frames=[frame], onPage=on_page))
     return doc
 
 
@@ -212,40 +231,28 @@ def build_services():
 
 def build_tldr():
     path = OUT / "OEI TLDR.pdf"
-    story = [Spacer(1, 0.08 * inch), Paragraph("Operational Entropy Index (OEI)", styles["TLDRTitle"]), Paragraph("One-page overview", styles["Subtitle"])]
+    story = [
+        Spacer(1, 0.08 * inch),
+        Paragraph("OEI Institute", styles["TLDRTitle"]),
+        Paragraph("Operational Forensics for Growing Teams", styles["Subtitle"]),
+        Paragraph("INTERIM ONE-PAGER | SEPTEMBER 2026", styles["Kicker"]),
+    ]
     story += [
-        Paragraph("OEI identifies, measures, and reduces the friction, dependency, and unnecessary complexity that accumulate as organizations scale. Entropy cannot be permanently eliminated; OEI helps organizations mitigate it and build mechanisms that keep it from rapidly returning.", styles["TLDRBody"]),
-        Paragraph("WHAT OEI EXAMINES", styles["TLDRH"]),
+        Paragraph("The OEI Institute is the governing institution for the Operational Entropy Index methodology. It exists to help growing organizations understand and address the operational strain that emerges through growth.", styles["TLDRBody"]),
+        Paragraph("THE OPERATIONAL ENTROPY INDEX", styles["TLDRH"]),
+        Paragraph("The Operational Entropy Index is a structured methodology for examining how operational strain develops across growing teams. It provides a shared framework for investigation, analysis, and responsible application.", styles["TLDRBody"]),
+        Paragraph("THE FIVE PILLARS", styles["TLDRH"]),
         Paragraph("<b>Founder Dependency</b> - reliance on key people for decisions and continuity. &nbsp;&nbsp; <b>Knowledge Logistics</b> - whether critical information reaches the people who need it. &nbsp;&nbsp; <b>Workflow Velocity</b> - where execution loses momentum. &nbsp;&nbsp; <b>Tool Discipline</b> - whether systems are fit and consistently used. &nbsp;&nbsp; <b>Handoff Integrity</b> - whether ownership and context transfer cleanly.", styles["TLDRBody"]),
-        Paragraph("HOW IT WORKS", styles["TLDRH"]),
-        Paragraph("Structured interviews, workflow mapping, operational testing, and root-cause mapping produce a baseline OEI score, a map of operating leaks, and prioritized next steps.", styles["TLDRBody"]),
-        Paragraph("CORE ENGAGEMENTS - BASELINE PRICING", styles["TLDRH"]),
+        Paragraph("OPERATIONAL FORENSICS", styles["TLDRH"]),
+        Paragraph("Operational forensics examines how work actually functions through evidence. It reconstructs movement across people, systems, records, and workflows, separates observation from interpretation, tests explanations, and reaches findings that can support action.", styles["TLDRBody"]),
+        Paragraph("THE INSTITUTE'S ROLE", styles["TLDRH"]),
+        Paragraph("The Institute maintains the established OEI canon, methodological definitions, evidence and practice standards, and the deliberate evolution of the methodology. It is developing practitioner training, competency assessment, and certification infrastructure. It also maintains documentation, structured workflows, diagnostic tools, and software that support repeatable application.", styles["TLDRBody"]),
+        Paragraph("HOW OEI REACHES ORGANIZATIONS", styles["TLDRH"]),
+        Paragraph("OEI may reach organizations through Institute-maintained tools, direct engagements, and structured use of the methodology. Services and Pricing are being restructured around the Institute framework as the delivery model develops.", styles["TLDRBody"]),
+        Paragraph("LEARN MORE", styles["TLDRH"]),
+        Paragraph("Explore the Operational Entropy Index at /about/operational-entropy-index/ or contact the Institute to discuss an operational problem.", styles["TLDRBody"]),
     ]
-    rows = [
-        ["Engagement", "Duration", "Prerequisite", "From"],
-        ["Initial OEI Diagnosis", "4 days", "None", "$2,000"],
-        ["15-Day OEI Audit", "15 days", "Diagnosis", "$8,000"],
-        ["30-Day OEI Audit", "30 days", "Diagnosis", "$15,000"],
-        ["Single Pain Point Sprint", "30 days", "Diagnosis + audit", "$25,000"],
-        ["Operational Entropy Reset", "90 days", "Diagnosis + audit", "$45,000"],
-        ["One-Year Trend Analysis", "4 quarterly sessions", "None; engagement recommended", "$5,000/year"],
-    ]
-    table = Table(rows, colWidths=[2.22 * inch, 1.35 * inch, 2.2 * inch, 0.98 * inch], repeatRows=1)
-    table.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, 0), INK), ("TEXTCOLOR", (0, 0), (-1, 0), WHITE),
-        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"), ("FONTNAME", (0, 1), (0, -1), "Helvetica-Bold"),
-        ("FONTSIZE", (0, 0), (-1, -1), 7.4), ("LEADING", (0, 0), (-1, -1), 9),
-        ("GRID", (0, 0), (-1, -1), 0.35, LINE), ("ROWBACKGROUNDS", (0, 1), (-1, -1), [WHITE, PALE]),
-        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 4.5), ("BOTTOMPADDING", (0, 0), (-1, -1), 4.5),
-    ]))
-    story += [table,
-        Paragraph("Pricing shown is baseline for companies under $5M in annual revenue and scales by revenue tier. $100M+ engagements are custom scoped.", styles["Small"]),
-        Paragraph("OTHER WAYS TO START", styles["TLDRH"]),
-        Paragraph("<b>Focused Operational Investigations:</b> Five bounded investigations for already-visible problems, typically $1,000-$4,000 USD. <b>Entropy Compatible Hiring:</b> Separate Windows desktop Beta software with ten role-agnostic interview instruments; $950-$1,450 USD as a one-time purchase. Neither requires a formal OEI engagement.", styles["TLDRBody"]),
-        Paragraph("PATHWAY RULE", styles["TLDRH"]),
-        Paragraph("Most comprehensive work starts with the Initial Diagnosis. Audits require diagnosis; sprints and resets require diagnosis plus audit. One-Year Trend Analysis is standalone but most useful with a completed or active engagement.", styles["TLDRBody"]),
-    ]
-    doc_for(path).build(story)
+    doc_for(path, on_page=institute_header_footer, author="OEI Institute").build(story)
     return path
 
 
