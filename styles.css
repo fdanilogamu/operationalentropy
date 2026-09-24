@@ -215,6 +215,21 @@ nav {
   border: none;
 }
 
+.nav-links a[href="/entropy-compatible-hiring/"]::before {
+  content: "PRODUCT";
+  display: block;
+  width: fit-content;
+  margin: 0 auto 0.2rem;
+  padding: 0.15rem 0.4rem;
+  color: white;
+  background: var(--accent);
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
 .nav-links a:hover {
   color: var(--primary);
   border: none;
