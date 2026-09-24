@@ -123,6 +123,7 @@ button {
 .btn-primary:hover {
   background: var(--primary-dark);
   border-color: var(--primary-dark);
+  color: white;
 }
 
 .btn-secondary {
@@ -319,6 +320,7 @@ section {
 
 .context-link {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1.25rem;
   flex-wrap: wrap;
