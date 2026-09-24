@@ -182,8 +182,15 @@ nav {
   overflow: hidden;
 }
 
+.logo a {
+  display: block;
+  width: 100%;
+}
+
 .logo img {
-  max-height: none;
+  display: block;
+  max-height: 100%;
+  height: auto;
   width: 100%;
   object-fit: contain;
   flex: 0 0 auto;
@@ -1529,7 +1536,8 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .logo {
+  .logo,
+  .client-journey-page .logo {
   height: 60px;
   width: 145px;
 }
