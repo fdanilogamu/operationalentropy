@@ -217,9 +217,12 @@ nav {
 
 .nav-links a[href="/entropy-compatible-hiring/"]::before {
   content: "PRODUCT";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.35rem);
+  transform: translateX(-50%);
   display: block;
   width: fit-content;
-  margin: 0 auto 0.2rem;
   padding: 0.15rem 0.4rem;
   color: white;
   background: var(--accent);
@@ -228,6 +231,10 @@ nav {
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
+}
+
+.nav-links a[href="/entropy-compatible-hiring/"] {
+  position: relative;
 }
 
 .nav-links a:hover {
