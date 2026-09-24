@@ -313,6 +313,12 @@ section {
   user-select: none;
 }
 
+/* Homepage cutaway image: keep its full contrast and pull it toward the copy. */
+.homepage-hero-visual img {
+  opacity: 1;
+  transform: translateX(-5%);
+}
+
 .cta-group {
   display: flex;
   gap: 2rem;
