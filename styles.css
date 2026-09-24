@@ -315,8 +315,9 @@ section {
 
 /* Homepage cutaway image: keep its full contrast and pull it toward the copy. */
 .homepage-hero-visual img {
+  width: 110%;
   opacity: 1;
-  transform: translateX(-5%);
+  transform: none;
 }
 
 .cta-group {
