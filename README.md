@@ -1,7 +1,7 @@
-# Operational Entropy Index
+# OEI Institute website
 
-The public website for Operational Entropy Index (OEI), hosted with GitHub
-Pages.
+The public website for the OEI Institute, hosted with GitHub Pages. The
+Operational Entropy Index is the methodology governed by the Institute.
 
 ## Local preview
 
@@ -11,7 +11,8 @@ server.
 ## Site structure
 
 - `index.html`: homepage
-- `about/`, `contact/`, `pricing/`: primary pages
+- `about/`: Institute overview and Operational Entropy Index explanation
+- `contact/`, `pricing/`: contact and pending commercial pages
 - `services/`: service overview and focused-investigation offerings
 - `insights/`: OEI articles and pillar deep dives
 - `resources/`: information packet and downloadable material
