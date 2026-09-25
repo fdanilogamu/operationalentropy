@@ -167,6 +167,10 @@ button {
   width: auto;
 }
 
+.ai-flow-map {
+  margin-top: 0.9rem;
+}
+
 /* Navigation */
 header {
   background: var(--bg-primary);
