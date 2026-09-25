@@ -154,6 +154,19 @@ button {
   border-color: #6A9060;
 }
 
+/* Keep calls to action on the AI Enablement page grouped and evenly spaced. */
+.ai-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ai-cta-group .btn-primary {
+  display: inline-flex;
+  width: auto;
+}
+
 /* Navigation */
 header {
   background: var(--bg-primary);
