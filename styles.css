@@ -949,6 +949,238 @@ footer {
   box-shadow: 0 12px 32px rgba(91, 122, 146, 0.12);
 }
 
+/* OEI Institute pricing page */
+.pricing-page {
+  color: var(--text-primary, #17212b);
+}
+.pricing-wrap {
+  width: min(1120px, calc(100% - 3rem));
+  margin-inline: auto;
+}
+.pricing-hero {
+  padding: 5rem 0;
+  background: var(--background-alt, #f5f7f8);
+}
+.pricing-hero h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+.pricing-hero p {
+  max-width: 760px;
+}
+.pricing-hero .pricing-lead {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.5;
+}
+.pricing-section {
+  padding-block: 5rem;
+}
+.pricing-section-heading {
+  max-width: 760px;
+  margin-bottom: 3rem;
+}
+.pricing-section-heading h2,
+.focused-content h2,
+.ai-pricing-copy h2,
+.pricing-contact h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+.pricing-page .eyebrow {
+  margin: 0 0 .75rem;
+  color: var(--primary, #226b72);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.pricing-pathway-group {
+  padding-block: 2rem;
+  border-top: 1px solid var(--border-color, #dce2e5);
+}
+.pathway-intro {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+.pathway-number {
+  color: var(--primary, #226b72);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.pathway-intro h3 {
+  margin: 0 0 .4rem;
+  font-size: 1.4rem;
+}
+.pathway-intro p,
+.pricing-option p,
+.focused-price p,
+.ai-pricing-note p {
+  margin-top: 0;
+}
+.pricing-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-left: 4rem;
+}
+.pricing-option,
+.focused-price,
+.ai-pricing-note {
+  padding: 1.75rem;
+  border: 1px solid var(--border-color, #dce2e5);
+  border-radius: 12px;
+  background: #fff;
+}
+.optional-option {
+  background: var(--background-alt, #f5f7f8);
+}
+.option-label {
+  margin-bottom: .7rem;
+  color: var(--text-secondary, #56616b);
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.price-range {
+  margin-bottom: .9rem;
+  color: var(--primary, #226b72);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+.price-range span {
+  font-size: .85rem;
+  font-weight: 600;
+}
+.pricing-option .scope-note {
+  margin-bottom: 0;
+  color: var(--text-secondary, #56616b);
+  font-size: .92rem;
+}
+.pricing-option a {
+  font-weight: 600;
+}
+.focused-section {
+  padding-block: 4rem;
+  background: var(--background-alt, #f5f7f8);
+}
+.focused-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, .8fr);
+  gap: 3rem;
+  align-items: center;
+}
+.focused-content > div:first-child {
+  max-width: 680px;
+}
+.focused-price {
+  box-shadow: 0 8px 28px rgba(20, 40, 48, .06);
+}
+.focused-price .price-range {
+  white-space: nowrap;
+}
+.ai-pricing-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, .55fr);
+  gap: 3rem;
+  align-items: center;
+}
+.ai-pricing-copy {
+  max-width: 760px;
+}
+.ai-pricing-copy .btn-secondary {
+  display: inline-block;
+  margin-top: .5rem;
+}
+.ai-pricing-note {
+  border-left: 4px solid var(--primary, #226b72);
+  background: var(--background-alt, #f5f7f8);
+}
+.ai-pricing-note h3 {
+  margin-top: 0;
+}
+.ai-pricing-estimates {
+  grid-column: 1 / -1;
+  padding-top: 1rem;
+}
+.ai-estimate-heading {
+  max-width: 760px;
+  margin-bottom: 1.25rem;
+}
+.ai-estimate-heading h3 {
+  margin: 0 0 .5rem;
+  font-size: 1.35rem;
+}
+.ai-stage-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+}
+.ai-stage {
+  padding: 1.25rem;
+  border: 1px solid var(--border-color, #dce2e5);
+  border-radius: 10px;
+  background: #fff;
+}
+.ai-stage dt {
+  margin-bottom: .45rem;
+  font-weight: 700;
+}
+.ai-stage dd {
+  margin: 0;
+  color: var(--primary, #226b72);
+  font-weight: 650;
+}
+.ai-estimate-total {
+  margin-bottom: .5rem;
+}
+.ai-estimate-caveat {
+  color: var(--text-secondary, #56616b);
+  font-size: .92rem;
+}
+.pricing-contact {
+  padding-block: 4rem;
+  text-align: center;
+  background: var(--background-alt, #f5f7f8);
+}
+.pricing-contact .pricing-wrap {
+  max-width: 760px;
+}
+.pricing-contact p {
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 760px) {
+  .pricing-wrap {
+    width: min(100% - 2rem, 600px);
+  }
+  .pricing-hero,
+  .pricing-section {
+    padding-block: 3.25rem;
+  }
+  .pricing-options,
+  .focused-content,
+  .ai-pricing-section,
+  .ai-stage-grid {
+    grid-template-columns: 1fr;
+  }
+  .pricing-options {
+    margin-left: 0;
+  }
+  .focused-content,
+  .ai-pricing-section {
+    gap: 1.5rem;
+  }
+  .focused-price .price-range {
+    white-space: normal;
+  }
+}
+
 .price {
   font-size: 2.5rem;
   font-weight: 300;
