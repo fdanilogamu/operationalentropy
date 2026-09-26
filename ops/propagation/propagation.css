@@ -6,6 +6,7 @@
 .prop-wordmark strong { font-size: .94rem; font-weight: 500; margin-top: .25rem; }
 .prop-source-link { font-size: .82rem; }
 .prop-hero { padding: 5.25rem 0 4.5rem; background: #18232b; color: #fff; }
+.prop-hero > .container { box-sizing: border-box; padding-inline: clamp(1.25rem, 4vw, 3.5rem); }
 .prop-hero-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(260px, .75fr); gap: 5rem; align-items: end; }
 .prop-hero h1 { font-size: clamp(2.6rem, 5.5vw, 5rem); line-height: 1.03; letter-spacing: -.055em; margin: 1.3rem 0; max-width: 900px; }
 .prop-hero p { color: #b9c2c7; font-size: 1.08rem; max-width: 660px; margin: 0; }
