@@ -277,12 +277,12 @@ def engagement_block(number, title, meta, price, description, included):
 
 def build_services():
     path = OUT / "OEI Services and Pricing.pdf"
-    story = title_block("OEI Services and Pricing", "Current capability pathways, public pricing ranges, and optional interventions")
+    story = title_block("OEI Services and Pricing", "Current capability pathways, public pricing, and optional interventions")
     story += [
         p("OEI engagements are scoped according to the capability, organizational context, and level of intervention required. The Institute is developing the broader practitioner and commercial structure. Final scope and pricing are determined during engagement scoping."),
         h1("Two ways to work with OEI"),
         h2("Build capability internally"),
-        p("Train and certify members of your organization to apply the OEI methodology. Practitioner development and certification pathways are taking shape under Institute governance. Current public range: $8,000-$15,000+ USD. The number of practitioners, organizational context, and supporting requirements shape final scope and pricing."),
+        p("Train and certify members of your organization to apply the OEI methodology. Practitioner development and certification pathways are taking shape under Institute governance. Flat fee: $10,000 USD."),
         h2("Bring in OEI practitioners"),
         p("Have qualified practitioners perform the diagnosis and methodology application for your organization. Current public range for OEI engagements: $20,000-$45,000+ USD. Scope varies with organizational size, complexity, and the operational territory investigated and addressed."),
         h1("Focused Investigations"),
