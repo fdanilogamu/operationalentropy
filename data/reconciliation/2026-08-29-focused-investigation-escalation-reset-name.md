@@ -4,7 +4,7 @@ date: 2026-08-29
 title: Use the canonical 90-Day Reset name in focused-investigation escalation copy
 change_type: naming
 risk: medium
-status: open
+status: resolved
 source_audit: 2026-08-29 OEI Focused Investigations Repository Operating-Knowledge Audit
 ---
 
@@ -39,4 +39,4 @@ services/index.html defines the 90-Day Operational Entropy Reset as the fourth c
 
 ## Resolution notes
 
-
+Updated the Engagement Path Assessment result titles and all five focused-investigation escalation notes to use the canonical 90-Day Reset name. The separate 30-Day Sprint naming is unchanged.

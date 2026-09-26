@@ -51,9 +51,9 @@ def header_footer(canvas, doc):
     canvas.line(doc.leftMargin, height - 0.48 * inch, width - doc.rightMargin, height - 0.48 * inch)
     canvas.setFont("Helvetica", 7.5)
     canvas.setFillColor(MUTED)
-    canvas.drawString(doc.leftMargin, height - 0.38 * inch, "Fletcher GH Consulting | Operational Entropy Index (OEI)")
+    canvas.drawString(doc.leftMargin, height - 0.38 * inch, "OEI Institute | Operational Entropy Index")
     canvas.line(doc.leftMargin, 0.48 * inch, width - doc.rightMargin, 0.48 * inch)
-    canvas.drawString(doc.leftMargin, 0.33 * inch, "CONFIDENTIAL & PROPRIETARY")
+    canvas.drawString(doc.leftMargin, 0.33 * inch, "Operational Forensics for Growing Teams")
     canvas.drawRightString(width - doc.rightMargin, 0.33 * inch, f"Page {doc.page}")
     canvas.restoreState()
 
@@ -137,11 +137,11 @@ def build_about():
     story = title_block("About the Operational Entropy Index", "A current overview of the OEI framework, diagnostic method, and engagement ecosystem")
     story += [
         h1("What the OEI is"),
-        p("The Operational Entropy Index (OEI) is a proprietary diagnostic tool and structured intervention process built to identify, measure, and reduce the organizational drag that erodes execution speed as companies scale."),
+        p("The Operational Entropy Index (OEI) is a structured methodology for examining operational strain as organizations grow. The OEI Institute governs its canon, methodological definitions, evidence and practice standards, and deliberate evolution."),
         p("Operational entropy is the tendency for disorder, friction, and unnecessary complexity to accumulate over time. It appears when decisions require more coordination, knowledge becomes fragmented, workflows slow down, tools create workarounds, or responsibilities fail during handoffs."),
         p("Entropy cannot be permanently eliminated. The objective is to identify and mitigate it, measure whether interventions work, and establish mechanisms that help prevent it from rapidly returning."),
         Paragraph("OEI is a structured, repeatable diagnostic process. It combines evidence from people, workflows, systems, and operating outcomes rather than relying on a single opinion or generic consulting template.", styles["Callout"]),
-        h1("The five diagnostic categories"),
+        h1("The five OEI pillars"),
     ]
     categories = [
         ("1. Founder Dependency", "Is the company operationally hostage to one person's presence? Measures reliance on founders or other key individuals for approvals, decisions, context, and operational continuity."),
@@ -159,19 +159,19 @@ def build_about():
         bullet("<b>Operational testing:</b> Measure cycle time, consistency, rework, adoption, and other observable outcomes."),
         bullet("<b>Root-cause mapping:</b> Connect visible symptoms to the structural conditions producing them."),
         h1("What an engagement produces"),
-        bullet("A baseline OEI score across the five dimensions."),
+        bullet("A baseline OEI score across the five pillars."),
         bullet("A map of where execution is leaking and the root causes involved."),
         bullet("A prioritized roadmap of structural changes."),
         bullet("Proof-of-concept improvements appropriate to the engagement scope."),
         h1("Ways to work with OEI"),
-        p("The consulting pathway includes an Initial OEI Diagnosis, 15- or 30-Day Audits, a 30-Day Single Pain Point Sprint, a 90-Day Operational Entropy Reset, and One-Year OEI Trend Analysis. Most comprehensive work starts with the diagnosis, while focused investigations provide a faster route when the problem is already visible."),
+        p("Organizations can develop OEI capability internally through practitioner development, or have qualified OEI practitioners perform diagnosis and methodology application. A bounded Focused Investigation is also available for a specific operational condition. The broader practitioner and commercial structure continues to develop under Institute governance."),
         h2("Focused Operational Investigations"),
-        p("Founder Absence Simulation, Institutional Memory Recovery Sprint, Workflow Momentum Analysis, Operational Stack Review, and Handoff Failure Analysis are bounded investigations typically priced from $1,000 to $4,000 USD."),
+        p("Founder Absence Simulation, Institutional Memory Recovery Sprint, Workflow Momentum Analysis, Operational Stack Review, and Handoff Failure Analysis are bounded investigations with a current public range of $1,000 to $4,000 USD. Each includes a 4-Day OEI Diagnosis."),
         h2("Entropy Compatible Hiring"),
-        p("Entropy Compatible Hiring (ECH) is separate Windows desktop software. It provides ten role-agnostic, OEI-derived interview instruments that help organizations observe operational behavior through applied exercises, predefined signals, and evidence capture."),
-        p("ECH is not a personality test, does not score overall candidate quality, and does not replace evaluation of skills, experience, technical competence, references, or broader hiring fit. A formal OEI engagement is not required. Version 0.1.0 BETA is offered as a one-time purchase for $950-$1,450 USD."),
+        p("Entropy Compatible Hiring (ECH) Version 0.1.3 BETA is separate Windows desktop software. It provides ten role-agnostic interview instruments and an Existing Employee Contribution Mapping module."),
+        p("ECH is not a personality test, does not score overall candidate quality, and does not replace evaluation of skills, experience, technical competence, references, or broader hiring fit. A formal OEI engagement is not required. ECH is offered as a one-time purchase for $950-$1,450 USD."),
     ]
-    doc_for(path).build(story)
+    doc_for(path, on_page=header_footer, author="OEI Institute").build(story)
     return path
 
 
@@ -184,48 +184,36 @@ def engagement_block(number, title, meta, price, description, included):
 
 def build_services():
     path = OUT / "OEI Services and Pricing.pdf"
-    story = title_block("OEI Services and Pricing", "Current engagement paths, prerequisites, deliverables, and revenue-based pricing")
+    story = title_block("OEI Services and Pricing", "Current capability pathways, public pricing ranges, and optional interventions")
     story += [
-        p("Every engagement begins with a discovery call. Most comprehensive work starts with the Initial Diagnosis, which delivers standalone value and provides the baseline for deeper analysis. Prices below are baseline for companies under $5M in annual revenue unless otherwise noted."),
-        h1("Core engagement paths"),
-        engagement_block("01", "Initial OEI Diagnosis", "Standalone | 4 days", "$2,000", "Structured interviews, workflow mapping, operational testing, and measurement produce an initial view of where operating speed is leaking.", ["Baseline OEI score across five dimensions", "Executive summary and prioritized next steps"]),
-        engagement_block("02A", "15-Day OEI Audit", "Requires Initial Diagnosis | 15 days", "$8,000", "A shorter deep-dive for simpler analyses, fewer monitored areas, or a more focused depth of inquiry.", ["Focused root-cause findings", "Recommendations roadmap", "Quarterly check-in included"]),
-        engagement_block("02B", "30-Day OEI Audit", "Requires Initial Diagnosis | 30 days", "$15,000", "A comprehensive audit for broader monitoring, deeper analysis, and a fuller operational map.", ["Detailed root-cause mapping and documentation review", "Benchmarking context and prioritized roadmap", "Quarterly check-in included"]),
-        engagement_block("03", "30-Day Single Pain Point Sprint", "Requires Diagnosis + Audit | 30 days", "$25,000", "A focused structural intervention for one clearly defined, high-impact bottleneck.", ["Implementation support and change management", "Training where necessary", "30-day post-launch monitoring", "Quarterly check-ins for six months"]),
-        engagement_block("04", "90-Day Operational Entropy Reset", "Requires Diagnosis + Audit | 90 days", "$45,000", "Structural fixes for the top three interconnected bottlenecks identified through the audit.", ["Process redesign and full implementation", "Leadership and team coaching where necessary", "Systems and tool optimization", "90-day post-launch support and quarterly check-ins"]),
-        engagement_block("05", "One-Year OEI Trend Analysis", "Standalone; completed or active engagement recommended | 4 quarterly sessions", "$5,000 per year", "Quarterly measurement that tracks how entropy shifts, verifies whether fixes hold, and identifies new patterns early.", ["OEI score remeasurement", "Updated recommendations each quarter", "Year-round support"]),
-        PageBreak(),
-        h1("Revenue-based pricing"),
-        p("Core consulting fees scale with verified annual revenue. Companies at $100M+ receive custom pricing scoped to the organization."),
-        pricing_table([
-            ["Engagement", "Under $5M", "$5M-$25M", "$25M-$50M", "$50M-$100M", "$100M+"],
-            ["Diagnosis", "$2,000", "$2,500", "$3,000", "$3,500", "Custom"],
-            ["15-Day Audit", "$8,000", "$10,000", "$12,000", "$14,000", "Custom"],
-            ["30-Day Audit", "$15,000", "$18,750", "$22,500", "$26,250", "Custom"],
-            ["30-Day Sprint", "$25,000", "$31,250", "$37,500", "$43,750", "Custom"],
-            ["90-Day Reset", "$45,000", "$56,250", "$67,500", "$78,750", "Custom"],
-            ["One-Year Trend", "$5,000", "$6,250", "$7,500", "$8,750", "Custom"],
-        ]),
-        Spacer(1, 10),
-        h1("Focused Operational Investigations"),
-        p("When the operating problem is already visible, a focused investigation may be used without completing the comprehensive OEI pathway. Typical investment: $1,000-$4,000 USD."),
+        p("OEI engagements are scoped according to the capability, organizational context, and level of intervention required. The Institute is developing the broader practitioner and commercial structure. Final scope and pricing are determined during engagement scoping."),
+        h1("Two ways to work with OEI"),
+        h2("Build capability internally"),
+        p("Train and certify members of your organization to apply the OEI methodology. Practitioner development and certification pathways are taking shape under Institute governance. Current public range: $8,000-$15,000+ USD. The number of practitioners, organizational context, and supporting requirements shape final scope and pricing."),
+        h2("Bring in OEI practitioners"),
+        p("Have qualified practitioners perform the diagnosis and methodology application for your organization. Current public range for OEI engagements: $20,000-$45,000+ USD. Scope varies with organizational size, complexity, and the operational territory investigated and addressed."),
+        h1("Focused Investigations"),
+        p("A bounded entry point to investigate a specific operational domain through evidence-first OEI inquiry. Each investigation is scoped to the question and the work required; they are not identical, fixed-scope packages. Each includes a 4-Day OEI Diagnosis. Current public range: $1,000-$4,000 USD."),
         bullet("<b>Founder Absence Simulation:</b> Tests what fails, stalls, or escalates when the founder steps away."),
         bullet("<b>Institutional Memory Recovery Sprint:</b> Recovers essential knowledge trapped in people or history."),
         bullet("<b>Workflow Momentum Analysis:</b> Locates waiting, friction, and loss of execution momentum."),
         bullet("<b>Operational Stack Review:</b> Evaluates the fit and interaction of tools, systems, and workarounds."),
         bullet("<b>Handoff Failure Analysis:</b> Traces where ownership, readiness, or context breaks during transfer."),
-        h1("Entropy Compatible Hiring software"),
-        p("ECH Version 0.1.0 BETA is a separate Windows desktop product with ten role-agnostic interview instruments. It can be used with OEI findings or independently and does not replace role-specific hiring evaluation."),
-        Paragraph("One-time Beta pricing: $950-$1,450 USD. ECH pricing is not scaled by company revenue.", styles["Callout"]),
-        h1("Pathway and payment notes"),
-        bullet("The Initial Diagnosis is standalone; audits require the diagnosis."),
-        bullet("The 30-Day Sprint and 90-Day Reset require both diagnosis and audit."),
-        bullet("One-Year Trend Analysis is standalone, but is most useful with a completed or active engagement."),
-        bullet("Focused investigations and ECH may be accessed independently."),
-        bullet("Diagnosis and One-Year Trend Analysis are paid upfront. Longer consulting engagements are paid 50% upfront and 50% at the midpoint."),
-        bullet("Travel, custom tool development, permanent staff augmentation, and implementation beyond the engagement window are outside standard pricing."),
+        PageBreak(),
+        h1("Optional AI Enablement"),
+        p("AI Enablement may be added to either OEI pathway when findings identify a worthwhile opportunity. It is scoped from the evidence and is not an automatic part of every engagement. OEI may determine that AI is not the right response."),
+        pricing_table([
+            ["Indicative stage", "Planning estimate"],
+            ["Investigate", "Approximately $3,500"],
+            ["Design", "$2,000-$5,000"],
+            ["Build & Validate", "$3,000-$12,000"],
+            ["Enable & Handoff", "$1,500-$4,000"],
+        ]),
+        p("Illustrative overall estimates: a small intervention may be approximately $5,000-$14,000 USD; a more substantial intervention may reach $20,000-$35,000+ USD. Stages are not necessarily charged independently or delivered in sequence."),
+        h1("Entropy Compatible Hiring"),
+        p("ECH Version 0.1.3 BETA is separate Windows desktop software with ten role-agnostic interview instruments and an Existing Employee Contribution Mapping module. It can be used independently; a formal OEI engagement is not required. One-time purchase range: $950-$1,450 USD."),
     ]
-    doc_for(path).build(story)
+    doc_for(path, on_page=header_footer, author="OEI Institute").build(story)
     return path
 
 

@@ -4,7 +4,7 @@ date: 2026-08-29
 title: Use pillar for the five canonical OEI pillars in client-facing copy
 change_type: terminology
 risk: medium
-status: open
+status: resolved
 source_audit: 2026-08-28 OEI repository operating-knowledge audit
 ---
 
@@ -42,3 +42,4 @@ The five deep-dive pages identify themselves as OEI pillar deep dives; the Engag
 
 ## Resolution notes
 
+Updated the public OEI definition, the Operational Entropy Index explanation and insight pages, and focused-investigations overview. Report-facing headings and table labels now say “pillar,” and the PDF generator was revised before rebuilding the information PDFs. Internal scoring identifiers remain unchanged.

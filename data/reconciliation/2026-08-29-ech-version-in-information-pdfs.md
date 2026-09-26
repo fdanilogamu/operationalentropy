@@ -4,7 +4,7 @@ date: 2026-08-29
 title: Update stale ECH version references in OEI information PDFs
 change_type: legacy copy
 risk: low
-status: open
+status: resolved
 source_audit: 2026-08-28 OEI repository operating-knowledge audit
 ---
 
@@ -35,4 +35,4 @@ entropy-compatible-hiring/index.html identifies Version 0.1.3 BETA and documents
 
 ## Resolution notes
 
-
+Updated the PDF generator and rebuilt both affected information PDFs. They now identify ECH as Version 0.1.3 BETA and describe Existing Employee Contribution Mapping as part of the current release.

@@ -4,7 +4,7 @@ date: 2026-08-29
 title: Restore the canonical Institutional Memory Recovery Sprint name in site navigation
 change_type: naming
 risk: low
-status: open
+status: resolved
 source_audit: 2026-08-29 OEI Focused Investigations Repository Operating-Knowledge Audit
 ---
 
@@ -35,4 +35,4 @@ data/identity-changes/2026-06-27-focused-operational-investigations-introduced.m
 
 ## Resolution notes
 
-
+Both the site-navigation investigation entry and its footer list now use the full canonical name, Institutional Memory Recovery Sprint.

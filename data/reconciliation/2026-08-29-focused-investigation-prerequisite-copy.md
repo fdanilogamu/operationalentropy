@@ -4,7 +4,7 @@ date: 2026-08-29
 title: Align focused-investigation prerequisite language with the diagnosis-first route
 change_type: service description
 risk: medium
-status: open
+status: resolved
 source_audit: 2026-08-28 OEI repository operating-knowledge audit
 ---
 
@@ -35,4 +35,4 @@ data/identity-changes/2026-08-11-assessment-separates-investigations.md explicit
 
 ## Resolution notes
 
-
+Updated the PDF source and rebuilt the affected information PDFs to state that focused investigations include a 4-Day OEI Diagnosis, while ECH may be accessed independently. The current Services overview and focused-investigation pages communicate the same diagnosis-first scope.
