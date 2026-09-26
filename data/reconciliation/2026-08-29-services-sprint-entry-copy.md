@@ -4,7 +4,7 @@ date: 2026-08-29
 title: Correct services-page copy that suggests a Sprint can be the starting engagement
 change_type: service description
 risk: medium
-status: open
+status: resolved
 source_audit: 2026-08-28 OEI repository operating-knowledge audit
 ---
 
@@ -34,4 +34,4 @@ services/index.html and pricing/index.html both label the Sprint as requiring di
 
 ## Resolution notes
 
-
+The Services page now redirects to the current Services overview, which describes current pathways and explicitly says the broader practitioner and commercial structure continues to develop. It no longer contains the old “start with a Sprint” copy or presents the retired engagement sequence as current.

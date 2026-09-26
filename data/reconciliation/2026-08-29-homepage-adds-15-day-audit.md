@@ -4,7 +4,7 @@ date: 2026-08-29
 title: Bring homepage audit options into alignment with the 15- and 30-Day model
 change_type: service description
 risk: low
-status: open
+status: resolved
 source_audit: 2026-08-28 OEI repository operating-knowledge audit
 ---
 
@@ -34,4 +34,4 @@ data/identity-changes/2026-08-12-oei-adds-15-day-audit.md establishes the change
 
 ## Resolution notes
 
-
+The homepage pricing summary that listed only the 30-Day Audit has been removed. The current homepage directs visitors to the updated Pricing page while the Services and Pricing model is being restructured, so this homepage-specific mismatch no longer applies.

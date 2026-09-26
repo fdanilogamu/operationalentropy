@@ -4,7 +4,7 @@ date: 2026-08-29
 title: Remove the stray Revert prefix from the homepage document title
 change_type: naming
 risk: low
-status: open
+status: resolved
 source_audit: 2026-08-28 OEI repository operating-knowledge audit
 ---
 
@@ -34,4 +34,4 @@ The homepage heading and body identify the Operational Entropy Index; current na
 
 ## Resolution notes
 
-
+The homepage title is now “OEI Institute | Operational Forensics for Growing Teams.” The unsupported “Revert” prefix is no longer present.
