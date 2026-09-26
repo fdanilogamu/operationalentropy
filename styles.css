@@ -2291,3 +2291,31 @@ footer {
 .context-link { align-items: flex-start; }
 .context-link .btn-primary,
 .context-link .btn-secondary { align-self: flex-start; width: fit-content; }
+
+/* Keep the five pillar cards balanced across desktop and smaller screens. */
+.pillars-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.pillars-grid > * { grid-column: span 2; }
+.pillars-grid > :nth-child(4) { grid-column: 2 / span 2; }
+.pillars-grid > :nth-child(5) { grid-column: 4 / span 2; }
+@media (max-width: 900px) {
+  .pillars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pillars-grid > * { grid-column: auto; }
+  .pillars-grid > :nth-child(4),
+  .pillars-grid > :nth-child(5) { grid-column: auto; }
+  .pillars-grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: min(100%, calc((100% - 2rem) / 2));
+    justify-self: center;
+  }
+}
+@media (max-width: 560px) {
+  .pillars-grid { grid-template-columns: minmax(0, 1fr); }
+  .pillars-grid > :nth-child(4),
+  .pillars-grid > :nth-child(5),
+  .pillars-grid > :last-child:nth-child(odd) {
+    grid-column: auto;
+    width: auto;
+  }
+}
