@@ -8,6 +8,7 @@ from reportlab.lib.units import inch
 from reportlab.platypus import (
     BaseDocTemplate,
     Frame,
+    Image,
     KeepTogether,
     PageBreak,
     PageTemplate,
@@ -41,6 +42,18 @@ styles.add(ParagraphStyle(name="Kicker", parent=styles["BodyText"], fontName="He
 styles.add(ParagraphStyle(name="TLDRTitle", parent=styles["Title"], fontName="Helvetica-Bold", fontSize=22, leading=25, textColor=INK, spaceAfter=5))
 styles.add(ParagraphStyle(name="TLDRBody", parent=styles["BodyText"], fontName="Helvetica", fontSize=8.2, leading=10.5, textColor=INK, spaceAfter=4))
 styles.add(ParagraphStyle(name="TLDRH", parent=styles["Heading2"], fontName="Helvetica-Bold", fontSize=10, leading=12, textColor=INK, spaceBefore=6, spaceAfter=3, keepWithNext=True))
+styles.add(ParagraphStyle(name="PacketKicker", fontName="Helvetica-Bold", fontSize=7.5, leading=10, textColor=PRIMARY, spaceAfter=5))
+styles.add(ParagraphStyle(name="PacketTitle", fontName="Helvetica-Bold", fontSize=23, leading=26, textColor=INK, spaceAfter=4))
+styles.add(ParagraphStyle(name="PacketSubtitle", fontName="Helvetica", fontSize=11, leading=14, textColor=PRIMARY, spaceAfter=9))
+styles.add(ParagraphStyle(name="PacketSection", fontName="Helvetica-Bold", fontSize=12, leading=15, textColor=INK, spaceBefore=5, spaceAfter=6, keepWithNext=True))
+styles.add(ParagraphStyle(name="PacketBody", fontName="Helvetica", fontSize=9, leading=12.5, textColor=INK, spaceAfter=5))
+styles.add(ParagraphStyle(name="PacketSmall", fontName="Helvetica", fontSize=8, leading=10.5, textColor=MUTED))
+styles.add(ParagraphStyle(name="PacketCardHead", fontName="Helvetica-Bold", fontSize=9, leading=11, textColor=INK, spaceAfter=3))
+styles.add(ParagraphStyle(name="PacketCardBody", fontName="Helvetica", fontSize=8, leading=10.5, textColor=MUTED))
+styles.add(ParagraphStyle(name="PacketDarkHead", fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=WHITE, spaceAfter=3))
+styles.add(ParagraphStyle(name="PacketDarkBody", fontName="Helvetica", fontSize=8.4, leading=11.4, textColor=WHITE))
+styles.add(ParagraphStyle(name="PacketHeaderRight", fontName="Helvetica", fontSize=7.5, leading=10, textColor=MUTED, alignment=2))
+styles.add(ParagraphStyle(name="PacketHeaderKicker", fontName="Helvetica-Bold", fontSize=7.5, leading=10, textColor=PRIMARY, alignment=2, spaceAfter=3))
 
 
 def header_footer(canvas, doc):
@@ -77,6 +90,17 @@ def institute_header_footer(canvas, doc):
     canvas.restoreState()
 
 
+def packet_header_footer(canvas, doc):
+    canvas.saveState()
+    width, height = LETTER
+    canvas.line(doc.leftMargin, 0.42 * inch, width - doc.rightMargin, 0.42 * inch)
+    canvas.setFont("Helvetica", 7.5)
+    canvas.setFillColor(MUTED)
+    canvas.drawString(doc.leftMargin, 0.26 * inch, "The Institute governs the Operational Entropy Index methodology")
+    canvas.drawRightString(width - doc.rightMargin, 0.26 * inch, f"Page {doc.page}")
+    canvas.restoreState()
+
+
 def doc_for(path, on_page=header_footer, author="Fletcher GH Consulting"):
     doc = BaseDocTemplate(
         str(path),
@@ -91,6 +115,64 @@ def doc_for(path, on_page=header_footer, author="Fletcher GH Consulting"):
     frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="body")
     doc.addPageTemplates(PageTemplate(id="main", frames=[frame], onPage=on_page))
     return doc
+
+
+def packet_doc_for(path, title=None):
+    doc = BaseDocTemplate(
+        str(path), pagesize=LETTER, leftMargin=0.58 * inch, rightMargin=0.58 * inch,
+        topMargin=0.88 * inch, bottomMargin=0.62 * inch,
+        title=title or path.stem, author="OEI Institute",
+    )
+    frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="packet-body")
+    doc.addPageTemplates(PageTemplate(id="packet", frames=[frame], onPage=packet_header_footer))
+    return doc
+
+
+def packet_title(title, subtitle, kicker="OEI INSTITUTE | INFORMATION PACKET"):
+    return [Paragraph(kicker, styles["PacketKicker"]), Paragraph(title, styles["PacketTitle"]), Paragraph(subtitle, styles["PacketSubtitle"])]
+
+
+def packet_brand_block():
+    logo = Image(str(ROOT / "images" / "oei-institute-logo.png"), width=1.72 * inch, height=0.52 * inch)
+    header = Table([[logo, [
+        Paragraph("OEI INSTITUTE", styles["PacketHeaderKicker"]),
+        Paragraph("Operational Forensics for Growing Teams", styles["PacketHeaderRight"]),
+    ]]], colWidths=[2 * inch, 5.34 * inch])
+    header.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("ALIGN", (1, 0), (1, 0), "RIGHT"),
+        ("LINEBELOW", (0, 0), (-1, -1), 0.8, LINE), ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+        ("TOPPADDING", (0, 0), (-1, -1), 0),
+    ]))
+    return header
+
+
+def packet_card(title, body):
+    return Table([[Paragraph(title, styles["PacketCardHead"])], [Paragraph(body, styles["PacketCardBody"])]], style=TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), PALE), ("BOX", (0, 0), (-1, -1), 0.6, LINE),
+        ("LEFTPADDING", (0, 0), (-1, -1), 9), ("RIGHTPADDING", (0, 0), (-1, -1), 9),
+        ("TOPPADDING", (0, 0), (-1, -1), 7), ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+    ]))
+
+
+def packet_card_grid(rows, widths):
+    table = Table(rows, colWidths=widths, hAlign="LEFT")
+    table.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 2),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 5), ("TOPPADDING", (0, 0), (-1, -1), 2),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+    ]))
+    return table
+
+
+def packet_callout(title, body, background=INK):
+    table = Table([[Paragraph(title, styles["PacketDarkHead"])], [Paragraph(body, styles["PacketDarkBody"])]], colWidths=[7.34 * inch])
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), background),
+        ("LEFTPADDING", (0, 0), (-1, -1), 11), ("RIGHTPADDING", (0, 0), (-1, -1), 11),
+        ("TOPPADDING", (0, 0), (-1, -1), 8), ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+    ]))
+    return table
 
 
 def title_block(title, subtitle):
@@ -134,44 +216,55 @@ def pricing_table(rows):
 
 def build_about():
     path = OUT / "About the Operational Entropy Index.pdf"
-    story = title_block("About the Operational Entropy Index", "A current overview of the OEI framework, diagnostic method, and engagement ecosystem")
+    story = [packet_brand_block(), Spacer(1, 8)]
+    story += packet_title("About the Operational Entropy Index", "A governed methodology for investigating operational strain and supporting responsible action")
     story += [
-        h1("What the OEI is"),
-        p("The Operational Entropy Index (OEI) is a structured methodology for examining operational strain as organizations grow. The OEI Institute governs its canon, methodological definitions, evidence and practice standards, and deliberate evolution."),
-        p("Operational entropy is the tendency for disorder, friction, and unnecessary complexity to accumulate over time. It appears when decisions require more coordination, knowledge becomes fragmented, workflows slow down, tools create workarounds, or responsibilities fail during handoffs."),
-        p("Entropy cannot be permanently eliminated. The objective is to identify and mitigate it, measure whether interventions work, and establish mechanisms that help prevent it from rapidly returning."),
-        Paragraph("OEI is a structured, repeatable diagnostic process. It combines evidence from people, workflows, systems, and operating outcomes rather than relying on a single opinion or generic consulting template.", styles["Callout"]),
-        h1("The five OEI pillars"),
+        packet_callout("The Institute governs. The method investigates.", "The OEI Institute maintains the Operational Entropy Index canon and practice standards. OEI gives organizations a shared way to examine how strain develops as work, people, and systems grow."),
+        Spacer(1, 8),
+        Paragraph("What the OEI examines", styles["PacketSection"]),
+        p("Operational entropy is friction and unnecessary complexity that accumulate in how work gets done. It can appear as delayed decisions, fragmented knowledge, slow or restarted workflows, tool workarounds, or failed handoffs. OEI examines operating conditions through evidence rather than relying on a single perspective.", "PacketBody"),
+        Paragraph("The five OEI pillars", styles["PacketSection"]),
     ]
-    categories = [
-        ("1. Founder Dependency", "Is the company operationally hostage to one person's presence? Measures reliance on founders or other key individuals for approvals, decisions, context, and operational continuity."),
-        ("2. Knowledge Logistics", "Does the right information reach the right people reliably? Examines how critical context is documented, updated, retrieved, transferred, and used."),
-        ("3. Workflow Velocity", "Where is execution speed being lost in the process chain? Traces waiting, approval latency, rework, unclear ownership, and other causes of lost momentum."),
-        ("4. Tool Discipline", "Are systems fit for purpose and used consistently? Evaluates tool fit, adoption, training, process alignment, redundant applications, and manual workarounds."),
-        ("5. Handoff Integrity", "Do responsibility and context transfer cleanly between people or teams? Examines ownership transitions, readiness criteria, shared context, and accountability across handoffs."),
+    pillars = [
+        packet_card("Founder Dependency", "Reliance on key people for decisions, context, or continuity."),
+        packet_card("Knowledge Logistics", "Whether critical information reaches people in usable form."),
+        packet_card("Workflow Velocity", "Where work waits, stalls, restarts, or accumulates rework."),
+        packet_card("Tool Discipline", "Whether tools support the work or create more friction."),
+        packet_card("Handoff Integrity", "Whether ownership and context transfer reliably."),
     ]
-    for name, desc in categories:
-        story.append(KeepTogether([h2(name), p(desc)]))
+    story.append(packet_card_grid([[pillars[0], pillars[1]], [pillars[2], pillars[3]], [pillars[4], ""]], [3.67 * inch, 3.67 * inch]))
     story += [
-        h1("How the OEI works"),
-        bullet("<b>Structured interviews:</b> Gather evidence from people across the company, not only leadership."),
-        bullet("<b>Workflow mapping:</b> Trace how work actually moves and where approvals, dependencies, or handoffs fail."),
-        bullet("<b>Operational testing:</b> Measure cycle time, consistency, rework, adoption, and other observable outcomes."),
-        bullet("<b>Root-cause mapping:</b> Connect visible symptoms to the structural conditions producing them."),
-        h1("What an engagement produces"),
-        bullet("A baseline OEI score across the five pillars."),
-        bullet("A map of where execution is leaking and the root causes involved."),
-        bullet("A prioritized roadmap of structural changes."),
-        bullet("Proof-of-concept improvements appropriate to the engagement scope."),
-        h1("Ways to work with OEI"),
-        p("Organizations can develop OEI capability internally through practitioner development, or have qualified OEI practitioners perform diagnosis and methodology application. A bounded Focused Investigation is also available for a specific operational condition. The broader practitioner and commercial structure continues to develop under Institute governance."),
-        h2("Focused Operational Investigations"),
-        p("Founder Absence Simulation, Institutional Memory Recovery Sprint, Workflow Momentum Analysis, Operational Stack Review, and Handoff Failure Analysis are bounded investigations with a current public range of $1,000 to $4,000 USD. Each includes a 4-Day OEI Diagnosis."),
-        h2("Entropy Compatible Hiring"),
-        p("Entropy Compatible Hiring (ECH) Version 0.1.3 BETA is separate Windows desktop software. It provides ten role-agnostic interview instruments and an Existing Employee Contribution Mapping module."),
-        p("ECH is not a personality test, does not score overall candidate quality, and does not replace evaluation of skills, experience, technical competence, references, or broader hiring fit. A formal OEI engagement is not required. ECH is offered as a one-time purchase for $950-$1,450 USD."),
+        Spacer(1, 4),
+        Paragraph("How OEI builds a useful picture", styles["PacketSection"]),
+        packet_card_grid([
+            [packet_card("Gather evidence", "Structured interviews and operational records bring multiple perspectives into view."), packet_card("Trace real work", "Workflow mapping follows decisions, information, tools, dependencies, and handoffs.")],
+            [packet_card("Test what happens", "Operational samples help distinguish stated process from observed practice."), packet_card("Connect causes", "Root-cause mapping links visible friction to the conditions producing it.")],
+        ], [3.67 * inch, 3.67 * inch]),
+        PageBreak(),
+        packet_brand_block(),
+        Spacer(1, 8),
+        Paragraph("From investigation to application", styles["PacketTitle"]),
+        Paragraph("OEI supports a clearer response by separating what is observed, what it may mean, and what the evidence can support.", styles["PacketSubtitle"]),
+        Paragraph("What OEI can produce", styles["PacketSection"]),
+        packet_card_grid([[
+            packet_card("A baseline", "A structured view of the operating condition and relevant OEI pillars."),
+            packet_card("A causal map", "Evidence connecting observed friction with its underlying conditions."),
+        ], [
+            packet_card("Priorities", "A grounded view of where action is most likely to improve the work."),
+            packet_card("A way to learn", "Measures that help teams assess whether an intervention improves operations."),
+        ]], [3.67 * inch, 3.67 * inch]),
+        Spacer(1, 6),
+        Paragraph("How organizations work with OEI", styles["PacketSection"]),
+        packet_card_grid([[
+            packet_card("Build internal capability", "Develop practitioner capability through training and certification pathways as they take shape under Institute governance."),
+            packet_card("Work with practitioners", "Qualified practitioners investigate and apply OEI to an organization's operating context."),
+        ]], [3.67 * inch, 3.67 * inch]),
+        Spacer(1, 7),
+        packet_callout("AI Enablement Through OEI", "AI Enablement can be a starting route for an existing AI initiative or an intervention when OEI findings support it. The work investigates the operating condition, tests whether a governed AI capability can improve it, and follows the evidence. AI is not an OEI pillar or an automatic solution. The right outcome may be to modify, stop, or not proceed.", PRIMARY),
+        Spacer(1, 6),
+        p("Focused investigations examine a bounded operating condition. Entropy Compatible Hiring (ECH) is a separate software product that supports structured hiring interviews and existing-employee contribution mapping; it can be used independently of a formal OEI engagement.", "PacketSmall"),
     ]
-    doc_for(path, on_page=header_footer, author="OEI Institute").build(story)
+    packet_doc_for(path).build(story)
     return path
 
 
@@ -219,28 +312,34 @@ def build_services():
 
 def build_tldr():
     path = OUT / "OEI TLDR.pdf"
-    story = [
-        Spacer(1, 0.08 * inch),
-        Paragraph("OEI Institute", styles["TLDRTitle"]),
-        Paragraph("Operational Forensics for Growing Teams", styles["Subtitle"]),
-        Paragraph("INTERIM ONE-PAGER | SEPTEMBER 2026", styles["Kicker"]),
-    ]
+    story = [packet_brand_block(), Spacer(1, 8)]
+    story += packet_title("OEI Institute Overview", "Operational Forensics for Growing Teams", "INSTITUTE OVERVIEW | SEPTEMBER 2026")
     story += [
-        Paragraph("The OEI Institute is the governing institution for the Operational Entropy Index methodology. It exists to help growing organizations understand and address the operational strain that emerges through growth.", styles["TLDRBody"]),
-        Paragraph("THE OPERATIONAL ENTROPY INDEX", styles["TLDRH"]),
-        Paragraph("The Operational Entropy Index is a structured methodology for examining how operational strain develops across growing teams. It provides a shared framework for investigation, analysis, and responsible application.", styles["TLDRBody"]),
-        Paragraph("THE FIVE PILLARS", styles["TLDRH"]),
-        Paragraph("<b>Founder Dependency</b> - reliance on key people for decisions and continuity. &nbsp;&nbsp; <b>Knowledge Logistics</b> - whether critical information reaches the people who need it. &nbsp;&nbsp; <b>Workflow Velocity</b> - where execution loses momentum. &nbsp;&nbsp; <b>Tool Discipline</b> - whether systems are fit and consistently used. &nbsp;&nbsp; <b>Handoff Integrity</b> - whether ownership and context transfer cleanly.", styles["TLDRBody"]),
-        Paragraph("OPERATIONAL FORENSICS", styles["TLDRH"]),
-        Paragraph("Operational forensics examines how work actually functions through evidence. It reconstructs movement across people, systems, records, and workflows, separates observation from interpretation, tests explanations, and reaches findings that can support action.", styles["TLDRBody"]),
-        Paragraph("THE INSTITUTE'S ROLE", styles["TLDRH"]),
-        Paragraph("The Institute maintains the established OEI canon, methodological definitions, evidence and practice standards, and the deliberate evolution of the methodology. It is developing practitioner training, competency assessment, and certification infrastructure. It also maintains documentation, structured workflows, diagnostic tools, and software that support repeatable application.", styles["TLDRBody"]),
-        Paragraph("HOW OEI REACHES ORGANIZATIONS", styles["TLDRH"]),
-        Paragraph("OEI may reach organizations through Institute-maintained tools, direct engagements, and structured use of the methodology. Services and Pricing are being restructured around the Institute framework as the delivery model develops.", styles["TLDRBody"]),
-        Paragraph("LEARN MORE", styles["TLDRH"]),
-        Paragraph("Explore the Operational Entropy Index at /about/operational-entropy-index/ or contact the Institute to discuss an operational problem.", styles["TLDRBody"]),
+        packet_callout("The Institute governs. OEI is the methodology.", "The OEI Institute maintains the methodology's canon, definitions, evidence and practice standards, and deliberate evolution. OEI gives teams a shared framework for investigating how operational strain develops as organizations grow."),
+        Spacer(1, 7),
+        Paragraph("What the Institute does", styles["PacketSection"]),
+        packet_card_grid([[
+            packet_card("Govern", "Maintain the established method and its practice standards."),
+            packet_card("Develop", "Build practitioner capability and pathways for responsible application."),
+            packet_card("Support", "Maintain documentation, workflows, tools, and software."),
+        ]], [2.45 * inch, 2.45 * inch, 2.44 * inch]),
+        Paragraph("The five OEI pillars", styles["PacketSection"]),
+        packet_card_grid([[
+            packet_card("Founder Dependency", "Key-person reliance"),
+            packet_card("Knowledge Logistics", "Information access and movement"),
+            packet_card("Workflow Velocity", "How work moves"),
+        ], [
+            packet_card("Tool Discipline", "How tools support work"),
+            packet_card("Handoff Integrity", "Transfer of ownership and context"),
+            "",
+        ]], [2.45 * inch, 2.45 * inch, 2.44 * inch]),
+        Paragraph("A method for responsible application", styles["PacketSection"]),
+        p("Operational forensics examines work as it functions in practice. OEI combines interviews, workflow observation, records, operational samples, and structured analysis to distinguish observation from interpretation, test explanations, and support action grounded in evidence.", "PacketBody"),
+        packet_callout("AI Enablement Through OEI", "AI Enablement is one way to begin when an organization has an AI initiative or mandate and needs to know whether AI can improve consequential work. It can also follow OEI findings as a justified intervention. AI is not an OEI pillar, and the evidence may support changing course or not proceeding.", PRIMARY),
+        Spacer(1, 7),
+        p("Organizations can develop OEI capability internally or work with qualified OEI practitioners. Focused investigations offer a bounded way to examine a specific operating condition. The broader practitioner and commercial structure continues to develop.", "PacketSmall"),
     ]
-    doc_for(path, on_page=institute_header_footer, author="OEI Institute").build(story)
+    packet_doc_for(path, title="OEI Institute Overview").build(story)
     return path
 
 
