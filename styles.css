@@ -2248,3 +2248,41 @@ footer {
     font-size: clamp(2rem, 9vw, 2.55rem);
   }
 }
+
+/* Keep navigation labels on a single line while letting the row shrink. */
+@media (min-width: 769px) {
+  header nav,
+  .ech-page nav { gap: 0.75rem; }
+  .logo,
+  .client-journey-page .logo { width: clamp(150px, 20vw, 280px); min-width: 0; }
+  .nav-links,
+  .ech-page .nav-links {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: space-between;
+    gap: clamp(0.35rem, 1vw, 1rem);
+  }
+  .nav-links li { min-width: 0; flex: 0 1 auto; }
+  .nav-links a { white-space: nowrap; font-size: clamp(0.62rem, 0.95vw, 0.86rem); }
+  .nav-cta { flex: 0 0 auto; }
+}
+@media (max-width: 768px) {
+  header nav,
+  .ech-page nav { flex-wrap: wrap; gap: 0.35rem 0.6rem; }
+  .nav-links,
+  .ech-page .nav-links {
+    flex: 1 1 100%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+  .nav-links li { flex: 0 1 auto; min-width: 0; }
+  .nav-links a { white-space: nowrap; font-size: clamp(0.58rem, 1.8vw, 0.82rem); }
+}
+@media (max-width: 480px) {
+  .nav-links,
+  .ech-page .nav-links { flex-wrap: nowrap; gap: 0.15rem; }
+  .nav-links li { flex: 0 1 auto; min-width: 0; }
+  .nav-links a { white-space: nowrap; font-size: clamp(0.48rem, 2.65vw, 0.7rem); }
+}
