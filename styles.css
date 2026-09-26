@@ -1770,6 +1770,7 @@ footer {
   grid-column: 4 / span 2;
 }
 
+
 .investigation-cta {
   display: block;
   width: fit-content;
@@ -1937,5 +1938,313 @@ footer {
   .investigation-names > div:nth-child(5) {
     grid-column: auto;
     text-align: left;
+  }
+}
+
+/* Restore the responsive navigation and spacing after the legacy breakpoints. */
+@media (max-width: 768px) {
+  header nav,
+  .ech-page nav { flex-wrap: wrap; gap: 0.5rem 1rem; padding: 0.65rem 5%; }
+  .logo,
+  .client-journey-page .logo { width: min(42vw, 190px); height: 58px; }
+  .nav-links,
+  .ech-page .nav-links {
+    order: 3; display: flex; flex: 1 0 100%; flex-wrap: wrap;
+    justify-content: flex-start; gap: 0.35rem 1rem; margin: 0;
+  }
+  .nav-links a[href="/entropy-compatible-hiring/"]::before { display: none; }
+  .hero { min-height: 0; padding: 3rem 5%; }
+  .hero h1 { font-size: clamp(2.35rem, 7vw, 3.25rem); }
+  section { padding: 3.25rem 5%; }
+}
+@media (max-width: 480px) {
+  .nav-links { display: flex; gap: 0.2rem 0.8rem; }
+  .nav-links a { font-size: 0.8rem; }
+  .hero h1 { font-size: clamp(2rem, 9vw, 2.55rem); }
+}
+
+/* Shared layout refinements for the public site. */
+@media (min-width: 769px) {
+  nav {
+    min-height: 96px;
+    gap: 1.5rem;
+  }
+
+  .logo {
+    width: clamp(220px, 25vw, 320px);
+    height: 84px;
+    flex: 0 1 auto;
+  }
+
+  .nav-links {
+    gap: clamp(1rem, 2vw, 2rem);
+    align-items: center;
+  }
+
+  section > .container,
+  .hero {
+    width: min(100%, 1400px);
+    margin-inline: auto;
+  }
+
+  .card-grid,
+  .feature-grid,
+  .journey-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 150px;
+  }
+
+  header nav,
+  .ech-page nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding: 0.65rem 5%;
+  }
+
+  .logo,
+  .client-journey-page .logo {
+    width: min(42vw, 190px);
+    height: 58px;
+    flex: 0 1 auto;
+  }
+
+  .nav-cta {
+    margin-left: auto;
+  }
+
+  .nav-cta .btn-secondary,
+  .nav-cta a {
+    padding: 0.65rem 1rem;
+    white-space: nowrap;
+  }
+
+  .nav-links,
+  .ech-page .nav-links {
+    order: 3;
+    display: flex;
+    flex: 1 0 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.35rem 1.1rem;
+    margin: 0;
+    font-size: 0.86rem;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.3rem 0;
+    line-height: 1.4;
+  }
+
+  .nav-links a[href="/entropy-compatible-hiring/"]::before {
+    display: none;
+  }
+
+  .hero {
+    gap: 1.5rem;
+    min-height: 0;
+    padding: 3rem 5%;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    max-width: 18ch;
+    font-size: clamp(2.35rem, 7vw, 3.25rem);
+    overflow-wrap: anywhere;
+  }
+
+  .hero p {
+    max-width: 65ch;
+  }
+
+  .hero-visual {
+    min-height: 0;
+  }
+
+  section {
+    padding: 3.25rem 5%;
+  }
+
+  .container {
+    padding-inline: 0;
+  }
+
+  .card-grid,
+  .feature-grid,
+  .journey-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.25rem;
+  }
+
+  .card,
+  .journey-card {
+    min-width: 0;
+    padding: 1.5rem;
+  }
+
+  .pricing-wrap {
+    width: min(100% - 2rem, 600px);
+  }
+
+  .pricing-option,
+  .focused-price,
+  .ai-pricing-note {
+    min-width: 0;
+    padding: 1.35rem;
+  }
+
+  .pricing-options,
+  .focused-content,
+  .ai-pricing-section,
+  .ai-stage-grid,
+  .client-question-grid,
+  .expectation-grid,
+  .masking-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .masking-grid {
+    gap: 1.5rem;
+  }
+
+  .table-scroll,
+  table {
+    max-width: 100%;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+  }
+
+  .site-navigation-visual {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  h1,
+  .hero h1 {
+    font-size: clamp(2rem, 9vw, 2.55rem);
+  }
+
+  h2 {
+    font-size: clamp(1.45rem, 7vw, 1.8rem);
+  }
+
+  .nav-links {
+    gap: 0.2rem 0.8rem;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+
+  .hero {
+    padding-block: 2.5rem;
+  }
+
+  .hero-navigation-cta a,
+  .context-link .btn-primary,
+  .context-link .btn-secondary,
+  .insight-link .btn-primary,
+  .investigation-cta {
+    width: 100%;
+  }
+
+  .context-link,
+  .client-links {
+    align-items: stretch;
+  }
+
+  .card-grid,
+  .feature-grid,
+  .journey-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pricing-hero,
+  .pricing-section {
+    padding-block: 2.75rem;
+  }
+
+  .pricing-wrap {
+    width: min(100% - 1.5rem, 600px);
+  }
+}
+
+/* Final cascade overrides for the legacy responsive rules above. */
+@media (max-width: 768px) {
+  header nav,
+  .ech-page nav {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    padding: 0.65rem 5%;
+  }
+
+  .logo,
+  .client-journey-page .logo {
+    width: min(42vw, 190px);
+    height: 58px;
+  }
+
+  .nav-links,
+  .ech-page .nav-links {
+    order: 3;
+    display: flex;
+    flex: 1 0 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.35rem 1rem;
+    margin: 0;
+  }
+
+  .nav-links a[href="/entropy-compatible-hiring/"]::before {
+    display: none;
+  }
+
+  .hero {
+    min-height: 0;
+    padding: 3rem 5%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.35rem, 7vw, 3.25rem);
+  }
+
+  section {
+    padding: 3.25rem 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    display: flex;
+    gap: 0.2rem 0.8rem;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 9vw, 2.55rem);
   }
 }
