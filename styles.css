@@ -2286,3 +2286,8 @@ footer {
   .nav-links li { flex: 0 1 auto; min-width: 0; }
   .nav-links a { white-space: nowrap; font-size: clamp(0.48rem, 2.65vw, 0.7rem); }
 }
+
+/* Keep the homepage context CTA below the intro copy and aligned to its left edge. */
+.context-link { align-items: flex-start; }
+.context-link .btn-primary,
+.context-link .btn-secondary { align-self: flex-start; width: fit-content; }
