@@ -19,9 +19,9 @@ The Institute's services and pricing pages now frame engagement choices around w
 - [x] Services overview
 - [x] Pricing and engagement comparison
 - [x] Homepage pricing entry point
-- [ ] About OEI
-- [ ] Information Packet landing page
-- [ ] OEI Services and Pricing PDF
+- [x] About OEI
+- [x] Information Packet landing page
+- [x] OEI Services and Pricing PDF
 
 ## Notes
 

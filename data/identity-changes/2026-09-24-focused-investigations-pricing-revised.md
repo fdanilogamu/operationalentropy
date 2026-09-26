@@ -20,7 +20,7 @@ The published typical investment for Focused Operational Investigations is now $
 - [x] About the Operational Entropy Index PDF
 - [x] OEI Services and Pricing PDF
 - [x] OEI TLDR PDF
-- [ ] Broader Services and Pricing architecture
+- [x] Broader Services and Pricing architecture
 
 ## Notes
 

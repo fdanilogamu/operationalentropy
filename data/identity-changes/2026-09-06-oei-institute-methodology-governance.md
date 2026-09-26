@@ -21,7 +21,7 @@ The public site now presents the OEI Institute as the governing institution for 
 - [x] Operational Entropy Index explanation page
 - [x] About-page hierarchy and internal links
 - [x] Sitewide institutional footer language
-- [ ] Services and Pricing commercial architecture
+- [x] Services and Pricing commercial architecture
 
 ## Notes
 

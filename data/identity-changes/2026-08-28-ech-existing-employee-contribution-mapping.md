@@ -21,10 +21,10 @@ Entropy Compatible Hiring Version 0.1.3 adds Existing Employee Contribution Mapp
 
 ## Propagation
 
-- [ ] ECH product page and FAQ
-- [ ] ECH checkout
-- [ ] ECH workflow demonstration
-- [ ] ECH release notes
+- [x] ECH product page and FAQ
+- [x] ECH checkout
+- [x] ECH workflow demonstration
+- [x] ECH release notes
 
 ## Notes
 
