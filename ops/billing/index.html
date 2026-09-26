@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Billing Workbench | OEI Operations</title>
+  <meta name="description" content="Internal OEI quote preparation workbench.">
+  <link rel="stylesheet" href="styles.css?v=oei-institute-brand-2">
+  <link rel="stylesheet" href="ops/billing/billing.css">
+  <link rel="icon" type="image/png" href="images/oei-institute-favicon.png">
+</head>
+<body class="billing-page">
+  <header class="bill-header">
+    <nav>
+      <a class="logo" href="/" aria-label="OEI Institute home"><img src="images/oei-institute-logo.png" alt="OEI Institute: Operational Forensics for Growing Teams" width="667" height="201"></a>
+      <div class="bill-wordmark"><span>OPERATIONS INSTRUMENT</span><strong>Billing workbench</strong></div>
+      <a class="bill-source-link" href="/ops/propagation/">Identity propagation ↗</a>
+    </nav>
+  </header>
+  <main>
+    <section class="bill-hero"><div class="container">
+      <div class="bill-kicker">COMMERCIAL OPERATIONS · LOCAL DRAFTS</div>
+      <div class="bill-hero-grid"><div><h1>Prepare a clear proposal.</h1><p>Configure OEI services, assemble a quote, and review the client-facing document before exporting.</p></div>
+        <aside><span>QUOTE WORKBENCH</span><p>Quotations are proposals for review. They are not invoices, payment requests, or payment processing.</p></aside>
+      </div>
+    </div></section>
+    <div class="container bill-shell">
+      <div class="bill-toolbar"><div class="bill-tabs" role="tablist" aria-label="Billing workbench"><button class="is-active" data-tab="quotes" role="tab" aria-selected="true">Quote builder</button><button data-tab="catalog" role="tab" aria-selected="false">Service catalog</button></div><div class="bill-toolbar-actions"><button class="bill-button secondary" id="new-quote">New quote</button><button class="bill-button" id="save-quote">Save draft</button></div></div>
+      <div id="notice" class="bill-notice" role="status" aria-live="polite" hidden></div>
+      <section class="bill-tab-panel is-active" id="quotes-panel" role="tabpanel">
+        <div class="bill-layout">
+          <aside class="bill-saved"><div class="bill-panel-heading"><div><span>LOCAL STORAGE</span><h2>Saved quotes</h2></div><strong id="draft-count">0</strong></div><p class="bill-muted">Drafts stay in this browser on this device.</p><div id="saved-quotes" class="saved-list"></div>
+            <div class="pathway-box"><span>STARTING CONFIGURATIONS</span><button data-path="practitioner">Internal practitioner development</button><button data-path="practitioner-ai">Practitioner development + AI Enablement</button><button data-path="team">OEI team-delivered engagement</button><button data-path="team-ai">Team-delivered engagement + AI Enablement</button></div>
+          </aside>
+          <div class="bill-workspace">
+            <section class="bill-panel quote-fields"><div class="bill-panel-heading"><div><span>01 · QUOTE DETAILS</span><h2>Client and reference</h2></div><span class="draft-indicator" id="draft-state">Unsaved draft</span></div>
+              <div class="bill-form-grid">
+                <label>Client organization<input data-quote="organization" autocomplete="organization"></label><label>Client contact name<input data-quote="contactName" autocomplete="name"></label>
+                <label>Client contact email<input data-quote="contactEmail" type="email" autocomplete="email"></label><label>Quote reference<input data-quote="reference"></label>
+                <label>Creation date<input data-quote="createdAt" type="date"></label><label>Expiration date <span class="optional-label">optional</span><input data-quote="expiresAt" type="date"></label>
+                <label>Currency<select data-quote="currency"><option value="USD">USD — US Dollar</option><option value="COP">COP — Colombian Peso</option></select></label>
+              </div>
+            </section>
+            <section class="bill-panel line-items-panel"><div class="bill-panel-heading"><div><span>02 · SERVICES</span><h2>Quote line items</h2></div><button class="bill-text-button" id="add-line">+ Add service</button></div><div id="line-items"></div><div class="bill-add-row"><label for="service-select">Add another service</label><select id="service-select"></select><button class="bill-button secondary" id="add-selected">Add line</button></div></section>
+            <section class="bill-panel notes-panel"><div class="bill-panel-heading"><div><span>03 · NOTES</span><h2>Keep notes separated</h2></div></div><label>Client-facing notes<textarea data-quote="clientNotes" rows="3" placeholder="Optional notes included in the quote"></textarea></label><label class="internal-notes">Internal notes <span>Never included in preview or export</span><textarea data-quote="internalNotes" rows="3" placeholder="Private notes for your team"></textarea></label></section>
+          </div>
+          <aside class="bill-preview-column"><div class="preview-sticky"><div class="preview-actions"><span>LIVE CLIENT PREVIEW</span><button class="bill-button secondary" id="print-quote">Print / Save PDF</button></div><article class="quote-document" id="quote-preview" aria-live="polite"></article></div></aside>
+        </div>
+      </section>
+      <section class="bill-tab-panel" id="catalog-panel" role="tabpanel" hidden>
+        <div class="bill-section-heading"><div><span>PRICING DEFAULTS · STORED SEPARATELY</span><h2>Service catalog</h2></div><p>Catalog edits affect new line items only. Saved quotes preserve their service names, descriptions, and prices.</p></div>
+        <div id="catalog-editor" class="catalog-grid"></div><div class="catalog-actions"><button id="reset-catalog" class="bill-button secondary">Restore starting defaults</button><span>Practitioner Development pricing is provisional.</span></div>
+      </section>
+    </div>
+  </main>
+  <footer class="bill-footer"><div class="container"><span>OEI · BILLING WORKBENCH</span><p>Internal quote preparation · No invoices or payments are issued here.</p></div></footer>
+  <script src="ops/billing/billing.js"></script>
+</body>
+</html>
