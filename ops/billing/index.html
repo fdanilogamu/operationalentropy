@@ -32,7 +32,11 @@
       <section class="bill-tab-panel is-active" id="quotes-panel" role="tabpanel">
         <div class="bill-layout">
           <aside class="bill-saved"><div class="bill-panel-heading"><div><span>LOCAL STORAGE</span><h2>Saved quotes</h2></div><strong id="draft-count">0</strong></div><p class="bill-muted">Drafts stay in this browser on this device.</p><div id="saved-quotes" class="saved-list"></div>
-            <div class="pathway-box"><span>STARTING CONFIGURATIONS</span><button data-path="practitioner">Internal practitioner development</button><button data-path="practitioner-ai">Practitioner development + AI Enablement</button><button data-path="team">OEI team-delivered engagement</button><button data-path="team-ai">Team-delivered engagement + AI Enablement</button></div>
+            <div class="pathway-box"><span>STARTING CONFIGURATIONS</span>
+              <div class="pathway-group"><h3>OEI Institute – Training</h3><button data-path="company-sponsored">Company-Sponsored · Practitioner + Researcher</button><button data-path="company-sponsored-replacement">Repeat Company-Sponsored · upgrade + new Researcher</button><button data-path="independent">Independent Consultant</button><button data-path="additional-researcher">Additional Researcher · $3,000</button><button data-path="researcher-practitioner-upgrade">Company-paid Researcher → Practitioner upgrade</button><button data-path="independent-upgrade">Former employee · independent upgrade</button></div>
+              <div class="pathway-group"><h3>OEI Institute – Native Application</h3><button data-path="native">OEI Native pathway · $15,000</button><button data-path="native-upgrade">Company-Sponsored → OEI Native upgrade · $7,500</button></div>
+              <div class="pathway-group"><h3>OEI Engagements</h3><button data-path="team">OEI team-delivered engagement</button><button data-path="team-ai">Team-delivered engagement + AI Enablement</button></div>
+            </div>
           </aside>
           <div class="bill-workspace">
             <section class="bill-panel quote-fields"><div class="bill-panel-heading"><div><span>01 · QUOTE DETAILS</span><h2>Client and reference</h2></div><span class="draft-indicator" id="draft-state">Unsaved draft</span></div>
@@ -51,7 +55,7 @@
       </section>
       <section class="bill-tab-panel" id="catalog-panel" role="tabpanel" hidden>
         <div class="bill-section-heading"><div><span>PRICING DEFAULTS · STORED SEPARATELY</span><h2>Service catalog</h2></div><p>Catalog edits affect new line items only. Saved quotes preserve their service names, descriptions, and prices.</p></div>
-        <div id="catalog-editor" class="catalog-grid"></div><div class="catalog-actions"><button id="reset-catalog" class="bill-button secondary">Restore starting defaults</button><span>OEI Practitioner Development: $10,000 USD per practitioner.</span></div>
+        <div id="catalog-editor" class="catalog-grid"></div><div class="catalog-actions"><button id="reset-catalog" class="bill-button secondary">Restore starting defaults</button><span>Practitioner pathway and upgrade prices are listed as separate quote items. Existing saved quote snapshots are preserved.</span></div>
       </section>
     </div>
   </main>
