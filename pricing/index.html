@@ -10,7 +10,11 @@
   <title>OEI Institute Pricing</title>
   <meta name="description" content="Current OEI Institute pricing for practitioner development, OEI engagements, focused investigations, and optional AI Enablement.">
   <meta property="og:title" content="OEI Institute Pricing">
-  <meta property="og:description" content="Choose an OEI pathway: develop internal capability or engage qualified practitioners. Optional AI Enablement is scoped from OEI findings.">
+  <meta property="og:description" content="Compare OEI practitioner development pathways, payment stages, and practice authorization scopes.">
+  <style>
+    .pricing-pathway-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.25rem; margin: 2rem 0; align-items: stretch; }
+    @media (min-width: 761px) and (max-width: 1050px) { .pricing-pathway-grid { grid-template-columns: minmax(0, 1fr); } }
+  </style>
 </head>
 <body>
   <header>
@@ -33,43 +37,51 @@
       <div class="pricing-wrap">
         <p class="eyebrow">OEI Institute</p>
         <h1>Pricing</h1>
-        <p class="pricing-lead">OEI engagements are scoped according to the capability, organizational context, and level of intervention required.</p>
-        <p>Practitioner Development is offered at a flat fee. Other pathways are scoped according to the work involved.</p>
+        <p class="pricing-lead">Practitioner development offers three distinct pathways, each with a defined practice authorization.</p>
+        <p>Each pathway uses the Institute’s competency-based certification assessment. Training and assessment are paid first; the authorization payment is due after passing. Payment does not guarantee certification.</p>
       </div>
     </section>
 
     <section class="pricing-section pricing-wrap" aria-labelledby="pathways-heading">
       <div class="pricing-section-heading">
-        <p class="eyebrow">Two ways to work with OEI</p>
-        <h2 id="pathways-heading">Choose the capability your organization needs</h2>
-        <p>Develop OEI capability within your organization, or have qualified OEI practitioners perform the work.</p>
+        <p class="eyebrow">Practitioner development</p>
+        <h2 id="pathways-heading">Training and authorization prices</h2>
+        <p>Training develops capability. The assessment determines whether certification is earned. Authorization, granted only after passing and completing the applicable payment, sets the practitioner’s permitted scope and capacity.</p>
       </div>
 
-      <div class="pricing-pathway-group">
-        <div class="pathway-intro">
-          <span class="pathway-number">01</span>
-          <div><h3>Build capability internally</h3><p>Train and certify your own staff in the OEI methodology.</p></div>
-        </div>
-        <div class="pricing-options">
-          <article class="pricing-option">
-            <p class="option-label">OEI Practitioner Development</p>
-            <p class="price-range">$10,000 <span>USD</span></p>
-            <p>Develop internal OEI capability so members of your staff can be trained and certified to practice OEI.</p>
-            <p class="scope-note">Flat fee for OEI Practitioner Development.</p>
-          </article>
-          <article class="pricing-option optional-option">
-            <p class="option-label">With optional AI Enablement</p>
-            <p class="price-range">Scoped from OEI findings</p>
-            <p>Internal practitioners can receive optional support for an AI intervention when investigation identifies a justified opportunity.</p>
-            <a href="#ai-enablement">How AI Enablement is scoped <span aria-hidden="true">↓</span></a>
-          </article>
-        </div>
+      <div class="pathway-grid pricing-pathway-grid">
+        <article class="pricing-option">
+          <p class="option-label">Company-sponsored trainee</p><p class="price-range">$10,000 <span>USD total</span></p>
+          <p>Build internal OEI capability within the sponsoring organization.</p>
+          <p><strong>$6,000</strong> training and assessment<br><strong>$4,000</strong> authorization, payable after passing</p>
+          <p class="scope-note">May conduct full OEI engagements and Focused Investigations within the sponsoring organization. This authorization does not permit outside client work or Institute representation. The employee retains certification; authorization is tied to the sponsor.</p>
+        </article>
+        <article class="pricing-option">
+          <p class="option-label">Independent consultant trainee</p><p class="price-range">$12,000 <span>USD total</span></p>
+          <p>Develop an independent practice serving multiple clients; the practitioner acquires their own clients.</p>
+          <p><strong>$7,200</strong> training and assessment<br><strong>$4,800</strong> authorization, payable after passing</p>
+          <p class="scope-note">May identify OEI as the methodology used and the OEI Institute as its source. May conduct full OEI engagements and Focused Investigations for clients, but may not represent the Institute or imply it is responsible for independent engagements. Independent full-engagement fees are capped at 50% of the corresponding Native fee: $10,000–$22,500+ based on current Native pricing.</p>
+          <p class="scope-note">Independent authorization may be perpetual, subject to mandatory periodic methodology updates issued by the Institute.</p>
+        </article>
+        <article class="pricing-option">
+          <p class="option-label">OEI Native practitioner</p><p class="price-range">$15,000 <span>USD total</span></p>
+          <p>Qualify for authorization to represent the Institute and deliver engagements to Institute clients under its standards and delivery arrangements.</p>
+          <p><strong>$9,000</strong> training and assessment<br><strong>$6,000</strong> authorization, payable after passing</p>
+          <p class="scope-note">Includes training and the opportunity to qualify for authorization. Passing is required; payment does not guarantee certification, Native status, employment, or a client assignment.</p>
+        </article>
       </div>
 
+      <div class="pathway-dimension" style="margin-top: 1.5rem;">
+        <h3>Upgrading from company-sponsored authorization</h3>
+        <p>If a practitioner leaves the sponsoring organization, their competence and certification remain, while the company-sponsored authorization no longer applies. They may upgrade to independent authorization for <strong>$2,000</strong>, or pursue the OEI Native pathway for <strong>$7,500</strong>, subject to applicable certification and authorization requirements.</p>
+      </div>
+    </section>
+
+    <section class="pricing-section pricing-wrap" aria-labelledby="engagement-pricing-heading">
       <div class="pricing-pathway-group">
         <div class="pathway-intro">
-          <span class="pathway-number">02</span>
-          <div><h3>Bring in OEI practitioners</h3><p>Have qualified practitioners perform the diagnosis and methodology application.</p></div>
+          <span class="pathway-number">OEI</span>
+          <div><h2 id="engagement-pricing-heading">OEI Engagements</h2><p>Have qualified practitioners perform the diagnosis and methodology application.</p></div>
         </div>
         <div class="pricing-options">
           <article class="pricing-option">
