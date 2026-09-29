@@ -31,8 +31,9 @@
         catalog[index].description=defaults[index].description;
       }
       if(stored.id==='ai') {
-        if(stored.description==='Optional AI Enablement when OEI findings support an intervention. Scope and price are determined for each proposal.' || stored.description.includes('Investigate, approximately $3,500 USD')) catalog[index].description=defaults[index].description;
-        if(!stored.options.length || stored.options.some(option=>option==='Investigate, approximately $3,500 USD')) catalog[index].options=defaults[index].options;
+        const priorInvestigateOption=stored.options.some(option=>option.startsWith('Investigate, ')&&option.includes('$3,500 USD')&&option!=='Investigate, $3,500 USD');
+        if(stored.description==='Optional AI Enablement when OEI findings support an intervention. Scope and price are determined for each proposal.' || priorInvestigateOption) catalog[index].description=defaults[index].description;
+        if(!stored.options.length || priorInvestigateOption) catalog[index].options=defaults[index].options;
       }
     }
   });
@@ -102,7 +103,7 @@
   function deleteSaved(id) { const entry=saved.find(x=>x.id===id);if(!entry)return;if(!confirm(`Delete draft ${entry.data.reference||''}? This cannot be undone.`))return;saved=saved.filter(x=>x.id!==id);if(currentId===id){currentId=null;quote=freshQuote();syncQuoteFields();renderLines();renderPreview();}persistQuotes();renderSaved();notice('Draft deleted.'); }
   function editLineField(field) {
     const item=quote.items[Number(field.dataset.item)];if(!item)return;const key=field.dataset.key;
-    if(key==='quantity')item[key]=Math.max(1,Math.floor(Number(field.value)||1));else if(key==='unitPrice')item[key]=Math.max(0,Number(field.value)||0);else item[key]=field.value;
+    if(key==='quantity')item[key]=Math.max(1,Math.floor(Number(field.value)||1));else if(key==='unitPrice')item[key]=Math.max(0,Number(field.value)||0);else if(key==='option'){item[key]=field.value;if(item.serviceId==='ai'&&field.value==='Investigate, $3,500 USD'){item.unitPrice=3500;const priceField=field.closest('.bill-line')?.querySelector('[data-key="unitPrice"]');if(priceField)priceField.value='3500';}}else item[key]=field.value;
     const line=field.closest('.bill-line');if(line){const subtotal=$('input[readonly]',line);if(subtotal)subtotal.value=money(Number(item.unitPrice)*Number(item.quantity));}
     renderPreview();
   }
