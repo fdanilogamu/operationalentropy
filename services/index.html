@@ -16,12 +16,14 @@
     .pathway-dimension h3 { margin-top: 0; }
     .pathway-dimension p:last-child { margin-bottom: 0; }
     .pathway-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.25rem; }
+    .services-start-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .pathway-grid .card { height: 100%; }
     .pathway-grid h3 { margin-top: 0; }
     .pathway-grid .pathway-tag { display: inline-block; margin-bottom: .65rem; color: var(--primary); font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .investigation-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: .6rem 1.5rem; padding-left: 1.25rem; }
     .pathway-steps { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .55rem; margin: 1.5rem 0; font-weight: 600; }
     .pathway-steps span { padding: .5rem .75rem; border-radius: 8px; background: var(--bg-primary); }
+    @media (max-width: 600px) { .services-start-grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .pathway-steps { flex-direction: column; align-items: stretch; } .pathway-steps b { text-align: center; transform: rotate(90deg); } }
   </style>
 </head>
@@ -100,7 +102,7 @@
       <div class="container text-center" style="max-width: 950px;">
         <h2>Not sure where to start?</h2>
         <p>Choose the starting point that matches your situation. We can help clarify the appropriate route without assuming every organization needs a broader OEI engagement.</p>
-        <div class="pathway-grid" style="text-align: left; margin-top: 2rem;">
+        <div class="pathway-grid services-start-grid" style="text-align: left; margin-top: 2rem;">
           <article class="card"><h3>Develop internal OEI capability</h3><p>Compare company-sponsored, independent consultant, and OEI Native practitioner development pathways.</p><a href="/pricing/">Review practitioner pricing</a></article>
           <article class="card"><h3>Have an authorized OEI practitioner perform the work</h3><p>Discuss an OEI Engagement delivered within the practitioner’s applicable authorization.</p><a href="/contact/">Discuss an OEI engagement</a></article>
           <article class="card"><h3>Examine one specific operational problem</h3><p>Begin with a bounded Focused Investigation.</p><a href="/services/focused-operational-investigations/">View Focused Investigations</a></article>
