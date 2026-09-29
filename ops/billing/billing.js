@@ -12,7 +12,7 @@
     { id:'native-upgrade', name:'Company-Sponsored Practitioner to OEI Native pathway', description:'$7,500 USD upgrade, subject to applicable certification and authorization requirements.', model:'fixed', unitPrice:7500, min:7500, max:7500, allowAbove:false, options:[] },
     { id:'team', name:'OEI Team-Delivered Engagements', description:'OEI diagnosis and methodology application performed by qualified practitioners for the organization.', model:'range', unitPrice:20000, min:20000, max:45000, allowAbove:true, options:[] },
     { id:'focused', name:'Focused Investigations', description:'A separately quotable, bounded investigation of a specific operational domain.', model:'range', unitPrice:1000, min:1000, max:4000, allowAbove:true, options:['Founder Absence Simulation','Institutional Memory Recovery Sprint','Workflow Momentum Analysis','Operational Stack Review','Handoff Failure Analysis'] },
-    { id:'ai', name:'AI Enablement Through OEI', description:'Optional AI Enablement when OEI findings support an intervention. Indicative estimates: Investigate, approximately $3,500 USD; Design, $2,000–$5,000 USD; Build & Validate, $3,000–$12,000 USD; Enable & Handoff, $1,500–$4,000 USD. Illustrative overall estimates are approximately $5,000–$14,000 USD for a small intervention and $20,000–$35,000+ USD for a more substantial intervention. These are planning estimates. Stages are not necessarily charged independently or delivered in sequence. Set the quote amount according to the intervention OEI findings support.', model:'custom', unitPrice:0, min:0, max:0, allowAbove:true, options:['Investigate, approximately $3,500 USD','Design, $2,000–$5,000 USD','Build & Validate, $3,000–$12,000 USD','Enable & Handoff, $1,500–$4,000 USD'] }
+    { id:'ai', name:'AI Enablement Through OEI', description:'Optional AI Enablement when OEI findings support an intervention. Indicative estimates: Investigate, $3,500 USD; Design, $2,000–$5,000 USD; Build & Validate, $3,000–$12,000 USD; Enable & Handoff, $1,500–$4,000 USD. Illustrative overall planning ranges are $5,000–$14,000 USD for a small intervention and $20,000–$35,000+ USD for a more substantial intervention. These are planning estimates. Stages are not necessarily charged independently or delivered in sequence. Set the quote amount according to the intervention OEI findings support.', model:'custom', unitPrice:0, min:0, max:0, allowAbove:true, options:['Investigate, $3,500 USD','Design, $2,000–$5,000 USD','Build & Validate, $3,000–$12,000 USD','Enable & Handoff, $1,500–$4,000 USD'] }
   ];
   const $ = (s, root=document) => root.querySelector(s);
   const $$ = (s, root=document) => [...root.querySelectorAll(s)];
@@ -31,8 +31,8 @@
         catalog[index].description=defaults[index].description;
       }
       if(stored.id==='ai') {
-        if(stored.description==='Optional AI Enablement when OEI findings support an intervention. Scope and price are determined for each proposal.') catalog[index].description=defaults[index].description;
-        if(!stored.options.length) catalog[index].options=defaults[index].options;
+        if(stored.description==='Optional AI Enablement when OEI findings support an intervention. Scope and price are determined for each proposal.' || stored.description.includes('Investigate, approximately $3,500 USD')) catalog[index].description=defaults[index].description;
+        if(!stored.options.length || stored.options.some(option=>option==='Investigate, approximately $3,500 USD')) catalog[index].options=defaults[index].options;
       }
     }
   });
