@@ -214,6 +214,38 @@ def pricing_table(rows):
     return table
 
 
+def pathway_pricing_table(rows):
+    header_style = ParagraphStyle("PathwayTableHeader", fontName="Helvetica-Bold", fontSize=6.8, leading=8, textColor=WHITE)
+    cell_styles = [
+        ParagraphStyle("PathwayTableFirst", fontName="Helvetica-Bold", fontSize=6.8, leading=8.4, textColor=INK),
+        ParagraphStyle("PathwayTableRole", fontName="Helvetica", fontSize=6.8, leading=8.4, textColor=INK),
+    ]
+    amount_style = ParagraphStyle("PathwayTableAmount", fontName="Helvetica", fontSize=6.8, leading=8.4, textColor=INK, alignment=2)
+    wrapped_rows = [[Paragraph(str(cell), header_style) for cell in rows[0]]]
+    wrapped_rows.extend([
+        [Paragraph(str(cell), cell_styles[min(i, 1)] if i < 2 else amount_style) for i, cell in enumerate(row)]
+        for row in rows[1:]
+    ])
+    table = Table(wrapped_rows, colWidths=[1.16 * inch, 1.46 * inch, 0.78 * inch, 0.9 * inch, 1.25 * inch, 1.15 * inch], repeatRows=1)
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, 0), INK),
+        ("TEXTCOLOR", (0, 0), (-1, 0), WHITE),
+        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("FONTNAME", (0, 1), (0, -1), "Helvetica-Bold"),
+        ("FONTSIZE", (0, 0), (-1, -1), 7),
+        ("LEADING", (0, 0), (-1, -1), 8.6),
+        ("ALIGN", (2, 1), (-1, -1), "RIGHT"),
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("GRID", (0, 0), (-1, -1), 0.35, LINE),
+        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [WHITE, PALE]),
+        ("LEFTPADDING", (0, 0), (-1, -1), 4),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+    ]))
+    return table
+
+
 def build_about():
     path = OUT / "About the Operational Entropy Index.pdf"
     story = [packet_brand_block(), Spacer(1, 8)]
@@ -256,13 +288,15 @@ def build_about():
         Spacer(1, 6),
         Paragraph("How organizations work with OEI", styles["PacketSection"]),
         packet_card_grid([[
-            packet_card("Build internal capability", "Develop practitioner capability through training and certification pathways as they take shape under Institute governance."),
-            packet_card("Work with practitioners", "Qualified practitioners investigate and apply OEI to an organization's operating context."),
+            packet_card("Build internal capability", "The Company-Sponsored pathway trains two different people, one Researcher and one Practitioner."),
+            packet_card("Work with practitioners", "Independent Consultants serve their own clients. OEI Native Practitioners deliver engagements for the Institute."),
         ]], [3.67 * inch, 3.67 * inch]),
         Spacer(1, 7),
         packet_callout("AI Enablement Through OEI", "AI Enablement can be a starting route for an existing AI initiative or an intervention when OEI findings support it. The work investigates the operating condition, tests whether a governed AI capability can improve it, and follows the evidence. AI is not an OEI pillar or an automatic solution. The right outcome may be to modify, stop, or not proceed.", PRIMARY),
         Spacer(1, 6),
         p("Focused investigations examine a bounded operating condition. Entropy Compatible Hiring (ECH) is a separate software product that supports structured hiring interviews and existing-employee contribution mapping; it can be used independently of a formal OEI engagement.", "PacketSmall"),
+        Spacer(1, 6),
+        packet_callout("Researcher and Practitioner pathways", "Researchers make operational reality legible through evidence. Practitioners determine what the evidence supports and lead diagnosis and recommendations. Company-Sponsored trains two people for $10,000. Independent Consultant trains one person for both roles for $12,000. OEI Native qualifies a Practitioner to deliver for the Institute for $15,000. Each pathway is 60% upfront for non-refundable training and assessment. Passing earns role certification and authorization. The remaining 40% is due only after passing. First-year renewal is waived. Annual renewal is $500 per internally employed Company-Sponsored Practitioner, $600 for Independent Consultants, and $750 for OEI Native Practitioners. Researchers have no renewal fee. Full terms: <link href='https://operationalentropy.com/practitioner-development/' color='#ffffff'>operationalentropy.com/practitioner-development/</link>.", PRIMARY),
     ]
     packet_doc_for(path).build(story)
     return path
@@ -279,12 +313,19 @@ def build_services():
     path = OUT / "OEI Services and Pricing.pdf"
     story = title_block("OEI Services and Pricing", "Current capability pathways, public pricing, and optional interventions")
     story += [
-        p("OEI engagements are scoped according to the capability, organizational context, and level of intervention required. The Institute is developing the broader practitioner and commercial structure. Final scope and pricing are determined during engagement scoping."),
-        h1("Two ways to work with OEI"),
-        h2("Build capability internally"),
-        p("Train and certify members of your organization to apply the OEI methodology. Practitioner development and certification pathways are taking shape under Institute governance. Flat fee: $10,000 USD."),
-        h2("Bring in OEI practitioners"),
-        p("Have qualified practitioners perform the diagnosis and methodology application for your organization. Current public range for OEI engagements: $20,000-$45,000+ USD. Scope varies with organizational size, complexity, and the operational territory investigated and addressed."),
+        p("OEI application uses two complementary roles. Researchers make operational reality legible through evidence. Practitioners assess what the evidence supports, make diagnostic judgments, and lead recommendations and delivery."),
+        h1("Practitioner development pathways"),
+        pathway_pricing_table([
+            ["Pathway", "People and roles trained", "Total", "60% upfront", "40% after passing", "Annual renewal"],
+            ["Company-Sponsored", "Two people: one Practitioner and one Researcher", "$10,000", "$6,000", "$4,000 Practitioner authorization", "$500 per employed Practitioner"],
+            ["Independent Consultant", "One person trained for both roles", "$12,000", "$7,200", "$4,800", "$600"],
+            ["OEI Native", "Practitioner. Researchers may be assigned separately", "$15,000", "$9,000", "$6,000", "$750"],
+        ]),
+        Spacer(1, 5),
+        p("The 60% training and assessment payment is non-refundable. Passing earns the candidate role certification and authorization. The remaining 40% is due only after passing. For Company-Sponsored, the $4,000 balance covers Practitioner authorization and is due if the Practitioner passes, even if the Researcher does not. One retake is available for the full 60% fee. Each candidate may attempt assessment twice total."),
+        p("The first renewal year is waived after certification. Company-Sponsored renewal applies per internally employed Practitioner. Researchers have no renewal fee. Renewal changes immediately to the new pathway rate after an upgrade. Independent Consultant fees for full OEI engagements are capped at 50% of the corresponding OEI Native engagement fee, or $10,000-$22,500+ based on current Native pricing. This cap does not apply to Focused Investigations. An additional Researcher training and assessment process is $3,000. While an existing Company-Sponsored Researcher remains with the company, the company may fund Practitioner training and assessment for $2,500, followed by $2,000 for Practitioner authorization after passing. A former Company-Sponsored Practitioner may upgrade to Independent for $2,000 or OEI Native for $7,500, subject to applicable requirements. Full pathway and upgrade terms: <link href='https://operationalentropy.com/practitioner-development/' color='#5b7a92'>operationalentropy.com/practitioner-development/</link>.", "Small"),
+        h2("OEI Native engagements"),
+        p("OEI Native Practitioners deliver engagements on behalf of the Institute. Current public range: $20,000-$45,000+ USD. Scope varies with organizational size, complexity, and the operational territory investigated and addressed."),
         h1("Focused Investigations"),
         p("A bounded entry point to investigate a specific operational domain through evidence-first OEI inquiry. Each investigation is scoped to the question and the work required; they are not identical, fixed-scope packages. Each includes a 4-Day OEI Diagnosis. Current public range: $1,000-$4,000 USD."),
         bullet("<b>Founder Absence Simulation:</b> Tests what fails, stalls, or escalates when the founder steps away."),
@@ -337,7 +378,7 @@ def build_tldr():
         p("Operational forensics examines work as it functions in practice. OEI combines interviews, workflow observation, records, operational samples, and structured analysis to distinguish observation from interpretation, test explanations, and support action grounded in evidence.", "PacketBody"),
         packet_callout("AI Enablement Through OEI", "AI Enablement is one way to begin when an organization has an AI initiative or mandate and needs to know whether AI can improve consequential work. It can also follow OEI findings as a justified intervention. AI is not an OEI pillar, and the evidence may support changing course or not proceeding.", PRIMARY),
         Spacer(1, 7),
-        p("Organizations can develop OEI capability internally or work with qualified OEI practitioners. Focused investigations offer a bounded way to examine a specific operating condition. The broader practitioner and commercial structure continues to develop.", "PacketSmall"),
+        p("OEI uses two distinct roles. Researchers prepare traceable evidence. Practitioners interpret that evidence, diagnose, and guide action. Company-Sponsored trains two people for $10,000. Independent Consultant trains one person for both roles for $12,000. OEI Native qualifies a Practitioner for Institute delivery for $15,000. The 60% training and assessment payment is upfront and non-refundable. Passing earns certification and authorization. The 40% balance is due only after passing. First-year renewal is waived. Annual renewal is $500 per internally employed Company-Sponsored Practitioner, $600 for Independent Consultants, and $750 for OEI Native Practitioners. Researchers have no renewal fee. Full terms: <link href='https://operationalentropy.com/practitioner-development/' color='#5b7a92'>operationalentropy.com/practitioner-development/</link>.", "PacketSmall"),
     ]
     packet_doc_for(path, title="OEI Institute Overview").build(story)
     return path

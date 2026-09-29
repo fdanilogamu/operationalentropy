@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from reportlab.lib import colors
+from reportlab.lib.enums import TA_RIGHT
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
@@ -32,6 +33,7 @@ styles = {
     "callhead": ParagraphStyle("CallHead", fontName="Helvetica-Bold", fontSize=11, leading=14, textColor=WHITE, spaceAfter=4),
     "callbody": ParagraphStyle("CallBody", fontName="Helvetica", fontSize=8.6, leading=12, textColor=WHITE),
     "footer": ParagraphStyle("Footer", fontName="Helvetica", fontSize=7.5, leading=10, textColor=MUTED),
+    "pathways": ParagraphStyle("Pathways", fontName="Helvetica", fontSize=8.1, leading=10.5, textColor=MUTED, spaceBefore=4),
 }
 
 
@@ -119,8 +121,8 @@ def build():
     ), Paragraph("How organizations work with OEI", styles["section"])]
 
     routes = Table([[
-        [Paragraph("Build internal capability", styles["cardhead"]), Paragraph("Develop staff capability through practitioner training and certification pathways as they take shape.", styles["cardbody"])],
-        [Paragraph("Work with practitioners", styles["cardhead"]), Paragraph("Qualified OEI practitioners investigate and apply the methodology to an organization's operating context.", styles["cardbody"])],
+        [Paragraph("Build internal capability", styles["cardhead"]), Paragraph("Company-Sponsored training prepares two different people, one Researcher and one Practitioner.", styles["cardbody"])],
+        [Paragraph("Work with practitioners", styles["cardhead"]), Paragraph("Independent Consultants serve their own clients. OEI Native Practitioners deliver for the Institute.", styles["cardbody"])],
     ]], colWidths=[3.43 * inch, 3.43 * inch])
     routes.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), PALE),
@@ -150,10 +152,14 @@ def build():
         ("BOTTOMPADDING", (0, 0), (-1, -1), 11),
     ]))
     story += [ai, Spacer(1, 0.08 * inch), Paragraph(
-        'The broader practitioner and commercial structure continues to develop. Learn more at '
-        '<link href="https://operationalentropy.com/about/" color="#5b7a92">operationalentropy.com/about/</link> '
-        'and <link href="https://operationalentropy.com/ai-enablement/" color="#5b7a92">operationalentropy.com/ai-enablement/</link>.',
-        styles["footer"],
+        'OEI has two roles. Researchers prepare traceable evidence. Practitioners interpret it and lead diagnosis and recommendations. '
+        'Company-Sponsored trains two people for $10,000. Independent Consultant trains one person for both roles for $12,000. '
+        'OEI Native qualifies a Practitioner for Institute delivery for $15,000. Each pathway is 60% upfront for non-refundable '
+        'training and assessment. Passing earns certification and authorization. The 40% balance is due only after passing. '
+        'The first renewal year is waived. Annual renewal is $500 per internally employed Company-Sponsored Practitioner, '
+        '$600 for Independent Consultants, and $750 for OEI Native Practitioners. Researchers have no renewal fee. '
+        'Full terms: <link href="https://operationalentropy.com/practitioner-development/" color="#5b7a92">operationalentropy.com/practitioner-development/</link>.',
+        styles["pathways"],
     )]
 
     doc.build(story, onFirstPage=on_page, onLaterPages=on_page)
