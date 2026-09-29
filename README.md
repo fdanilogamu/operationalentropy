@@ -12,7 +12,7 @@ server.
 
 - `index.html`: homepage
 - `about/`: Institute overview and Operational Entropy Index explanation
-- `contact/`, `pricing/`: contact and pending commercial pages
+- `contact/`, `pricing/`: contact and pricing pages
 - `services/`: service overview and focused-investigation offerings
 - `insights/`: OEI articles and pillar deep dives
 - `resources/`: information packet and downloadable material

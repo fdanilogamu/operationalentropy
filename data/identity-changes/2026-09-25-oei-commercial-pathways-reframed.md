@@ -25,4 +25,4 @@ The Institute's services and pricing pages now frame engagement choices around w
 
 ## Notes
 
-The updated commercial pages are published at `/temp-services/` and `/temp-pricing/`; `/pricing/` redirects to the pricing page. The investigation range remains separately recorded in the September 24 identity change.
+The updated commercial pages are published at `/services/` and `/pricing/`; `/pricing/` redirects to the pricing page. The investigation range remains separately recorded in the September 24 identity change.

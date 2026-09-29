@@ -121,7 +121,7 @@ External verification is a tag, not a fifth class. It is not a finding that a ca
 
 **SEVERITY:** Low
 
-**ROUTE(S):** `/`, `/contact/`, `/temp-pricing/`, `/resources/information-packet/`, `/site-navigation/`.
+**ROUTE(S):** `/`, `/contact/`, `/pricing/`, `/resources/information-packet/`, `/site-navigation/`.
 
 **FILE(S):** Corresponding `index.html` files, including root `index.html`; full values in Appendix B.
 
@@ -249,7 +249,7 @@ External verification is a tag, not a fifth class. It is not a finding that a ca
 
 **SEVERITY:** Medium
 
-**ROUTE(S):** `/`, `/site-navigation/`, `/pricing/`, `/pricing.html`, `/temp-pricing/`.
+**ROUTE(S):** `/`, `/site-navigation/`, `/pricing/`, `/pricing.html`, `/pricing/`.
 
 **FILE(S):** `index.html`; `site-navigation/index.html`; `pricing/index.html`; `pricing.html`; `temp-pricing/index.html`.
 
@@ -321,7 +321,7 @@ External verification is a tag, not a fifth class. It is not a finding that a ca
 
 **SEVERITY:** High
 
-**ROUTE(S):** `/`, `/contact/`, `/temp-pricing/`, all six focused-investigation pages, all three public PDFs.
+**ROUTE(S):** `/`, `/contact/`, `/pricing/`, all six focused-investigation pages, all three public PDFs.
 
 **FILE(S):** `index.html`; `contact/index.html`; `temp-pricing/index.html`; all six `services/focused-operational-investigations/**/index.html` files; three `info/*.pdf` files. Exact paths in Appendices A/C.
 
@@ -347,7 +347,7 @@ External verification is a tag, not a fifth class. It is not a finding that a ca
 
 **SEVERITY:** High
 
-**ROUTE(S):** `/contact/`, `/about/`, `/temp-pricing/`, Get Started sources G13.
+**ROUTE(S):** `/contact/`, `/about/`, `/pricing/`, Get Started sources G13.
 
 **FILE(S):** `contact/index.html`; `about/index.html`; `temp-pricing/index.html`; G13.
 
@@ -656,8 +656,8 @@ Do not copy internal assets into the website to resolve these questions. Do not 
 | `/operationaldrag.html` | [operationaldrag.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/operationaldrag.html>) | Redirect to `/insights/operational-drag/` |
 | `/operationaltax.html` | [operationaltax.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/operationaltax.html>) | Redirect to `/insights/organizational-complexity-tax/` |
 | `/ops/propagation/` | [ops/propagation/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/ops/propagation/index.html>) | Internal/noindex; F20 |
-| `/pricing.html` | [pricing.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing.html>) | Redirect to `/temp-pricing/` |
-| `/pricing/` | [pricing/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing/index.html>) | Redirect to `/temp-pricing/` |
+| `/pricing.html` | [pricing.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing.html>) | Redirect to `/pricing/` |
+| `/pricing/` | [pricing/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing/index.html>) | Redirect to `/pricing/` |
 | `/productfd.html` | [productfd.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/productfd.html>) | Redirect to `/services/focused-operational-investigations/founder-absence-simulation/` |
 | `/producthi.html` | [producthi.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/producthi.html>) | Redirect to `/services/focused-operational-investigations/handoff-failure-analysis/` |
 | `/productkl.html` | [productkl.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/productkl.html>) | Redirect to `/services/focused-operational-investigations/institutional-memory-recovery/` |
@@ -677,7 +677,7 @@ Do not copy internal assets into the website to resolve these questions. Do not 
 | `/services/operational-stack-review/` | [services/operational-stack-review/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/operational-stack-review/index.html>) | Redirect to `/services/focused-operational-investigations/operational-stack-review/` |
 | `/services/workflow-momentum-analysis/` | [services/workflow-momentum-analysis/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/workflow-momentum-analysis/index.html>) | Redirect to `/services/focused-operational-investigations/workflow-momentum-analysis/` |
 | `/site-navigation/` | [site-navigation/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/site-navigation/index.html>) | Ordinary public content; reviewed |
-| `/temp-pricing/` | [temp-pricing/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/temp-pricing/index.html>) | Ordinary public content; reviewed |
+| `/pricing/` | [temp-pricing/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing/index.html>) | Ordinary public content; reviewed |
 | `/tooldiscipline.html` | [tooldiscipline.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/tooldiscipline.html>) | Redirect to `/insights/tool-discipline/` |
 | `/whatisoei.html` | [whatisoei.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/whatisoei.html>) | Redirect to `/insights/what-is-operational-entropy/` |
 | `/workflowvelocity.html` | [workflowvelocity.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/workflowvelocity.html>) | Redirect to `/insights/workflow-velocity/` |
@@ -968,13 +968,13 @@ Every title, canonical, description and Open Graph field was inspected. Missing 
 
 - File: [pricing.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing.html>)
 - Title: Pricing Update | Operational Entropy
-- Canonical: https://operationalentropy.com/temp-pricing/
+- Canonical: https://operationalentropy.com/pricing/
 
 ### `/pricing/`
 
 - File: [pricing/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing/index.html>)
 - Title: Pricing Update | Operational Entropy
-- Canonical: https://operationalentropy.com/temp-pricing/
+- Canonical: https://operationalentropy.com/pricing/
 
 ### `/productfd.html`
 
@@ -1130,11 +1130,11 @@ Every title, canonical, description and Open Graph field was inspected. Missing 
 - og:image: (none)
 - robots: (none)
 
-### `/temp-pricing/`
+### `/pricing/`
 
-- File: [temp-pricing/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/temp-pricing/index.html>)
+- File: [temp-pricing/index.html](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing/index.html>)
 - Title: Pricing Update | Operational Entropy
-- Canonical: https://operationalentropy.com/temp-pricing/
+- Canonical: https://operationalentropy.com/pricing/
 - description: The Operational Entropy pricing structure is being overhauled. Contact Fletcher or schedule a discovery call to discuss your needs.
 - og:title: Pricing Update | Operational Entropy
 - og:description: The Operational Entropy pricing structure is being overhauled. Get in touch to discuss your needs.
@@ -1198,7 +1198,7 @@ These lists enumerate repeated occurrences without multiplying strategic finding
 - `/services/focused-operational-investigations/operational-stack-review/`: [services/focused-operational-investigations/operational-stack-review/index.html:181](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/focused-operational-investigations/operational-stack-review/index.html:181>)
 - `/services/focused-operational-investigations/workflow-momentum-analysis/`: [services/focused-operational-investigations/workflow-momentum-analysis/index.html:184](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/focused-operational-investigations/workflow-momentum-analysis/index.html:184>)
 - `/site-navigation/`: [site-navigation/index.html:127](<C:/Users/Fletch/Documents/GitHub/operationalentropy/site-navigation/index.html:127>)
-- `/temp-pricing/`: [temp-pricing/index.html:49](<C:/Users/Fletch/Documents/GitHub/operationalentropy/temp-pricing/index.html:49>)
+- `/pricing/`: [temp-pricing/index.html:49](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing/index.html:49>)
 
 ### G07 / F07 (7 ordinary pages)
 
@@ -1236,7 +1236,7 @@ These lists enumerate repeated occurrences without multiplying strategic finding
 - `/services/focused-operational-investigations/operational-stack-review/`: [services/focused-operational-investigations/operational-stack-review/index.html:22](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/focused-operational-investigations/operational-stack-review/index.html:22>)
 - `/services/focused-operational-investigations/workflow-momentum-analysis/`: [services/focused-operational-investigations/workflow-momentum-analysis/index.html:23](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/focused-operational-investigations/workflow-momentum-analysis/index.html:23>)
 - `/site-navigation/`: [site-navigation/index.html:20](<C:/Users/Fletch/Documents/GitHub/operationalentropy/site-navigation/index.html:20>)
-- `/temp-pricing/`: [temp-pricing/index.html:22](<C:/Users/Fletch/Documents/GitHub/operationalentropy/temp-pricing/index.html:22>)
+- `/pricing/`: [temp-pricing/index.html:22](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing/index.html:22>)
 
 ### G13 / F13 (24 ordinary pages)
 
@@ -1263,7 +1263,7 @@ These lists enumerate repeated occurrences without multiplying strategic finding
 - `/services/focused-operational-investigations/operational-stack-review/`: [services/focused-operational-investigations/operational-stack-review/index.html:27](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/focused-operational-investigations/operational-stack-review/index.html:27>)
 - `/services/focused-operational-investigations/workflow-momentum-analysis/`: [services/focused-operational-investigations/workflow-momentum-analysis/index.html:28](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/focused-operational-investigations/workflow-momentum-analysis/index.html:28>)
 - `/site-navigation/`: [site-navigation/index.html:24](<C:/Users/Fletch/Documents/GitHub/operationalentropy/site-navigation/index.html:24>)
-- `/temp-pricing/`: [temp-pricing/index.html:26](<C:/Users/Fletch/Documents/GitHub/operationalentropy/temp-pricing/index.html:26>)
+- `/pricing/`: [temp-pricing/index.html:26](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing/index.html:26>)
 
 ### G16 / F16 (24 ordinary pages)
 
@@ -1290,7 +1290,7 @@ These lists enumerate repeated occurrences without multiplying strategic finding
 - `/services/focused-operational-investigations/operational-stack-review/`: [services/focused-operational-investigations/operational-stack-review/index.html:208](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/focused-operational-investigations/operational-stack-review/index.html:208>)
 - `/services/focused-operational-investigations/workflow-momentum-analysis/`: [services/focused-operational-investigations/workflow-momentum-analysis/index.html:211](<C:/Users/Fletch/Documents/GitHub/operationalentropy/services/focused-operational-investigations/workflow-momentum-analysis/index.html:211>)
 - `/site-navigation/`: [site-navigation/index.html:132](<C:/Users/Fletch/Documents/GitHub/operationalentropy/site-navigation/index.html:132>)
-- `/temp-pricing/`: [temp-pricing/index.html:66](<C:/Users/Fletch/Documents/GitHub/operationalentropy/temp-pricing/index.html:66>)
+- `/pricing/`: [temp-pricing/index.html:66](<C:/Users/Fletch/Documents/GitHub/operationalentropy/pricing/index.html:66>)
 
 ### Local evidence anchors
 

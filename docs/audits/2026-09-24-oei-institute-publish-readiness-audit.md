@@ -33,7 +33,7 @@ These are the smallest requirements for publishing the branch with the new brand
 
 4. **Resolve the Contact page's public delivery claim.** Contact still presents Fletcher as the sole operator, promises a fixed diagnosis workflow and delivery window, and lists the former engagement package. If Services and Pricing remain pending, Contact needs a short transition treatment that accurately frames direct inquiries without presenting the old package as the settled Institute delivery model.
 
-5. **Verify all public entry routes after remediation.** Test `/`, `/about/`, `/about/operational-entropy-index/`, `/services/`, `/temp-pricing/`, `/contact/`, `/site-navigation/`, the ECH route, all sitemap URLs, and the preserved direct assessment URL. A successful HTTP response alone is insufficient for `/services/`; it must return the intended HTML document.
+5. **Verify all public entry routes after remediation.** Test `/`, `/about/`, `/about/operational-entropy-index/`, `/services/`, `/pricing/`, `/contact/`, `/site-navigation/`, the ECH route, all sitemap URLs, and the preserved direct assessment URL. A successful HTTP response alone is insufficient for `/services/`; it must return the intended HTML document.
 
 ### Important but not blocking the pending commercial work
 
@@ -59,7 +59,7 @@ These are the smallest requirements for publishing the branch with the new brand
 
 ## Services and Pricing status
 
-Pricing is already represented by the deliberate pending route `/temp-pricing/`, and `/pricing/` redirects there. Its commercial language can remain pending for this release, subject to the footer and branding propagation requirements above.
+Pricing is already represented by the deliberate pending route `/pricing/`, and `/pricing/` redirects there. Its commercial language can remain pending for this release, subject to the footer and branding propagation requirements above.
 
 Services is different. The branch deleted `services/index.html` while leaving `/services/` in navigation, the sitemap, and the Site Navigation page. The current local server exposes a directory listing. A pending Services page is acceptable, but an absent landing file is not.
 
@@ -129,7 +129,7 @@ Services is different. The branch deleted `services/index.html` while leaving `/
 - Working tree was clean before this report was created.
 - `git diff --check main...HEAD` passed.
 - All 29 sitemap URLs responded with HTTP 200 from the local server, but `/services/` returned a directory listing rather than a page.
-- `/about/`, `/about/operational-entropy-index/`, `/temp-pricing/`, `/contact/`, and `/site-navigation/` loaded from the local server.
+- `/about/`, `/about/operational-entropy-index/`, `/pricing/`, `/contact/`, and `/site-navigation/` loaded from the local server.
 - New logo, favicon, and hero files exist in `images/`.
 - Assessment discovery references remain absent from public HTML/XML; preserved implementation references remain where expected.
 - No site content was changed while conducting this audit. This report is the only new working-tree file produced by this audit.
