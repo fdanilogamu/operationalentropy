@@ -2252,18 +2252,18 @@ footer {
 /* Keep navigation labels on a single line while letting the row shrink. */
 @media (min-width: 769px) {
   header nav,
-  .ech-page nav { gap: 0.75rem; }
+  .ech-page nav { gap: clamp(0.35rem, 0.7vw, 0.75rem); }
   .logo,
-  .client-journey-page .logo { width: clamp(150px, 20vw, 280px); min-width: 0; }
+  .client-journey-page .logo { width: clamp(145px, 18vw, 250px); min-width: 0; }
   .nav-links,
   .ech-page .nav-links {
     flex: 1 1 0;
     min-width: 0;
     justify-content: space-between;
-    gap: clamp(0.35rem, 1vw, 1rem);
+    gap: clamp(0.3rem, 0.7vw, 0.7rem);
   }
   .nav-links li { min-width: 0; flex: 0 1 auto; }
-  .nav-links a { white-space: nowrap; font-size: clamp(0.62rem, 0.95vw, 0.86rem); }
+  .nav-links a { white-space: nowrap; font-size: clamp(0.6rem, 0.9vw, 0.84rem); }
   .nav-cta { flex: 0 0 auto; }
 }
 @media (max-width: 768px) {
@@ -2272,19 +2272,19 @@ footer {
   .nav-links,
   .ech-page .nav-links {
     flex: 1 1 100%;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    gap: 0.2rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.35rem 0.9rem;
     min-width: 0;
   }
-  .nav-links li { flex: 0 1 auto; min-width: 0; }
-  .nav-links a { white-space: nowrap; font-size: clamp(0.58rem, 1.8vw, 0.82rem); }
+  .nav-links li { flex: 0 0 auto; min-width: 0; }
+  .nav-links a { white-space: nowrap; font-size: clamp(0.68rem, 1.8vw, 0.82rem); }
 }
 @media (max-width: 480px) {
   .nav-links,
-  .ech-page .nav-links { flex-wrap: nowrap; gap: 0.15rem; }
-  .nav-links li { flex: 0 1 auto; min-width: 0; }
-  .nav-links a { white-space: nowrap; font-size: clamp(0.48rem, 2.65vw, 0.7rem); }
+  .ech-page .nav-links { flex-wrap: wrap; justify-content: flex-start; gap: 0.35rem 0.8rem; }
+  .nav-links li { flex: 0 0 auto; min-width: 0; }
+  .nav-links a { white-space: nowrap; font-size: clamp(0.68rem, 2.65vw, 0.8rem); }
 }
 
 /* Keep the homepage context CTA below the intro copy and aligned to its left edge. */
