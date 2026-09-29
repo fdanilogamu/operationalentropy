@@ -14,9 +14,14 @@
   <style>
     .pd-hero { display: block; min-height: 0; padding-block: 4rem; }
     .pd-hero .hero-content { max-width: 900px; }
-    .pd-contents { display: flex; flex-wrap: wrap; gap: .65rem 1.25rem; margin-top: 1.5rem; }
+    .pd-contents { margin-top: 1.5rem; }
+    .pd-contents h3 { margin: 0 0 .5rem; font-size: 1rem; }
+    .pd-contents ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem 2rem; max-width: 720px; margin: 0; padding-left: 1.25rem; }
+    .pd-contents li { padding-left: .2rem; }
     .pd-contents a { font-weight: 600; }
-    .pd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+    .pd-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.5rem; }
+    .pd-actions a { width: fit-content; }
+    .pd-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
     .pd-card { height: 100%; padding: 1.5rem; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-primary); }
     .pd-card h3 { margin-top: 0; }
     .pd-card p:last-child { margin-bottom: 0; }
@@ -30,13 +35,19 @@
     .pd-table-wrap th { background: var(--bg-secondary); }
     .pd-table-wrap caption { padding: 0 0 .75rem; text-align: left; font-weight: 700; }
     .pd-section-lead { max-width: 850px; }
+    .pd-domain-list { margin: -.35rem 0 1.25rem; padding-left: 1.5rem; }
+    .pd-domain-list li { padding: .2rem 0 .2rem .25rem; }
     .pd-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: .75rem 1.5rem; padding-left: 1.5rem; }
     .pd-flow li { padding-left: .25rem; }
     @media (max-width: 600px) {
       .pd-hero { padding-block: 3rem; }
-      .pd-contents { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .pd-contents ul { grid-template-columns: 1fr; }
       .pd-contents a { font-size: .9rem; }
+      .pd-grid { grid-template-columns: 1fr; }
       .pd-table-wrap table { min-width: 640px; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .pd-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 480px) {
       body.practitioner-development-page header .nav-links { display: none; }
@@ -67,8 +78,17 @@
         <h2>Learn the method. Demonstrate competence. Practice with defined authorization.</h2>
         <p class="pricing-lead">The OEI Institute governs the Operational Entropy Index methodology and its practice standards. Practitioner development is the Institute’s process for teaching OEI, assessing demonstrated competence, and authorizing practice within a defined scope.</p>
         <p>Training, certification, and authorization are separate steps. Training develops competence. A practical assessment determines whether a candidate meets the certification standard. Authorization determines where and in what capacity a certified practitioner may apply OEI. Payment does not guarantee certification.</p>
-        <nav class="pd-contents" aria-label="On this page">
-          <a href="#curriculum">Curriculum</a><a href="#assessment">Certification assessment</a><a href="#payment">Payment structure</a><a href="#pathways">Authorization pathways</a><a href="#upgrades">Changing authorization</a><a href="#updates">Methodology Updates</a><a href="#distinction">Certification and authorization</a>
+        <nav class="pd-contents" aria-label="Quick skip to content">
+          <h3>Quick Skip to Content</h3>
+          <ul>
+            <li><a href="#curriculum">Curriculum</a></li>
+            <li><a href="#assessment">Certification assessment</a></li>
+            <li><a href="#payment">Payment structure</a></li>
+            <li><a href="#pathways">Authorization pathways</a></li>
+            <li><a href="#upgrades">Changing authorization</a></li>
+            <li><a href="#updates">Methodology Updates</a></li>
+            <li><a href="#distinction">Certification and authorization</a></li>
+          </ul>
         </nav>
       </div>
     </section>
@@ -78,7 +98,15 @@
         <p class="eyebrow">01 · Learning the method</p>
         <h2>Curriculum and practitioner competencies</h2>
         <div class="pd-section-lead">
-          <p>The practitioner curriculum develops the capability to apply the Institute-governed OEI methodology. It is organized around twelve established practitioner competencies grouped into five domains: Investigative Discipline, Analytical Reasoning, OEI Application, Professional Delivery, and Methodological Stewardship. The same competency standard applies across all three pathways; the pathway changes the authorization and practice relationship, not the competencies assessed.</p>
+          <p>The practitioner curriculum develops the capability to apply the Institute-governed OEI methodology. It is organized around twelve established practitioner competencies grouped into five domains:</p>
+          <ol class="pd-domain-list">
+            <li>Investigative Discipline</li>
+            <li>Analytical Reasoning</li>
+            <li>OEI Application</li>
+            <li>Professional Delivery</li>
+            <li>Methodological Stewardship</li>
+          </ol>
+          <p>The same competency standard applies across all three pathways. The pathway changes the authorization and practice relationship, not the competencies assessed.</p>
           <p>Candidates learn to apply OEI across its five diagnostic pillars: Founder Dependency, Knowledge Logistics, Workflow Velocity, Tool Discipline, and Handoff Integrity.</p>
           <p>The methodology brings evidence from people, records, workflows, and operational samples together to build a grounded picture of how work functions. Candidates learn to:</p>
         </div>
@@ -90,7 +118,7 @@
           <article class="pd-card"><h3>Judge evidence sufficiency</h3><p>Recognize where evidence is confirmed, incomplete, contradictory, estimated, or unavailable, and account for those limits in the analysis.</p></article>
           <article class="pd-card"><h3>Form findings and recommendations</h3><p>Produce defensible findings and recommendations connected to evidence and the operational conditions under examination.</p></article>
         </div>
-        <p>The curriculum supports those competencies through practical application of the methodology. Training does not guarantee certification; candidates must demonstrate the competencies in assessment.</p>
+        <p>The curriculum supports those competencies through practical application of the methodology. Training does not guarantee certification. Candidates must demonstrate the competencies in assessment.</p>
       </div>
     </section>
 
@@ -99,7 +127,7 @@
         <p class="eyebrow">02 · Demonstrating competence</p>
         <h2>Certification assessment</h2>
         <div class="pd-section-lead">
-          <p>The certification assessment uses an established practical case. Candidates demonstrate how they apply OEI in practice; it is not merely a knowledge quiz. An assessor reviews the candidate’s submitted work and evaluates the established competencies individually, using evidence and rationale.</p>
+          <p>The certification assessment uses an established practical case. Candidates demonstrate how they apply OEI in practice. It is not merely a knowledge quiz. An assessor reviews the candidate’s submitted work and evaluates the established competencies individually, using evidence and rationale.</p>
           <p>The assessment determines whether the candidate meets the certification standard. The system does not automatically certify candidates, and candidates can fail. Certification depends on the assessment outcome, not on payment or completion of training alone.</p>
         </div>
         <ol class="pd-flow">
@@ -108,7 +136,7 @@
           <li><strong>Reach and explain findings.</strong> Decide whether evidence is sufficient, make uncertainty visible, and develop findings and recommendations where warranted.</li>
           <li><strong>Respond, revise, and submit.</strong> Complete the client debrief, consider new information or challenges, review the analysis, and submit the final record.</li>
         </ol>
-        <p>The assessor reviews the submitted record, including its evidence links, reasoning, revisions, and client-debrief responses, then evaluates the twelve competencies individually. The assessor records evidence and rationale; the environment does not calculate a pass or issue certification automatically.</p>
+        <p>The assessor reviews the submitted record, including its evidence links, reasoning, revisions, and client-debrief responses, then evaluates the twelve competencies individually. The assessor records evidence and rationale. The environment does not calculate a pass or issue certification automatically.</p>
         <div class="pd-callout"><strong>Assessment materials are controlled.</strong> Case details, answer keys, and assessor-only guidance are not published here.</div>
       </div>
     </section>
@@ -116,8 +144,8 @@
     <section id="payment">
       <div class="container">
         <p class="eyebrow">03 · Payment structure</p>
-        <h2>60% for training and assessment; 40% after passing</h2>
-        <p class="pd-section-lead">The first payment covers training and assessment. After passing, the remaining authorization payment completes the applicable pathway’s authorization process. No installment schedule, payment deadline, reassessment fee, or refund term is specified here.</p>
+        <h2>60% for training and assessment. 40% after passing</h2>
+        <p class="pd-section-lead">The first payment covers training and assessment. After passing, the remaining authorization payment completes the applicable pathway’s authorization process.</p>
         <div class="pd-table-wrap" role="region" aria-label="Practitioner pathway prices and payment stages" tabindex="0">
           <table>
             <caption>Current practitioner development prices (USD)</caption>
@@ -132,9 +160,13 @@
         <div class="pd-grid">
           <article class="pd-card"><h3>Before the assessment</h3><p class="pd-price">60%</p><p>Paid for training and the certification assessment, whether or not the candidate ultimately passes.</p></article>
           <article class="pd-card"><h3>After a passing result</h3><p class="pd-price">40%</p><p>Payable after passing to complete the applicable authorization process. A pass establishes eligibility for certification and the corresponding authorization process.</p></article>
-          <article class="pd-card"><h3>If the candidate does not pass</h3><p>The candidate has paid for training and assessment but does not receive certification or authorization on that result. No reassessment or refund terms are stated here.</p></article>
+          <article class="pd-card"><h3>If the candidate does not pass</h3><p>The candidate does not receive certification or authorization on that result. A second and final experience of the training and assessment process is possible after paying the 60% training and assessment amount again. Each candidate may experience this process no more than twice in total.</p></article>
         </div>
-        <p><strong>Payment alone does not guarantee certification or authorization.</strong> Authorization is granted separately after a successful assessment and completion of the applicable payment.</p>
+        <div class="pd-callout">
+          <p><strong>Training and assessment payment:</strong> The 60% payment is non-refundable.</p>
+          <p><strong>Authorization payment:</strong> The 40% payment is refundable if the practitioner rescinds their authorization within 10 days after paying for certification and authorization, provided they have not yet executed an OEI Diagnosis as the practitioner.</p>
+          <p><strong>Payment alone does not guarantee certification or authorization.</strong> Authorization is granted separately after a successful assessment and completion of the applicable payment.</p>
+        </div>
       </div>
     </section>
 
@@ -154,12 +186,12 @@
             <p class="eyebrow">Independent client practice</p><h3>Independent consultant trainee</h3><p class="pd-price">$12,000 USD</p>
             <p>For an individual developing an independent OEI consulting practice serving multiple clients. After passing and completing payment, the practitioner may independently conduct full OEI engagements and Focused Investigations and is responsible for acquiring and managing their own clients.</p>
             <p>Independent practitioners may identify OEI as the methodology they practice and the OEI Institute as its source. They may not present themselves as Institute employees, agents, or official representatives, or imply that the Institute is responsible for their independent engagements.</p>
-            <p>Independent full-engagement fees are capped at 50% of the corresponding OEI Native engagement fee. At the current Native range of $20,000–$45,000+ USD, the corresponding maximum is $10,000–$22,500+ USD. This cap applies to full engagements; no separate Focused Investigation cap is specified.</p>
+            <p>Independent full-engagement fees are capped at 50% of the corresponding OEI Native engagement fee. At the current Native range of $20,000–$45,000+ USD, the corresponding maximum is $10,000–$22,500+ USD. This cap applies to full engagements. No separate Focused Investigation cap is specified.</p>
           </article>
           <article class="pd-card">
             <p class="eyebrow">Institute delivery</p><h3>OEI Native practitioner</h3><p class="pd-price">$15,000 USD</p>
             <p>For practitioners who deliver OEI engagements on behalf of the OEI Institute. This pathway includes additional guidance and the responsibilities associated with representing the Institute.</p>
-            <p>After passing and completing payment, a candidate may receive authorization to represent the Institute and deliver engagements to Institute clients under its applicable standards and delivery arrangements. Authorization is a separate decision; payment does not guarantee Native status, employment, or a client assignment.</p>
+            <p>After passing and completing payment, a candidate may receive authorization to represent the Institute and deliver engagements to Institute clients under its applicable standards and delivery arrangements. Authorization is a separate decision. Payment does not guarantee Native status or a client assignment.</p>
             <p>OEI Native practitioners are the only practitioners authorized to represent the Institute under the current model.</p>
           </article>
         </div>
@@ -195,7 +227,7 @@
         <div class="pd-grid">
           <article class="pd-card"><h3>Certification</h3><p>Confirms that the candidate demonstrated the required competencies in the assessment. A certificate does not by itself grant unrestricted practice rights.</p></article>
           <article class="pd-card"><h3>Authorization</h3><p>Defines where and in what capacity a certified practitioner may apply OEI. Authorization is granted separately after the applicable assessment and payment requirements are met.</p></article>
-          <article class="pd-card"><h3>Institute representation</h3><p>Certification alone does not grant permission to represent the OEI Institute. Under the current model, only OEI Native practitioners may represent the Institute; company-sponsored and independent practitioners operate within their own defined scopes.</p></article>
+          <article class="pd-card"><h3>Institute representation</h3><p>Certification alone does not grant permission to represent the OEI Institute. Under the current model, only OEI Native practitioners may represent the Institute. Company-sponsored and independent practitioners operate within their own defined scopes.</p></article>
         </div>
       </div>
     </section>
@@ -204,7 +236,7 @@
       <div class="container text-center">
         <h2>Choose a next step</h2>
         <p>Review current services and pathway pricing, or contact the Institute to discuss which practice relationship fits your situation.</p>
-        <p><a href="/services/" class="btn-secondary">Explore OEI Services</a> <a href="/pricing/" class="btn-secondary">View Pricing</a> <a href="/contact/" class="btn-primary">Contact the Institute</a></p>
+        <div class="pd-actions"><a href="/services/" class="btn-secondary">Explore OEI Services</a><a href="/pricing/" class="btn-secondary">View Pricing</a><a href="/contact/" class="btn-primary">Contact the Institute</a></div>
       </div>
     </section>
   </main>
