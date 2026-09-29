@@ -6,6 +6,8 @@ has a clean, durable path:
 - `/about/`: OEI Institute overview and institutional entry point
 - `/about/operational-entropy-index/`: preserved Index explanation, linking to the existing `/insights/` educational journey
 - `/contact/` and `/pricing/`: contact and commercial pages
+- `/practitioner-development/`: training, certification assessment, authorization
+  pathways, and continuing methodology updates
 - `/services/`: the service overview; focused-investigation offerings live under
   `/services/focused-operational-investigations/`
 - `/insights/`: explanatory articles and OEI pillar deep dives
