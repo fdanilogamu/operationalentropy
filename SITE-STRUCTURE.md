@@ -8,6 +8,8 @@ has a clean, durable path:
 - `/contact/` and `/pricing/`: contact and commercial pages
 - `/practitioner-development/`: training, certification assessment, authorization
   pathways, and continuing methodology updates
+- `/roles-required-for-application/`: the Researcher and Analyst & Practitioner
+  roles, their separate responsibilities, and how they work together
 - `/services/`: the service overview; focused-investigation offerings live under
   `/services/focused-operational-investigations/`
 - `/insights/`: explanatory articles and OEI pillar deep dives
