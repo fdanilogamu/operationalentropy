@@ -2319,3 +2319,27 @@ footer {
     width: auto;
   }
 }
+
+/* Restrained chronology using the shared typography and callout treatment. */
+.history-reading { max-width: 800px; }
+.history-opening { background: var(--bg-secondary); }
+.history-opening p:last-child { margin-bottom: 0; }
+.history-chronology { background: var(--bg-primary); }
+.history-page .history-timeline { list-style: none; padding-left: 1.5rem; border-left: 1px solid var(--border); }
+.history-period { position: relative; padding-bottom: 3.5rem; }
+.history-period:last-child { padding-bottom: 0; }
+.history-period::before { content: ""; position: absolute; left: -1.8rem; top: 0.5rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--primary); }
+.history-date { color: var(--primary-dark); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; }
+.history-period h2 { margin-top: 0; margin-bottom: 1rem; }
+.history-catalyst { margin-top: 1.5rem; font-size: 0.95rem; }
+.history-catalyst p:first-child { margin-bottom: 0.5rem; color: var(--primary-dark); }
+.history-branch { margin-top: 2rem; padding-top: 0.5rem; border-top: 1px solid var(--border); font-size: 0.95rem; }
+.history-branch h3 { margin-top: 1rem; }
+.history-branch p { margin-bottom: 0; }
+.history-evidence { color: var(--primary-dark); font-weight: 500; }
+.history-present h2 { margin-top: 0; }
+@media (max-width: 768px) {
+  .history-page .history-timeline { padding-left: 1rem; }
+  .history-period::before { left: -1.3rem; }
+  .history-catalyst { padding: 1.1rem; }
+}
