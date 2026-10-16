@@ -136,22 +136,7 @@ def build():
     ]))
     story += [routes, Spacer(1, 0.09 * inch)]
 
-    ai = Table([[
-        Paragraph("AI Enablement Through OEI", styles["callhead"]),
-        Paragraph(
-            "AI Enablement applies OEI to consequential work where an organization needs to understand an AI opportunity, investigate the operating condition, and decide what evidence supports. It can be a starting route for an existing AI initiative, or an intervention when OEI findings justify it. AI is one possible response - not an OEI pillar or an automatic solution. The right result may be to modify, stop, or not proceed.",
-            styles["callbody"],
-        ),
-    ]], colWidths=[1.72 * inch, 5.14 * inch])
-    ai.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, -1), BLUE),
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 11),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 11),
-        ("TOPPADDING", (0, 0), (-1, -1), 11),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 11),
-    ]))
-    story += [ai, Spacer(1, 0.08 * inch), Paragraph(
+    story += [Paragraph(
         'OEI has two roles. Researchers prepare traceable evidence. Practitioners interpret it and lead diagnosis and recommendations. '
         'Company-Sponsored trains two people for $10,000. Independent Consultant trains one person for both roles for $12,000. '
         'OEI Native qualifies a Practitioner for Institute delivery for $15,000. Each pathway is 60% upfront for non-refundable '

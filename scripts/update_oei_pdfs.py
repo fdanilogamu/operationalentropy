@@ -292,7 +292,6 @@ def build_about():
             packet_card("Work with practitioners", "Independent Consultants serve their own clients. OEI Native Practitioners deliver engagements for the Institute."),
         ]], [3.67 * inch, 3.67 * inch]),
         Spacer(1, 7),
-        packet_callout("AI Enablement Through OEI", "AI Enablement can be a starting route for an existing AI initiative or an intervention when OEI findings support it. The work investigates the operating condition, tests whether a governed AI capability can improve it, and follows the evidence. AI is not an OEI pillar or an automatic solution. The right outcome may be to modify, stop, or not proceed.", PRIMARY),
         Spacer(1, 6),
         p("Focused investigations examine a bounded operating condition. Entropy Compatible Hiring (ECH) is a separate software product that supports structured hiring interviews and existing-employee contribution mapping; it can be used independently of a formal OEI engagement.", "PacketSmall"),
         Spacer(1, 6),
@@ -333,17 +332,6 @@ def build_services():
         bullet("<b>Workflow Momentum Analysis:</b> Locates waiting, friction, and loss of execution momentum."),
         bullet("<b>Operational Stack Review:</b> Evaluates the fit and interaction of tools, systems, and workarounds."),
         bullet("<b>Handoff Failure Analysis:</b> Traces where ownership, readiness, or context breaks during transfer."),
-        PageBreak(),
-        h1("Optional AI Enablement"),
-        p("AI Enablement may be added to either OEI pathway when findings identify a worthwhile opportunity. It is scoped from the evidence and is not an automatic part of every engagement. OEI may determine that AI is not the right response."),
-        pricing_table([
-            ["Indicative stage", "Planning estimate"],
-            ["Investigate", "Approximately $3,500"],
-            ["Design", "$2,000-$5,000"],
-            ["Build & Validate", "$3,000-$12,000"],
-            ["Enable & Handoff", "$1,500-$4,000"],
-        ]),
-        p("Illustrative overall estimates: a small intervention may be approximately $5,000-$14,000 USD; a more substantial intervention may reach $20,000-$35,000+ USD. Stages are not necessarily charged independently or delivered in sequence."),
         h1("Entropy Compatible Hiring"),
         p("ECH Version 0.1.3 BETA is separate Windows desktop software with ten role-agnostic interview instruments and an Existing Employee Contribution Mapping module. It can be used independently; a formal OEI engagement is not required. One-time purchase range: $950-$1,450 USD."),
     ]
@@ -376,7 +364,6 @@ def build_tldr():
         ]], [2.45 * inch, 2.45 * inch, 2.44 * inch]),
         Paragraph("A method for responsible application", styles["PacketSection"]),
         p("Operational forensics examines work as it functions in practice. OEI combines interviews, workflow observation, records, operational samples, and structured analysis to distinguish observation from interpretation, test explanations, and support action grounded in evidence.", "PacketBody"),
-        packet_callout("AI Enablement Through OEI", "AI Enablement is one way to begin when an organization has an AI initiative or mandate and needs to know whether AI can improve consequential work. It can also follow OEI findings as a justified intervention. AI is not an OEI pillar, and the evidence may support changing course or not proceeding.", PRIMARY),
         Spacer(1, 7),
         p("OEI uses two distinct roles. Researchers prepare traceable evidence. Practitioners interpret that evidence, diagnose, and guide action. Company-Sponsored trains two people for $10,000. Independent Consultant trains one person for both roles for $12,000. OEI Native qualifies a Practitioner for Institute delivery for $15,000. The 60% training and assessment payment is upfront and non-refundable. Passing earns certification and authorization. The 40% balance is due only after passing. First-year renewal is waived. Annual renewal is $500 per internally employed Company-Sponsored Practitioner, $600 for Independent Consultants, and $750 for OEI Native Practitioners. Researchers have no renewal fee. Full terms: <link href='https://operationalentropy.com/practitioner-development/' color='#5b7a92'>operationalentropy.com/practitioner-development/</link>.", "PacketSmall"),
     ]

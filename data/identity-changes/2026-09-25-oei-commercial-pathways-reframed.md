@@ -12,7 +12,7 @@ source: git commit 1a99233
 
 ## Change
 
-The Institute's services and pricing pages now frame engagement choices around who develops and applies OEI capability and whether an AI intervention is warranted. AI Enablement is optional and is not an OEI pillar. The pages describe current pathways while making clear that the broader practitioner and commercial structure is still developing.
+The Institute's services and pricing pages now frame engagement choices around who develops and applies OEI capability. The pages describe current pathways while making clear that the broader practitioner and commercial structure is still developing.
 
 ## Propagation
 

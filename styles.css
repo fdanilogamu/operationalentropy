@@ -154,23 +154,6 @@ button {
   border-color: #6A9060;
 }
 
-/* Keep calls to action on the AI Enablement page grouped and evenly spaced. */
-.ai-cta-group {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.ai-cta-group .btn-primary {
-  display: inline-flex;
-  width: auto;
-}
-
-.ai-flow-map {
-  margin-top: 0.9rem;
-}
-
 /* Navigation */
 header {
   background: var(--bg-primary);
@@ -981,7 +964,6 @@ footer {
 }
 .pricing-section-heading h2,
 .focused-content h2,
-.ai-pricing-copy h2,
 .pricing-contact h2 {
   margin: 0 0 1rem;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
@@ -1016,26 +998,21 @@ footer {
 }
 .pathway-intro p,
 .pricing-option p,
-.focused-price p,
-.ai-pricing-note p {
+.focused-price p {
   margin-top: 0;
 }
 .pricing-options {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.25rem;
   margin-left: 4rem;
 }
 .pricing-option,
-.focused-price,
-.ai-pricing-note {
+.focused-price {
   padding: 1.75rem;
   border: 1px solid var(--border-color, #dce2e5);
   border-radius: 12px;
   background: #fff;
-}
-.optional-option {
-  background: var(--background-alt, #f5f7f8);
 }
 .option-label {
   margin-bottom: .7rem;
@@ -1083,67 +1060,6 @@ footer {
 .focused-price .price-range {
   white-space: nowrap;
 }
-.ai-pricing-section {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, .55fr);
-  gap: 3rem;
-  align-items: center;
-}
-.ai-pricing-copy {
-  max-width: 760px;
-}
-.ai-pricing-copy .btn-secondary {
-  display: inline-block;
-  margin-top: .5rem;
-}
-.ai-pricing-note {
-  border-left: 4px solid var(--primary, #226b72);
-  background: var(--background-alt, #f5f7f8);
-}
-.ai-pricing-note h3 {
-  margin-top: 0;
-}
-.ai-pricing-estimates {
-  grid-column: 1 / -1;
-  padding-top: 1rem;
-}
-.ai-estimate-heading {
-  max-width: 760px;
-  margin-bottom: 1.25rem;
-}
-.ai-estimate-heading h3 {
-  margin: 0 0 .5rem;
-  font-size: 1.35rem;
-}
-.ai-stage-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 0 0 1.25rem;
-  padding: 0;
-}
-.ai-stage {
-  padding: 1.25rem;
-  border: 1px solid var(--border-color, #dce2e5);
-  border-radius: 10px;
-  background: #fff;
-}
-.ai-stage dt {
-  margin-bottom: .45rem;
-  font-weight: 700;
-}
-.ai-stage dd {
-  margin: 0;
-  color: var(--primary, #226b72);
-  font-weight: 650;
-}
-.ai-estimate-total {
-  margin-bottom: .5rem;
-}
-.ai-estimate-caveat {
-  color: var(--text-secondary, #56616b);
-  font-size: .92rem;
-}
 .pricing-contact {
   padding-block: 4rem;
   text-align: center;
@@ -1164,16 +1080,13 @@ footer {
     padding-block: 3.25rem;
   }
   .pricing-options,
-  .focused-content,
-  .ai-pricing-section,
-  .ai-stage-grid {
+  .focused-content {
     grid-template-columns: 1fr;
   }
   .pricing-options {
     margin-left: 0;
   }
-  .focused-content,
-  .ai-pricing-section {
+  .focused-content {
     gap: 1.5rem;
   }
   .focused-price .price-range {
@@ -2097,16 +2010,13 @@ footer {
   }
 
   .pricing-option,
-  .focused-price,
-  .ai-pricing-note {
+  .focused-price {
     min-width: 0;
     padding: 1.35rem;
   }
 
   .pricing-options,
   .focused-content,
-  .ai-pricing-section,
-  .ai-stage-grid,
   .client-question-grid,
   .expectation-grid,
   .masking-grid {
